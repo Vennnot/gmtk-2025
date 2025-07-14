@@ -161,6 +161,6 @@ jobs:
           mv butler /usr/local/bin/
       - name: Upload Mac to itch.io
         run: |
-          butler push build/mac ${{ secrets.ITCH_USER }}/${{ secrets.ITCH_GAME }}:windows
+          butler push build/mac ${{ secrets.ITCH_USER }}/${{ secrets.ITCH_GAME }}:mac
         env:
           BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
