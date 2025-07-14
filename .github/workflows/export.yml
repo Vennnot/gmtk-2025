@@ -34,6 +34,17 @@ jobs:
         with:
           name: windows
           path: build/windows
+      - name: Install Butler
+        run: |
+          curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+          unzip butler.zip
+          chmod +x butler
+          mv butler /usr/local/bin/
+      - name: Upload Windows to itch.io
+        run: |
+          butler push build/windows ${{ secrets.ITCH_USER }}/${{ secrets.ITCH_GAME }}:windows
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
 
   export-linux:
     name: Linux Export
@@ -60,6 +71,17 @@ jobs:
         with:
           name: linux
           path: build/linux
+      - name: Install Butler
+        run: |
+          curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+          unzip butler.zip
+          chmod +x butler
+          mv butler /usr/local/bin/
+      - name: Upload Linux to itch.io
+        run: |
+          butler push build/linux ${{ secrets.ITCH_USER }}/${{ secrets.ITCH_GAME }}:windows
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
 
   export-web:
     name: Web Export
@@ -94,6 +116,17 @@ jobs:
         with:
           branch: gh-pages
           folder: build/web
+      - name: Install Butler
+        run: |
+          curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+          unzip butler.zip
+          chmod +x butler
+          mv butler /usr/local/bin/
+      - name: Upload Web to itch.io
+        run: |
+          butler push build/web ${{ secrets.ITCH_USER }}/${{ secrets.ITCH_GAME }}:windows
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
 
   export-mac:
     name: Mac Export
@@ -120,3 +153,14 @@ jobs:
         with:
           name: mac
           path: build/mac
+      - name: Install Butler
+        run: |
+          curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+          unzip butler.zip
+          chmod +x butler
+          mv butler /usr/local/bin/
+      - name: Upload Mac to itch.io
+        run: |
+          butler push build/mac ${{ secrets.ITCH_USER }}/${{ secrets.ITCH_GAME }}:windows
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
