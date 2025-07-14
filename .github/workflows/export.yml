@@ -36,7 +36,7 @@ jobs:
           path: build/windows
       - name: Install Butler
         run: |
-          curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+          wget -O butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
           unzip butler.zip
           chmod +x butler
           mv butler /usr/local/bin/
@@ -79,7 +79,7 @@ jobs:
           mv butler /usr/local/bin/
       - name: Upload Linux to itch.io
         run: |
-          butler push build/linux ${{ secrets.ITCH_USER }}/${{ secrets.ITCH_GAME }}:windows
+          butler push build/linux ${{ secrets.ITCH_USER }}/${{ secrets.ITCH_GAME }}:linux
         env:
           BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
 
@@ -118,13 +118,13 @@ jobs:
           folder: build/web
       - name: Install Butler
         run: |
-          curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+          wget -O butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
           unzip butler.zip
           chmod +x butler
           mv butler /usr/local/bin/
       - name: Upload Web to itch.io
         run: |
-          butler push build/web ${{ secrets.ITCH_USER }}/${{ secrets.ITCH_GAME }}:windows
+          butler push build/web ${{ secrets.ITCH_USER }}/${{ secrets.ITCH_GAME }}:web
         env:
           BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
 
@@ -155,7 +155,7 @@ jobs:
           path: build/mac
       - name: Install Butler
         run: |
-          curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+          wget -O butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
           unzip butler.zip
           chmod +x butler
           mv butler /usr/local/bin/
