@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://brohg0hlw8f3t"]
+
+[ext_resource type="Script" uid="uid://4dor3gr8ci63" path="res://scenes/UI/components/game_settings_toggle.gd" id="1_rg45j"]
+
+[node name="GameSettingsToggle" type="CheckButton"]
+offset_right = 44.0
+offset_bottom = 24.0
+script = ExtResource("1_rg45j")

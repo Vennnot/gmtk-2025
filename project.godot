@@ -11,9 +11,27 @@ config_version=5
 [application]
 
 config/name="gmtk 2025"
-run/main_scene="uid://dhtruibsgo1o4"
+run/main_scene="uid://us18p26yg71o"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://cplm4xwfp0o51"
+
+[autoload]
+
+SceneChanger="*res://autoloads/scene_changer.tscn"
+AudioManager="*res://autoloads/audio_manager.tscn"
+EventBus="*res://autoloads/event_bus.gd"
+UserSettings="*res://autoloads/user_settings.gd"
+
+[file_customization]
+
+folder_colors={
+"res://autoloads/": "gray",
+"res://scenes/": "purple"
+}
 
 [rendering]
 

@@ -1,0 +1,138 @@
+[gd_scene load_steps=4 format=3 uid="uid://cygyj2gepkgaj"]
+
+[ext_resource type="Script" uid="uid://bpuh30cp0hsvl" path="res://scenes/UI/settings/game_settings.gd" id="1_mst33"]
+[ext_resource type="PackedScene" uid="uid://brohg0hlw8f3t" path="res://scenes/UI/components/game_settings_toggle.tscn" id="2_7t14q"]
+[ext_resource type="PackedScene" uid="uid://crqba0rlk8pg6" path="res://scenes/UI/components/game_settings_slider.tscn" id="2_mfoti"]
+
+[node name="GameSettings" type="HBoxContainer"]
+process_mode = 3
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_mst33")
+
+[node name="MasterContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MasterContainer"]
+layout_mode = 2
+
+[node name="MasterEnabledLabel" type="Label" parent="MasterContainer/HBoxContainer2"]
+layout_mode = 2
+text = "master enabled"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MasterEnabledToggle" parent="MasterContainer/HBoxContainer2" instance=ExtResource("2_7t14q")]
+layout_mode = 2
+property = "master_bus_enabled"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MasterContainer"]
+layout_mode = 2
+
+[node name="MasterVolumeLabel" type="Label" parent="MasterContainer/HBoxContainer"]
+layout_mode = 2
+text = "master volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MasterVolumeSlider" parent="MasterContainer/HBoxContainer" instance=ExtResource("2_mfoti")]
+layout_mode = 2
+property = "master_volume"
+
+[node name="MusicContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MusicContainer"]
+layout_mode = 2
+
+[node name="MusicEnabledLabel" type="Label" parent="MusicContainer/HBoxContainer2"]
+layout_mode = 2
+text = "music enabled"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicEnabledToggle" parent="MusicContainer/HBoxContainer2" instance=ExtResource("2_7t14q")]
+layout_mode = 2
+property = "music_bus_enabled"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MusicContainer"]
+layout_mode = 2
+
+[node name="MusicVolumeLabel" type="Label" parent="MusicContainer/HBoxContainer"]
+layout_mode = 2
+text = "music volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicVolumeSlider" parent="MusicContainer/HBoxContainer" instance=ExtResource("2_mfoti")]
+layout_mode = 2
+property = "music_volume"
+
+[node name="SFXContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="SFXContainer"]
+layout_mode = 2
+
+[node name="SFXEnabledLabel" type="Label" parent="SFXContainer/HBoxContainer2"]
+layout_mode = 2
+text = "SFX enabled"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXEnabledToggle" parent="SFXContainer/HBoxContainer2" instance=ExtResource("2_7t14q")]
+layout_mode = 2
+property = "sfx_bus_enabled"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SFXContainer"]
+layout_mode = 2
+
+[node name="SFXVolumeLabel" type="Label" parent="SFXContainer/HBoxContainer"]
+layout_mode = 2
+text = "SFX volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXVolumeSlider" parent="SFXContainer/HBoxContainer" instance=ExtResource("2_mfoti")]
+layout_mode = 2
+property = "sfx_volume"
+
+[node name="AmbienceContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="AmbienceContainer"]
+layout_mode = 2
+
+[node name="AmbienceEnabledLabel" type="Label" parent="AmbienceContainer/HBoxContainer2"]
+layout_mode = 2
+text = "ambience enabled"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AmbienceEnabledToggle" parent="AmbienceContainer/HBoxContainer2" instance=ExtResource("2_7t14q")]
+layout_mode = 2
+property = "ambience_bus_enabled"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AmbienceContainer"]
+layout_mode = 2
+
+[node name="AmbienceVolumeLabel" type="Label" parent="AmbienceContainer/HBoxContainer"]
+layout_mode = 2
+text = "ambience volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AmbienceVolumeSlider" parent="AmbienceContainer/HBoxContainer" instance=ExtResource("2_mfoti")]
+layout_mode = 2
+property = "ambience_volume"
+
+[node name="ExitButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Back"
+
+[node name="MainMenuButton" type="Button" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Main Menu"
