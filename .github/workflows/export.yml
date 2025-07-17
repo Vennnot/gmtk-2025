@@ -4,7 +4,7 @@ on: push
 env:
   GODOT_VERSION: 4.4.1
   EXPORT_NAME: gmtk-2025
-  PROJECT_PATH: "."  # Changed from test-project since your project.godot is in root
+  PROJECT_PATH: "."
 
 jobs:
   export-windows:
