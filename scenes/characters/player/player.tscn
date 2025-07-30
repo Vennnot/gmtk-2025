@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://tiqn0p0soeti"]
+
+[ext_resource type="Script" uid="uid://dhl5btwca0ik5" path="res://scenes/characters/player/player.gd" id="1_7uws0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t61fv"]
+radius = 30.0
+height = 120.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_686vu"]
+radius = 30.0
+height = 120.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_7uws0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_t61fv")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(0.780392, 0.505882, 0, 1)
+mesh = SubResource("CapsuleMesh_686vu")
+
+[node name="Jump Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="Jump Timer" to="." method="_on_jump_timer_timeout"]
