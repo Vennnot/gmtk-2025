@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cy0b3cyww8kv3"]
+
+[ext_resource type="Texture2D" uid="uid://vuovygtpdslb" path="res://icon.svg" id="1_6cysq"]
+[ext_resource type="Script" uid="uid://d0rrd63ejl2hd" path="res://scenes/collectables/collectable.gd" id="1_vtu06"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vtu06"]
+
+[node name="Collectable" type="Node2D"]
+modulate = Color(0.627451, 0.12549, 0.941176, 1)
+script = ExtResource("1_vtu06")
+collectable_type = null
+tape = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_6cysq")
+
+[node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 16
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_vtu06")

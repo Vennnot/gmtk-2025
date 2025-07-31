@@ -25,6 +25,4 @@ func _on_tape_changed():
 @onready var mesh_instance: MeshInstance2D = %MeshInstance2D
 
 func update_visuals() -> void:
-	var mesh_node: MeshInstance2D = get_node_or_null("%MeshInstance2D")
-	if mesh_node:
-		mesh_node.self_modulate = Global.get_tape_color(tape)
+	modulate = Global.get_tape_color(tape)

@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhtruibsgo1o4"]
+[gd_scene load_steps=9 format=3 uid="uid://dhtruibsgo1o4"]
 
 [ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_k2fmo"]
 [ext_resource type="PackedScene" uid="uid://dlsuigoh14we6" path="res://scenes/test/test_world.tscn" id="3_6q06x"]
+[ext_resource type="PackedScene" uid="uid://dyr2o0k4wj1m6" path="res://scenes/UI/track_visuals/infinity_loop.tscn" id="3_hujxm"]
 [ext_resource type="PackedScene" uid="uid://cygyj2gepkgaj" path="res://scenes/UI/settings/game_settings.tscn" id="4_l3cfh"]
 [ext_resource type="PackedScene" uid="uid://tiqn0p0soeti" path="res://scenes/characters/player/player.tscn" id="4_ow5a4"]
 [ext_resource type="PackedScene" uid="uid://dhki5ye0ug86b" path="res://scenes/characters/player/player_camera.tscn" id="5_hujxm"]
+[ext_resource type="PackedScene" uid="uid://cy0b3cyww8kv3" path="res://scenes/collectables/collectable.tscn" id="5_ow5a4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6q06x"]
 font_size = 48
@@ -53,11 +55,20 @@ label_settings = SubResource("LabelSettings_6q06x")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="InfinityLoop" parent="UI" instance=ExtResource("3_hujxm")]
+unique_name_in_owner = true
+position = Vector2(571, 73)
+
 [node name="Test World" parent="." instance=ExtResource("3_6q06x")]
 process_mode = 1
 
 [node name="Player" parent="Test World" instance=ExtResource("4_ow5a4")]
 unique_name_in_owner = true
+deceleration = 600.0
+
+[node name="Collectable" parent="Test World" instance=ExtResource("5_ow5a4")]
+position = Vector2(-259, 892)
+collectable_type = "time"
 
 [node name="PlayerCamera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_hujxm")]
 player = NodePath("../Test World/Player")

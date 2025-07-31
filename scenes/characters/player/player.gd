@@ -1,11 +1,14 @@
+class_name Player
 extends CharacterBody2D
 
 @export var speed := 100.0
 @export var maximum_velocity := 500.0
+var current_maximum_velocity := 500.0
 @export var acceleration := 100.0
 @export var deceleration := 100.0 # When player switches input direction
 @export var jump_force := 2000.0
 @export var gravity_force := 100.0
+var current_gravity_force := 100.0
 
 @onready var jump_timer = %"Jump Timer"
 var jumping = false
@@ -15,18 +18,25 @@ var player_movement_direction : float = 0.0
 @onready var anim_tree = %AnimationTree
 @onready var player_anim_sprite = %AnimatedSprite2D
 
+
+func reset_gravity():
+	current_gravity_force = gravity_force
+
+func reset_max_velocity():
+	current_maximum_velocity = maximum_velocity
+
 func _physics_process(delta: float) -> void:
 	control_movement(delta)
 	handle_animations()
 
 func control_movement(_delta):
-	print("Dir: " + str(player_movement_direction) + " Velocity: " + str(velocity)) # Collect Player dir and velocity data
+	#print("Dir: " + str(player_movement_direction) + " Velocity: " + str(velocity)) # Collect Player dir and velocity data
 	
 	#Get Player Input
 	player_movement_direction = Input.get_axis("left", "right")
 	
 	# Handle Gravity
-	velocity.y += gravity_force * _delta
+	velocity.y += current_gravity_force * _delta
 	
 	#Handle x movement
 	velocity.x += player_movement_direction * acceleration * _delta
@@ -83,4 +93,3 @@ func handle_animations():
 		anim_tree["parameters/conditions/jumping"] = false
 		anim_tree["parameters/conditions/falling"] = false
 		anim_tree["parameters/conditions/landed"] = true
-	

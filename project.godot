@@ -85,6 +85,8 @@ switch_tape={
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="Color Block"
 2d_physics/layer_5="Collectables"
+2d_physics/layer_6="track_center"
+2d_physics/layer_7="track_beat"
 
 [rendering]
 

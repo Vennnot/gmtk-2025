@@ -7,8 +7,9 @@ extends Node
 @onready var game_settings: GameSettingsUI = %GameSettings
 @onready var game_timer: Timer = %GameTimer
 @onready var time_label: Label = %TimeLabel
-@onready var player: CharacterBody2D = %Player
+@onready var player: Player = %Player
 @onready var debug_label: Label = %DebugLabel
+@onready var infinity_loop: InfinityLoop = %InfinityLoop
 
 var player_starting_pos := Vector2.ZERO
 
@@ -18,6 +19,8 @@ func _ready() -> void:
 	game_settings.exit_pressed.connect(toggle_pause)
 	game_timer.timeout.connect(_on_game_timer_timeout)
 	Global.tape_changed.connect(_on_tape_changed)
+	EventBus.collectable_collected.connect(_on_collectable)
+	
 	_on_tape_changed()
 	restart_game()
 
@@ -32,6 +35,13 @@ func _on_game_timer_timeout():
 	player.position = player_starting_pos
 	restart_game()
 
+
+func _on_collectable(type:String):
+	match type:
+		"time":
+			game_timer.wait_time = game_timer.time_left
+			game_timer.wait_time += 5
+			game_timer.start()
 
 
 func _process(_delta: float) -> void:
@@ -61,8 +71,42 @@ func toggle_pause():
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed(&"switch_tape"):
-		Global.next_tape()
+		if infinity_loop.sprite_in_middle:
+			infinity_loop.sprite_in_middle = false
+			Global.next_tape()
 
 
 func _on_tape_changed():
-	debug_label.text = "Cassette Tape: %s" % Global.get_tape_string() 
+	debug_label.text = "Cassette Tape: %s" % Global.get_tape_string() + " Next Tape: %s" % Global.get_tape_string(Global.get_next_tape())
+	_apply_tape_power()
+
+
+func _apply_tape_power():
+	_reset_values()
+	match Global.current_tape_index:
+		Global.TAPE.BLUE:
+			_increase_gravity()
+		Global.TAPE.RED:
+			_slow_time()
+		Global.TAPE.PURPLE:
+			_decrease_gravity()
+		#3:
+			#_increase_speed()
+
+
+func _slow_time():
+	Engine.time_scale = 0.7
+
+func _increase_speed():
+	player.current_maximum_velocity *= 2
+
+func _decrease_gravity():
+	player.current_gravity_force /= 2
+
+func _increase_gravity():
+	player.current_gravity_force *= 2
+
+func _reset_values():
+	Engine.time_scale = 1
+	player.reset_gravity()
+	player.reset_max_velocity()

@@ -237,9 +237,11 @@ color = Color(1, 0.337255, 0.176471, 1)
 position = Vector2(315, 943)
 
 [node name="Block2" parent="." instance=ExtResource("3_70kyo")]
+modulate = Color(0, 0, 1, 1)
 position = Vector2(613, 888)
-tape = 1
+tape = 0
 
 [node name="Block3" parent="." instance=ExtResource("3_70kyo")]
+modulate = Color(0.627451, 0.12549, 0.941176, 1)
 position = Vector2(931, 910)
-tape = 0
+tape = 2

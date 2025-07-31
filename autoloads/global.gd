@@ -36,3 +36,9 @@ func get_tape_string(t:TAPE=current_tape_index)->String:
 @warning_ignore("int_as_enum_without_cast")
 func get_tape_color(t:TAPE=current_tape_index)->Color:
 	return TAPE_COLORS[t]
+
+func get_next_tape()->TAPE:
+	var next_tape_to_get : int = current_tape_index
+	next_tape_to_get = (next_tape_to_get + 1) % TAPE.size()
+	@warning_ignore("int_as_enum_without_cast")
+	return next_tape_to_get 
