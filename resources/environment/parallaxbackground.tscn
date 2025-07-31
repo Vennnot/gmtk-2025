@@ -1,0 +1,103 @@
+[gd_scene load_steps=11 format=3 uid="uid://dx8l3luoxod0x"]
+
+[ext_resource type="Texture2D" uid="uid://c80ktd2b3ij3j" path="res://resources/environment/pngs/mg-Sheet.png" id="1_jfavm"]
+[ext_resource type="Texture2D" uid="uid://1dmfxo7gegad" path="res://resources/environment/pngs/bg-composite.png" id="2_2j340"]
+[ext_resource type="Texture2D" uid="uid://yu4c0doo5aqf" path="res://resources/environment/pngs/deepbg1.png" id="3_udhbf"]
+[ext_resource type="Texture2D" uid="uid://b2y2esd3w1q3f" path="res://resources/environment/pngs/Clouds.png" id="4_ycpwa"]
+[ext_resource type="Texture2D" uid="uid://7gxw1dk7abqg" path="res://resources/environment/pngs/Sky.png" id="5_udhbf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rj6mj"]
+atlas = ExtResource("1_jfavm")
+region = Rect2(0, 0, 960, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orev5"]
+atlas = ExtResource("1_jfavm")
+region = Rect2(960, 0, 960, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2j340"]
+atlas = ExtResource("1_jfavm")
+region = Rect2(1920, 0, 960, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udhbf"]
+atlas = ExtResource("1_jfavm")
+region = Rect2(2880, 0, 960, 180)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ycpwa"]
+animations = [{
+"frames": [{
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_rj6mj")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_orev5")
+}, {
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_rj6mj")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_2j340")
+}, {
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_rj6mj")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_udhbf")
+}],
+"loop": true,
+"name": &"midground",
+"speed": 10.0
+}]
+
+[node name="Parallaxbackground" type="Node2D"]
+
+[node name="Midground" type="Parallax2D" parent="."]
+z_index = 2
+scroll_scale = Vector2(0.75, 0.5)
+repeat_size = Vector2(960, 0)
+repeat_times = 6
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Midground"]
+position = Vector2(480, 90)
+sprite_frames = SubResource("SpriteFrames_ycpwa")
+animation = &"midground"
+autoplay = "midground"
+
+[node name="Background" type="Parallax2D" parent="."]
+z_index = 1
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(960, 0)
+repeat_times = 6
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+position = Vector2(479, 91)
+texture = ExtResource("2_2j340")
+
+[node name="DeepBackground" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.2, 0.5)
+repeat_size = Vector2(320, 0)
+repeat_times = 9
+
+[node name="Sprite2D" type="Sprite2D" parent="DeepBackground"]
+position = Vector2(160, 90)
+texture = ExtResource("3_udhbf")
+
+[node name="Clouds" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.1, 0.5)
+repeat_size = Vector2(960, 0)
+repeat_times = 6
+
+[node name="Sprite2D" type="Sprite2D" parent="Clouds"]
+modulate = Color(1, 1, 1, 0.490196)
+position = Vector2(481, -89)
+texture = ExtResource("4_ycpwa")
+
+[node name="Skybox" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.05, 0.5)
+scroll_offset = Vector2(0, -84)
+repeat_size = Vector2(320, 0)
+repeat_times = 16
+
+[node name="Sprite2D" type="Sprite2D" parent="Skybox"]
+modulate = Color(1, 1, 1, 0.490196)
+position = Vector2(162, -90)
+texture = ExtResource("5_udhbf")

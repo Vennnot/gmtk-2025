@@ -36,8 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://djovyd8yp2778" path="res://resources/sprites/Player/Run/run (19).png" id="34_kl5g2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t61fv"]
-radius = 21.0
-height = 98.0
+height = 40.0
 
 [sub_resource type="Animation" id="Animation_c1dak"]
 resource_name = "Fall"
@@ -347,7 +346,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Jump",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -361,7 +360,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Land",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -432,6 +431,7 @@ collision_mask = 29
 script = ExtResource("1_7uws0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
 shape = SubResource("CapsuleShape2D_t61fv")
 
 [node name="Jump Timer" type="Timer" parent="."]
@@ -458,7 +458,7 @@ parameters/conditions/running = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-scale = Vector2(3, 3)
+z_index = 5
 sprite_frames = SubResource("SpriteFrames_omwlg")
 animation = &"Idle"
 

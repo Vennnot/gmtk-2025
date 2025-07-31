@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dhtruibsgo1o4"]
+[gd_scene load_steps=10 format=3 uid="uid://dhtruibsgo1o4"]
 
 [ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_k2fmo"]
 [ext_resource type="PackedScene" uid="uid://dlsuigoh14we6" path="res://scenes/test/test_world.tscn" id="3_6q06x"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://tiqn0p0soeti" path="res://scenes/characters/player/player.tscn" id="4_ow5a4"]
 [ext_resource type="PackedScene" uid="uid://dhki5ye0ug86b" path="res://scenes/characters/player/player_camera.tscn" id="5_hujxm"]
 [ext_resource type="PackedScene" uid="uid://cy0b3cyww8kv3" path="res://scenes/collectables/collectable.tscn" id="5_ow5a4"]
+[ext_resource type="PackedScene" uid="uid://dx8l3luoxod0x" path="res://resources/environment/parallaxbackground.tscn" id="8_yyfjg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6q06x"]
 font_size = 48
@@ -73,6 +74,7 @@ process_mode = 1
 
 [node name="Player" parent="Test World" instance=ExtResource("4_ow5a4")]
 unique_name_in_owner = true
+position = Vector2(0, 968)
 deceleration = 600.0
 
 [node name="Collectable" parent="Test World" instance=ExtResource("5_ow5a4")]
@@ -81,4 +83,10 @@ position = Vector2(-259, 892)
 collectable_type = "time"
 
 [node name="PlayerCamera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_hujxm")]
+position = Vector2(0, 693)
+zoom = Vector2(1.5, 1.5)
 player = NodePath("../Test World/Player")
+follow_speed_x = 800.0
+
+[node name="Parallaxbackground" parent="." instance=ExtResource("8_yyfjg")]
+position = Vector2(2, 563)
