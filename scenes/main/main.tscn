@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dhtruibsgo1o4"]
+[gd_scene load_steps=17 format=3 uid="uid://dhtruibsgo1o4"]
 
 [ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_k2fmo"]
 [ext_resource type="PackedScene" uid="uid://dlsuigoh14we6" path="res://scenes/test/test_world.tscn" id="3_6q06x"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dbe4j3lpi0ika" path="res://scenes/world/Interactables/magnet_spikes.tscn" id="9_b1x3f"]
 [ext_resource type="PackedScene" uid="uid://5wwyga0bugq4" path="res://scenes/world/Interactables/speed_boost.tscn" id="10_a8run"]
 [ext_resource type="PackedScene" uid="uid://dv1optwloa0al" path="res://scenes/world/Interactables/railing.tscn" id="12_blune"]
+[ext_resource type="PackedScene" uid="uid://danamx8m8yjpq" path="res://scenes/ground/groundtilemap.tscn" id="13_th5th"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6q06x"]
 font_size = 48
@@ -97,7 +98,7 @@ tween_resource = SubResource("Resource_raeie")
 tween_on_load = false
 follow_damping = true
 draw_limits = true
-limit_bottom = 180
+limit_bottom = 220
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
 [node name="Camera" type="Camera2D" parent="."]
@@ -105,7 +106,7 @@ physics_interpolation_mode = 1
 position = Vector2(-70, -370)
 zoom = Vector2(4, 4)
 process_callback = 0
-limit_bottom = 180
+limit_bottom = 220
 editor_draw_limits = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera"]
@@ -121,12 +122,13 @@ process_mode = 1
 position = Vector2(3, 179)
 
 [node name="Floor" type="StaticBody2D" parent="World/Environment"]
-position = Vector2(211, 11)
+position = Vector2(211, 156)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Environment/Floor"]
 shape = SubResource("RectangleShape2D_a8run")
 
 [node name="Interactables" type="Node2D" parent="World/Environment"]
+position = Vector2(0, -264)
 
 [node name="SpeedBoost" parent="World/Environment/Interactables" instance=ExtResource("10_a8run")]
 position = Vector2(103, -1)
@@ -144,3 +146,6 @@ z_index = -5
 
 [node name="Railing" parent="." instance=ExtResource("12_blune")]
 position = Vector2(-639, 157)
+
+[node name="Groundtilemap" parent="." instance=ExtResource("13_th5th")]
+position = Vector2(-176, 180)
