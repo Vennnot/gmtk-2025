@@ -5,16 +5,17 @@ extends CharacterBody2D
 var current_maximum_velocity := 600.0
 @export var acceleration := 350.0
 @export var deceleration := 1050.0
+@export var deceleration_point := 200.0
 @export var jump_force := 30000.0
 @export var gravity_force := 2500.0
 var current_gravity_force := 2500.0
+
 
 @onready var jump_timer := %"Jump Timer"
 var jumping := false
 var can_jump := false
 
-var railing := false
-var railing_to_ride : StaticBody2D = null
+@onready var collision_check = $CollisionCheck
 
 var player_movement_direction := 0.0
 var player_facing_direction := 1.0
@@ -41,8 +42,7 @@ func control_movement(_delta):
 	player_movement_direction = Input.get_axis("left", "right")
 	
 	# Handle Gravity
-	if !railing:
-		velocity.y += current_gravity_force * _delta
+	velocity.y += current_gravity_force * _delta
 	
 	#Handle x movement
 	velocity.x += player_movement_direction * acceleration * _delta
@@ -56,9 +56,8 @@ func control_movement(_delta):
 		velocity.x = move_toward(velocity.x, player_facing_direction * current_maximum_velocity, deceleration * _delta)
 	
 	#If player is slow, stop them
-	if velocity.x <= 200.0 and player_movement_direction == 0:
-		if velocity.x >= -200.0:
-			velocity.x = move_toward(velocity.x, 0, _delta * deceleration)
+	if abs(velocity.x) <= deceleration_point and player_movement_direction == 0:
+		velocity.x = move_toward(velocity.x, 0, _delta * deceleration)
 	
 	#Handle Jump
 	handle_jumping()
@@ -126,3 +125,9 @@ func handle_collisions():
 func handle_railing():
 	if Input.is_action_just_pressed("down"):
 		position.y += 1.0
+	if collision_check.get_collider() != null:
+		if collision_check.get_collider().collision_layer == 256:
+			if abs(velocity.x) <= deceleration_point:
+				position.y += 1.0
+			else:
+				pass

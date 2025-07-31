@@ -432,7 +432,7 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
-collision_mask = 157
+collision_mask = 413
 script = ExtResource("1_7uws0")
 gravity_force = 1000.0
 
@@ -471,5 +471,9 @@ unique_name_in_owner = true
 z_index = 5
 sprite_frames = SubResource("SpriteFrames_omwlg")
 animation = &"Idle"
+
+[node name="CollisionCheck" type="RayCast2D" parent="."]
+target_position = Vector2(0, 30)
+collision_mask = 384
 
 [connection signal="timeout" from="Jump Timer" to="." method="_on_jump_timer_timeout"]

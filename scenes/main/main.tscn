@@ -143,4 +143,4 @@ deceleration = 600.0
 z_index = -5
 
 [node name="Railing" parent="." instance=ExtResource("12_blune")]
-position = Vector2(-209, 157)
+position = Vector2(-639, 157)

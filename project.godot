@@ -112,6 +112,7 @@ rail={
 2d_physics/layer_6="track_center"
 2d_physics/layer_7="track_beat"
 2d_physics/layer_8="Interactables"
+2d_physics/layer_9="Railing"
 
 [physics]
 
