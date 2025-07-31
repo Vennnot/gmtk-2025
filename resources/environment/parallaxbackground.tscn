@@ -52,7 +52,7 @@ animations = [{
 
 [node name="Midground" type="Parallax2D" parent="."]
 z_index = 2
-scroll_scale = Vector2(0.75, 0.5)
+scroll_scale = Vector2(0.75, 1)
 repeat_size = Vector2(960, 0)
 repeat_times = 6
 
@@ -64,7 +64,7 @@ autoplay = "midground"
 
 [node name="Background" type="Parallax2D" parent="."]
 z_index = 1
-scroll_scale = Vector2(0.5, 0.5)
+scroll_scale = Vector2(0.5, 1)
 repeat_size = Vector2(960, 0)
 repeat_times = 6
 
@@ -73,7 +73,7 @@ position = Vector2(479, 91)
 texture = ExtResource("2_2j340")
 
 [node name="DeepBackground" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.2, 0.5)
+scroll_scale = Vector2(0.2, 1)
 repeat_size = Vector2(320, 0)
 repeat_times = 9
 
@@ -82,7 +82,7 @@ position = Vector2(160, 90)
 texture = ExtResource("3_udhbf")
 
 [node name="Clouds" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.1, 0.5)
+scroll_scale = Vector2(0.1, 1)
 repeat_size = Vector2(960, 0)
 repeat_times = 6
 
@@ -92,7 +92,7 @@ position = Vector2(481, -89)
 texture = ExtResource("4_ycpwa")
 
 [node name="Skybox" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.05, 0.5)
+scroll_scale = Vector2(0.05, 1)
 scroll_offset = Vector2(0, -84)
 repeat_size = Vector2(320, 0)
 repeat_times = 16

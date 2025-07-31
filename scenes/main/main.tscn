@@ -1,17 +1,25 @@
-[gd_scene load_steps=12 format=3 uid="uid://dhtruibsgo1o4"]
+[gd_scene load_steps=15 format=3 uid="uid://dhtruibsgo1o4"]
 
 [ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_k2fmo"]
 [ext_resource type="PackedScene" uid="uid://dlsuigoh14we6" path="res://scenes/test/test_world.tscn" id="3_6q06x"]
 [ext_resource type="PackedScene" uid="uid://dyr2o0k4wj1m6" path="res://scenes/UI/track_visuals/infinity_loop.tscn" id="3_hujxm"]
+[ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="4_blune"]
 [ext_resource type="PackedScene" uid="uid://cygyj2gepkgaj" path="res://scenes/UI/settings/game_settings.tscn" id="4_l3cfh"]
 [ext_resource type="PackedScene" uid="uid://tiqn0p0soeti" path="res://scenes/characters/player/player.tscn" id="4_ow5a4"]
-[ext_resource type="PackedScene" uid="uid://dhki5ye0ug86b" path="res://scenes/characters/player/player_camera.tscn" id="5_hujxm"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_th5th"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="6_7smn1"]
 [ext_resource type="PackedScene" uid="uid://dx8l3luoxod0x" path="res://resources/environment/parallaxbackground.tscn" id="8_yyfjg"]
 [ext_resource type="PackedScene" uid="uid://dbe4j3lpi0ika" path="res://scenes/world/Interactables/magnet_spikes.tscn" id="9_b1x3f"]
 [ext_resource type="PackedScene" uid="uid://5wwyga0bugq4" path="res://scenes/world/Interactables/speed_boost.tscn" id="10_a8run"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6q06x"]
 font_size = 48
+
+[sub_resource type="Resource" id="Resource_raeie"]
+script = ExtResource("5_th5th")
+duration = 1.0
+transition = 0
+ease = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a8run"]
 size = Vector2(10000, 20)
@@ -75,15 +83,37 @@ position = Vector2(126, 73)
 [node name="GameTimer" type="Timer" parent="Other"]
 unique_name_in_owner = true
 
-[node name="PlayerCamera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_hujxm")]
-zoom = Vector2(1.5, 1.5)
-player = NodePath("../World/Player")
-follow_speed_x = 800.0
+[node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
+top_level = true
+position = Vector2(-70, -370)
+script = ExtResource("4_blune")
+follow_mode = 5
+follow_target = NodePath("../World/Player")
+zoom = Vector2(4, 4)
+tween_resource = SubResource("Resource_raeie")
+tween_on_load = false
+draw_limits = true
+limit_bottom = 180
+metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
+
+[node name="Camera" type="Camera2D" parent="."]
+physics_interpolation_mode = 1
+position = Vector2(-70, -370)
+zoom = Vector2(4, 4)
+limit_bottom = 180
+editor_draw_limits = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("6_7smn1")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="World" parent="." instance=ExtResource("3_6q06x")]
 process_mode = 1
 
 [node name="Environment" type="Node2D" parent="World"]
+position = Vector2(3, 179)
 
 [node name="Floor" type="StaticBody2D" parent="World/Environment"]
 position = Vector2(211, 11)
@@ -101,7 +131,7 @@ position = Vector2(391, 4)
 
 [node name="Player" parent="World" instance=ExtResource("4_ow5a4")]
 unique_name_in_owner = true
-position = Vector2(-27, -181)
+position = Vector2(-70, -370)
 deceleration = 600.0
 
 [node name="Parallaxbackground" parent="World" instance=ExtResource("8_yyfjg")]

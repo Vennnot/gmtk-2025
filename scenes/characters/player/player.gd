@@ -33,7 +33,7 @@ func _physics_process(delta: float) -> void:
 	handle_animations()
 
 func control_movement(_delta):
-	print("Dir: " + str(player_movement_direction) + " Velocity: " + str(velocity)) # Collect Player dir and velocity data
+	#print("Dir: " + str(player_movement_direction) + " Velocity: " + str(velocity)) # Collect Player dir and velocity data
 	
 	player_movement_direction = Input.get_axis("left", "right")
 	
