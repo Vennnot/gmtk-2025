@@ -7,37 +7,44 @@ extends CharacterBody2D
 @export var jump_force := 2000.0
 @export var gravity_force := 100.0
 
-@onready var jump_timer = $"Jump Timer"
+@onready var jump_timer = %"Jump Timer"
 var jumping = false
 
 var player_movement_direction : float = 0.0
 
+@onready var anim_tree = %AnimationTree
+@onready var player_anim_sprite = %AnimatedSprite2D
+
+signal cassette_changed
+
 func _physics_process(delta: float) -> void:
 	control_movement(delta)
-	apply_gravity(delta)
-	
-
-func apply_gravity(_delta):
-	pass
+	handle_cassette()
+	handle_animations()
 
 func control_movement(_delta):
+	print("Dir: " + str(player_movement_direction) + " Velocity: " + str(velocity)) # Collect Player dir and velocity data
+	
+	#Get Player Input
 	player_movement_direction = Input.get_axis("left", "right")
 	
+	# Handle Gravity
 	velocity.y += gravity_force * _delta
-	print(velocity)
-	#Handle left and right movement
+	
+	#Handle x movement
 	velocity.x += player_movement_direction * acceleration * _delta
 	if velocity.x < 0 and player_movement_direction > 0:
 		velocity.x += player_movement_direction * deceleration * _delta
 	if velocity.x > 0 and player_movement_direction < 0:
 		velocity.x += player_movement_direction * deceleration * _delta
 	
-	# Clamp maximum player velocity
+	#Clamp maximum player x velocity
 	velocity.x = clampf(velocity.x, -maximum_velocity, maximum_velocity)
 	
-	# If player is slow, stop them
-	if (velocity.x <= 5.0 or velocity.x >= -5.0) and player_movement_direction == 0:
-		velocity.x = move_toward(velocity.x, 0, _delta * deceleration)
+	#If player is slow, stop them
+	if velocity.x <= 200.0 and player_movement_direction == 0:
+		if velocity.x >= -200.0:
+			velocity.x = move_toward(velocity.x, 0, _delta * deceleration)
 	
 	#Handle Jump
 	handle_jumping()
@@ -55,3 +62,39 @@ func handle_jumping():
 		jumping = true
 	if Input.is_action_just_released("jump"):
 		jumping = false
+
+func handle_cassette():
+	if Input.is_action_just_pressed("cassette 1"):
+		BlockManager.cassette = "blue"
+		cassette_changed.emit()
+	if Input.is_action_just_pressed("cassette 2"):
+		BlockManager.cassette = "red"
+		cassette_changed.emit()
+	if Input.is_action_just_pressed("cassette 3"):
+		BlockManager.cassette = "purple"
+		cassette_changed.emit()
+
+func handle_animations():
+	if player_movement_direction < 0.0:
+		player_anim_sprite.flip_h = true
+	if player_movement_direction > 0.0:
+		player_anim_sprite.flip_h = false
+	if player_movement_direction == 0.0 and velocity.x == 0.0:
+		anim_tree["parameters/conditions/idle"] = true
+		anim_tree["parameters/conditions/running"] = false
+	if velocity.x != 0.0:
+		anim_tree["parameters/conditions/idle"] = false
+		anim_tree["parameters/conditions/running"] = true
+	if velocity.y < 0.0:
+		anim_tree["parameters/conditions/jumping"] = true
+		anim_tree["parameters/conditions/falling"] = false
+		anim_tree["parameters/conditions/landed"] = false
+	if velocity.y > 0.0:
+		anim_tree["parameters/conditions/jumping"] = false
+		anim_tree["parameters/conditions/falling"] = true
+		anim_tree["parameters/conditions/landed"] = false
+	if !jumping and is_on_floor():
+		anim_tree["parameters/conditions/jumping"] = false
+		anim_tree["parameters/conditions/falling"] = false
+		anim_tree["parameters/conditions/landed"] = true
+	
