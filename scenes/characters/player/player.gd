@@ -9,18 +9,21 @@ var current_maximum_velocity := 600.0
 @export var gravity_force := 2500.0
 var current_gravity_force := 2500.0
 
-@onready var jump_timer = %"Jump Timer"
+@onready var jump_timer := %"Jump Timer"
 var jumping := false
 var can_jump := false
 
-var player_movement_direction : float = 0.0
-var player_facing_direction : float = 1.0
+var railing := false
+var railing_to_ride : StaticBody2D = null
+
+var player_movement_direction := 0.0
+var player_facing_direction := 1.0
 
 @onready var anim_tree := %AnimationTree
 @onready var player_anim_sprite := %AnimatedSprite2D
 
-@onready var regular_collision = $"Regular Collision"
-@onready var croutch_collision = $"Croutch Collision"
+@onready var regular_collision := $"Regular Collision"
+@onready var croutch_collision := $"Croutch Collision"
 
 func reset_gravity():
 	current_gravity_force = gravity_force
@@ -38,7 +41,8 @@ func control_movement(_delta):
 	player_movement_direction = Input.get_axis("left", "right")
 	
 	# Handle Gravity
-	velocity.y += current_gravity_force * _delta
+	if !railing:
+		velocity.y += current_gravity_force * _delta
 	
 	#Handle x movement
 	velocity.x += player_movement_direction * acceleration * _delta
@@ -64,6 +68,9 @@ func control_movement(_delta):
 	
 	#Handle Player Collisions
 	handle_collisions()
+	
+	#Handle Railing
+	handle_railing()
 	
 	move_and_slide()
 
@@ -115,3 +122,7 @@ func handle_collisions():
 	else:
 		regular_collision.disabled = false
 		croutch_collision.disabled = true
+
+func handle_railing():
+	if Input.is_action_just_pressed("down"):
+		position.y += 1.0

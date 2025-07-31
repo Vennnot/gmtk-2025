@@ -1,7 +1,7 @@
 class_name PlayerCamera
 extends Camera2D
 
-@export var player : CharacterBody2D
+@export var player : Player
 @export var follow_speed_x := 700.0
 @export var follow_speed_y := 700.0
 

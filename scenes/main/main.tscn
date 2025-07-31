@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dhtruibsgo1o4"]
+[gd_scene load_steps=16 format=3 uid="uid://dhtruibsgo1o4"]
 
 [ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_k2fmo"]
 [ext_resource type="PackedScene" uid="uid://dlsuigoh14we6" path="res://scenes/test/test_world.tscn" id="3_6q06x"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dx8l3luoxod0x" path="res://resources/environment/parallaxbackground.tscn" id="8_yyfjg"]
 [ext_resource type="PackedScene" uid="uid://dbe4j3lpi0ika" path="res://scenes/world/Interactables/magnet_spikes.tscn" id="9_b1x3f"]
 [ext_resource type="PackedScene" uid="uid://5wwyga0bugq4" path="res://scenes/world/Interactables/speed_boost.tscn" id="10_a8run"]
+[ext_resource type="PackedScene" uid="uid://dv1optwloa0al" path="res://scenes/world/Interactables/railing.tscn" id="12_blune"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6q06x"]
 font_size = 48
@@ -100,8 +101,10 @@ limit_bottom = 180
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
 [node name="Camera" type="Camera2D" parent="."]
+physics_interpolation_mode = 1
 position = Vector2(-70, -370)
 zoom = Vector2(4, 4)
+process_callback = 0
 limit_bottom = 180
 editor_draw_limits = true
 
@@ -138,3 +141,6 @@ deceleration = 600.0
 
 [node name="Parallaxbackground" parent="World" instance=ExtResource("8_yyfjg")]
 z_index = -5
+
+[node name="Railing" parent="." instance=ExtResource("12_blune")]
+position = Vector2(-209, 157)
