@@ -10,6 +10,7 @@ extends Node
 @onready var player: Player = %Player
 @onready var debug_label: Label = %DebugLabel
 @onready var infinity_loop: InfinityLoop = %InfinityLoop
+@onready var power_label: Label = %PowerLabel
 
 var player_starting_pos := Vector2.ZERO
 
@@ -77,21 +78,26 @@ func _input(_event: InputEvent) -> void:
 
 
 func _on_tape_changed():
-	debug_label.text = "Cassette Tape: %s" % Global.get_tape_string() + " Next Tape: %s" % Global.get_tape_string(Global.get_next_tape())
+	debug_label.text = "Cassette Tape: %s" % Global.get_tape_string() + ", Next Tape: %s" % Global.get_tape_string(Global.get_next_tape())
 	_apply_tape_power()
 
 
 func _apply_tape_power():
 	_reset_values()
+	var powerup_text := ""
 	match Global.current_tape_index:
 		Global.TAPE.BLUE:
 			_increase_gravity()
+			powerup_text = "increased gravity"
 		Global.TAPE.RED:
 			_slow_time()
+			powerup_text = "time slowed"
 		Global.TAPE.PURPLE:
 			_decrease_gravity()
+			powerup_text = "decreased gravity"
 		#3:
 			#_increase_speed()
+	power_label.text = "current power: %s" % powerup_text
 
 
 func _slow_time():

@@ -430,17 +430,15 @@ animations = [{
 collision_layer = 2
 collision_mask = 29
 script = ExtResource("1_7uws0")
-acceleration = 350.0
-deceleration = 500.0
-jump_force = 12000.0
-gravity_force = 501.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_t61fv")
 
 [node name="Jump Timer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 0.5
+process_callback = 0
+wait_time = 0.3
+one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -1,22 +1,21 @@
 class_name Player
 extends CharacterBody2D
 
-@export var speed := 100.0
-@export var maximum_velocity := 500.0
-var current_maximum_velocity := 500.0
-@export var acceleration := 100.0
-@export var deceleration := 100.0 # When player switches input direction
-@export var jump_force := 2000.0
-@export var gravity_force := 100.0
-var current_gravity_force := 100.0
+@export var maximum_velocity := 600.0
+var current_maximum_velocity := 600.0
+@export var acceleration := 350.0
+@export var deceleration := 1050.0 # When player switches input direction
+@export var jump_force := 30000.0
+@export var gravity_force := 2500.0
+var current_gravity_force := 2500.0
 
 @onready var jump_timer = %"Jump Timer"
-var jumping = false
+var jumping := false
 
 var player_movement_direction : float = 0.0
 
-@onready var anim_tree = %AnimationTree
-@onready var player_anim_sprite = %AnimatedSprite2D
+@onready var anim_tree := %AnimationTree
+@onready var player_anim_sprite := %AnimatedSprite2D
 
 
 func reset_gravity():
@@ -32,7 +31,6 @@ func _physics_process(delta: float) -> void:
 func control_movement(_delta):
 	#print("Dir: " + str(player_movement_direction) + " Velocity: " + str(velocity)) # Collect Player dir and velocity data
 	
-	#Get Player Input
 	player_movement_direction = Input.get_axis("left", "right")
 	
 	# Handle Gravity

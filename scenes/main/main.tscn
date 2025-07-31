@@ -55,9 +55,18 @@ label_settings = SubResource("LabelSettings_6q06x")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="PowerLabel" type="Label" parent="UI/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+text = "current power:"
+label_settings = SubResource("LabelSettings_6q06x")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="InfinityLoop" parent="UI" instance=ExtResource("3_hujxm")]
 unique_name_in_owner = true
-position = Vector2(571, 73)
+position = Vector2(126, 73)
 
 [node name="Test World" parent="." instance=ExtResource("3_6q06x")]
 process_mode = 1
@@ -67,6 +76,7 @@ unique_name_in_owner = true
 deceleration = 600.0
 
 [node name="Collectable" parent="Test World" instance=ExtResource("5_ow5a4")]
+modulate = Color(0.627451, 0.12549, 0.941176, 1)
 position = Vector2(-259, 892)
 collectable_type = "time"
 
