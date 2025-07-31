@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://dbe4j3lpi0ika"]
+
+[ext_resource type="Script" uid="uid://1wv621ddhf4b" path="res://scenes/world/Interactables/magnet_spikes.gd" id="1_8ou1n"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_u1efy"]
+size = Vector3(100, 20, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ou1n"]
+size = Vector2(100, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_18od2"]
+size = Vector2(278, 40)
+
+[node name="Magnet Spikes" type="Area2D"]
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("1_8ou1n")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(0, -5)
+scale = Vector2(1, 0.5)
+mesh = SubResource("BoxMesh_u1efy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_8ou1n")
+
+[node name="Magnet Pull" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Magnet Pull"]
+position = Vector2(0, -20)
+shape = SubResource("RectangleShape2D_18od2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Magnet Pull" to="." method="_on_magnet_pull_body_entered"]
+[connection signal="body_exited" from="Magnet Pull" to="." method="_on_magnet_pull_body_exited"]

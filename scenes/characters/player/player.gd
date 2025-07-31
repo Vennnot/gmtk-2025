@@ -4,19 +4,23 @@ extends CharacterBody2D
 @export var maximum_velocity := 600.0
 var current_maximum_velocity := 600.0
 @export var acceleration := 350.0
-@export var deceleration := 1050.0 # When player switches input direction
+@export var deceleration := 1050.0
 @export var jump_force := 30000.0
 @export var gravity_force := 2500.0
 var current_gravity_force := 2500.0
 
 @onready var jump_timer = %"Jump Timer"
 var jumping := false
+var can_jump := false
 
 var player_movement_direction : float = 0.0
+var player_facing_direction : float = 1.0
 
 @onready var anim_tree := %AnimationTree
 @onready var player_anim_sprite := %AnimatedSprite2D
 
+@onready var regular_collision = $"Regular Collision"
+@onready var croutch_collision = $"Croutch Collision"
 
 func reset_gravity():
 	current_gravity_force = gravity_force
@@ -29,7 +33,7 @@ func _physics_process(delta: float) -> void:
 	handle_animations()
 
 func control_movement(_delta):
-	#print("Dir: " + str(player_movement_direction) + " Velocity: " + str(velocity)) # Collect Player dir and velocity data
+	print("Dir: " + str(player_movement_direction) + " Velocity: " + str(velocity)) # Collect Player dir and velocity data
 	
 	player_movement_direction = Input.get_axis("left", "right")
 	
@@ -44,7 +48,8 @@ func control_movement(_delta):
 		velocity.x += player_movement_direction * deceleration * _delta
 	
 	#Clamp maximum player x velocity
-	velocity.x = clampf(velocity.x, -maximum_velocity, maximum_velocity)
+	if abs(velocity.x) > current_maximum_velocity:
+		velocity.x = move_toward(velocity.x, player_facing_direction * current_maximum_velocity, deceleration * _delta)
 	
 	#If player is slow, stop them
 	if velocity.x <= 200.0 and player_movement_direction == 0:
@@ -53,8 +58,12 @@ func control_movement(_delta):
 	
 	#Handle Jump
 	handle_jumping()
-	if jumping:
+	if can_jump:
+		if jumping:
 			velocity.y = -jump_force * _delta
+	
+	#Handle Player Collisions
+	handle_collisions()
 	
 	move_and_slide()
 
@@ -62,17 +71,24 @@ func _on_jump_timer_timeout() -> void:
 	jumping = false
 
 func handle_jumping():
-	if Input.is_action_just_pressed("jump"):
-		jump_timer.start()
-		jumping = true
-	if Input.is_action_just_released("jump"):
-		jumping = false
+	if is_on_floor():
+		can_jump = true
+	if can_jump:
+		if Input.is_action_just_pressed("jump"):
+			jump_timer.start()
+			jumping = true
+			can_jump = false
+		if Input.is_action_just_released("jump"):
+			jumping = false
+			can_jump = false
 
 func handle_animations():
 	if player_movement_direction < 0.0:
 		player_anim_sprite.flip_h = true
+		player_facing_direction = -1.0
 	if player_movement_direction > 0.0:
 		player_anim_sprite.flip_h = false
+		player_facing_direction = 1.0
 	if player_movement_direction == 0.0 and velocity.x == 0.0:
 		anim_tree["parameters/conditions/idle"] = true
 		anim_tree["parameters/conditions/running"] = false
@@ -91,3 +107,11 @@ func handle_animations():
 		anim_tree["parameters/conditions/jumping"] = false
 		anim_tree["parameters/conditions/falling"] = false
 		anim_tree["parameters/conditions/landed"] = true
+
+func handle_collisions():
+	if Input.is_action_pressed("crouch"):
+		regular_collision.disabled = true
+		croutch_collision.disabled = false
+	else:
+		regular_collision.disabled = false
+		croutch_collision.disabled = true

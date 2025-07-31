@@ -32,6 +32,19 @@ offset_top = 996.0
 offset_right = 2877.0
 offset_bottom = 1052.0
 
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(-4099, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(823, 1023.75)
+shape = SubResource("RectangleShape2D_k3yvu")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D3"]
+offset_left = -1221.0
+offset_top = 996.0
+offset_right = 2877.0
+offset_bottom = 1052.0
+
 [node name="Checkers" type="Node2D" parent="."]
 visible = false
 

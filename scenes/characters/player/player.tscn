@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://tiqn0p0soeti"]
+[gd_scene load_steps=62 format=3 uid="uid://tiqn0p0soeti"]
 
 [ext_resource type="Script" uid="uid://dhl5btwca0ik5" path="res://scenes/characters/player/player.gd" id="1_7uws0"]
 [ext_resource type="Texture2D" uid="uid://bytwlljqj3k6r" path="res://resources/sprites/Player/Fall/fall (1).png" id="2_pbtrp"]
@@ -36,7 +36,12 @@
 [ext_resource type="Texture2D" uid="uid://djovyd8yp2778" path="res://resources/sprites/Player/Run/run (19).png" id="34_kl5g2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t61fv"]
-height = 40.0
+radius = 8.0
+height = 34.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pbtrp"]
+radius = 8.0
+height = 22.0
 
 [sub_resource type="Animation" id="Animation_c1dak"]
 resource_name = "Fall"
@@ -296,7 +301,7 @@ states/Run/node = SubResource("AnimationNodeAnimation_sulyr")
 states/Run/position = Vector2(590.667, -11.037)
 states/Start/position = Vector2(132.667, -9.50618)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_71adu"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_xm30n"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_qe74o"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_s4se6"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_4c5ab"), "Fall", "Land", SubResource("AnimationNodeStateMachineTransition_omk8d"), "Land", "Idle", SubResource("AnimationNodeStateMachineTransition_kghjy"), "Land", "Run", SubResource("AnimationNodeStateMachineTransition_72eiu"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_pbtrp"), "Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_es5sa"), "Run", "Fall", SubResource("AnimationNodeStateMachineTransition_kxlma")]
-graph_offset = Vector2(-116, 36)
+graph_offset = Vector2(-180, -65)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_omwlg"]
 animations = [{
@@ -427,12 +432,16 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
-collision_mask = 29
+collision_mask = 157
 script = ExtResource("1_7uws0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3)
+[node name="Regular Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_t61fv")
+
+[node name="Croutch Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
+shape = SubResource("CapsuleShape2D_pbtrp")
+disabled = true
 
 [node name="Jump Timer" type="Timer" parent="."]
 unique_name_in_owner = true

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://5wwyga0bugq4"]
+
+[ext_resource type="Script" uid="uid://bnvm6nddkctk8" path="res://scenes/world/Interactables/speed_boost.gd" id="1_bup2n"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_r2kgy"]
+size = Vector3(50, 10, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bup2n"]
+size = Vector2(50, 11)
+
+[node name="Speed Boost" type="Area2D"]
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("1_bup2n")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+mesh = SubResource("BoxMesh_r2kgy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_bup2n")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
