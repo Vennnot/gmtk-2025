@@ -1,10 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dlsuigoh14we6"]
+[gd_scene load_steps=3 format=3 uid="uid://dlsuigoh14we6"]
 
-[ext_resource type="PackedScene" uid="uid://tiqn0p0soeti" path="res://scenes/characters/player/player.tscn" id="1_mpk58"]
-[ext_resource type="PackedScene" uid="uid://dhki5ye0ug86b" path="res://scenes/characters/player/player_camera.tscn" id="2_qsf0h"]
-[ext_resource type="PackedScene" uid="uid://cu3q3rmu4mkwt" path="res://scenes/world/colored blocks/blue_block.tscn" id="3_70kyo"]
-[ext_resource type="PackedScene" uid="uid://bohv0dadb2mqd" path="res://scenes/world/colored blocks/purple_block.tscn" id="4_ydknf"]
-[ext_resource type="PackedScene" uid="uid://b5cku20nkd2h8" path="res://scenes/world/colored blocks/red_block.tscn" id="5_r010t"]
+[ext_resource type="PackedScene" uid="uid://cu3q3rmu4mkwt" path="res://scenes/world/colored blocks/block.tscn" id="3_70kyo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k3yvu"]
 size = Vector2(4094, 50.5)
@@ -35,17 +31,6 @@ offset_left = -1221.0
 offset_top = 996.0
 offset_right = 2877.0
 offset_bottom = 1052.0
-
-[node name="Player" parent="." instance=ExtResource("1_mpk58")]
-position = Vector2(1008, 916)
-acceleration = 350.0
-deceleration = 500.0
-jump_force = 12000.0
-gravity_force = 500.0
-
-[node name="Player Camera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_qsf0h")]
-position = Vector2(962, 655)
-player = NodePath("../Player")
 
 [node name="Checkers" type="Node2D" parent="."]
 
@@ -248,11 +233,13 @@ offset_right = 2711.0
 offset_bottom = 1017.0
 color = Color(1, 0.337255, 0.176471, 1)
 
-[node name="Blue Block" parent="." instance=ExtResource("3_70kyo")]
+[node name="Block" parent="." instance=ExtResource("3_70kyo")]
 position = Vector2(315, 943)
 
-[node name="Purple Block" parent="." instance=ExtResource("4_ydknf")]
-position = Vector2(442, 937)
+[node name="Block2" parent="." instance=ExtResource("3_70kyo")]
+position = Vector2(613, 888)
+tape = 1
 
-[node name="Red Block" parent="." instance=ExtResource("5_r010t")]
-position = Vector2(546, 936)
+[node name="Block3" parent="." instance=ExtResource("3_70kyo")]
+position = Vector2(931, 910)
+tape = 0

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cu3q3rmu4mkwt"]
+
+[ext_resource type="Script" uid="uid://5q4wo4sm5c6v" path="res://scenes/world/colored blocks/block.gd" id="1_ijf6e"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xqb1y"]
+size = Vector3(50, 50, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t2okn"]
+size = Vector2(50, 50)
+
+[node name="Block" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_ijf6e")
+tape = 2
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+unique_name_in_owner = true
+self_modulate = Color(0.627451, 0.12549, 0.941176, 1)
+mesh = SubResource("BoxMesh_xqb1y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_t2okn")

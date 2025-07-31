@@ -1,17 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhtruibsgo1o4"]
+[gd_scene load_steps=7 format=3 uid="uid://dhtruibsgo1o4"]
 
-[ext_resource type="Texture2D" uid="uid://vuovygtpdslb" path="res://icon.svg" id="1_hyk8p"]
 [ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_k2fmo"]
-[ext_resource type="Script" uid="uid://1jvooa1a38ly" path="res://scenes/main/icon.gd" id="2_iuonh"]
+[ext_resource type="PackedScene" uid="uid://dlsuigoh14we6" path="res://scenes/test/test_world.tscn" id="3_6q06x"]
 [ext_resource type="PackedScene" uid="uid://cygyj2gepkgaj" path="res://scenes/UI/settings/game_settings.tscn" id="4_l3cfh"]
+[ext_resource type="PackedScene" uid="uid://tiqn0p0soeti" path="res://scenes/characters/player/player.tscn" id="4_ow5a4"]
+[ext_resource type="PackedScene" uid="uid://dhki5ye0ug86b" path="res://scenes/characters/player/player_camera.tscn" id="5_hujxm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6q06x"]
+font_size = 48
 
 [node name="Main" type="Node"]
+process_mode = 3
 script = ExtResource("1_k2fmo")
-
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(298, 242)
-texture = ExtResource("1_hyk8p")
-script = ExtResource("2_iuonh")
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 
@@ -19,3 +19,45 @@ script = ExtResource("2_iuonh")
 unique_name_in_owner = true
 visible = false
 in_game = true
+
+[node name="GameTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer"]
+layout_mode = 2
+
+[node name="TimeLabel" type="Label" parent="UI/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+text = "00:00"
+label_settings = SubResource("LabelSettings_6q06x")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DebugLabel" type="Label" parent="UI/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+text = "current cassete: blue"
+label_settings = SubResource("LabelSettings_6q06x")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Test World" parent="." instance=ExtResource("3_6q06x")]
+process_mode = 1
+
+[node name="Player" parent="Test World" instance=ExtResource("4_ow5a4")]
+unique_name_in_owner = true
+
+[node name="PlayerCamera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_hujxm")]
+player = NodePath("../Test World/Player")

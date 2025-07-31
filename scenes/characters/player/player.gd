@@ -15,11 +15,8 @@ var player_movement_direction : float = 0.0
 @onready var anim_tree = %AnimationTree
 @onready var player_anim_sprite = %AnimatedSprite2D
 
-signal cassette_changed
-
 func _physics_process(delta: float) -> void:
 	control_movement(delta)
-	handle_cassette()
 	handle_animations()
 
 func control_movement(_delta):
@@ -62,17 +59,6 @@ func handle_jumping():
 		jumping = true
 	if Input.is_action_just_released("jump"):
 		jumping = false
-
-func handle_cassette():
-	if Input.is_action_just_pressed("cassette 1"):
-		BlockManager.cassette = "blue"
-		cassette_changed.emit()
-	if Input.is_action_just_pressed("cassette 2"):
-		BlockManager.cassette = "red"
-		cassette_changed.emit()
-	if Input.is_action_just_pressed("cassette 3"):
-		BlockManager.cassette = "purple"
-		cassette_changed.emit()
 
 func handle_animations():
 	if player_movement_direction < 0.0:
