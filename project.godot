@@ -108,6 +108,10 @@ crouch={
 2d_physics/layer_7="track_beat"
 2d_physics/layer_8="Interactables"
 
+[physics]
+
+common/physics_interpolation=true
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

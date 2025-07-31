@@ -3,6 +3,10 @@ extends Node
 
 
 @export var base_game_time : float = 60
+@export var camera_distance_offset : float = 350
+@export var camera_speed_offset : float = 1
+@export var camera_max_zoom : float = 4
+@export var camera_min_zoom : float = 2.5
 
 @onready var game_settings: GameSettingsUI = %GameSettings
 @onready var game_timer: Timer = %GameTimer
@@ -11,6 +15,7 @@ extends Node
 @onready var debug_label: Label = %DebugLabel
 @onready var infinity_loop: InfinityLoop = %InfinityLoop
 @onready var power_label: Label = %PowerLabel
+@onready var phantom_camera: PhantomCamera2D = %PhantomCamera2D
 
 var player_starting_pos := Vector2.ZERO
 
@@ -47,7 +52,18 @@ func _on_collectable(type:String):
 
 func _process(_delta: float) -> void:
 	time_label.text = format_time()
+	_set_camera_offset()
 
+func _set_camera_offset():
+	var direction : float= sign(player.velocity.x)
+	var velocity_x := player.velocity.x
+	var ratio :float= clamp(abs(velocity_x) / player.current_maximum_velocity, 0.0, 1.0)
+	
+	var target_zoom : Vector2= lerp(Vector2(camera_max_zoom, camera_max_zoom), Vector2(camera_min_zoom, camera_min_zoom), ratio)
+	phantom_camera.zoom = phantom_camera.zoom.lerp(target_zoom, get_process_delta_time() * camera_speed_offset)
+	
+	var target_offset := Vector2(direction * ratio * camera_distance_offset, 0)
+	phantom_camera.follow_offset = phantom_camera.follow_offset.lerp(target_offset, get_physics_process_delta_time() * camera_speed_offset)
 
 func format_time() -> String:
 	@warning_ignore("integer_division")
