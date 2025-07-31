@@ -10,10 +10,11 @@ var current_maximum_velocity := 600.0
 @export var gravity_force := 2500.0
 var current_gravity_force := 2500.0
 
-
 @onready var jump_timer := %"Jump Timer"
 var jumping := false
 var can_jump := false
+@onready var coyote_timer := $"Coyote Timer"
+@export var coyote_time := 0.1
 
 @onready var collision_check = $CollisionCheck
 
@@ -25,6 +26,9 @@ var player_facing_direction := 1.0
 
 @onready var regular_collision := $"Regular Collision"
 @onready var croutch_collision := $"Croutch Collision"
+
+func _ready() -> void:
+	coyote_timer.wait_time = coyote_time
 
 func reset_gravity():
 	current_gravity_force = gravity_force
@@ -61,7 +65,7 @@ func control_movement(_delta):
 	
 	#Handle Jump
 	handle_jumping()
-	if can_jump:
+	if can_jump or !coyote_timer.is_stopped():
 		if jumping:
 			velocity.y = -jump_force * _delta
 	
@@ -77,16 +81,18 @@ func _on_jump_timer_timeout() -> void:
 	jumping = false
 
 func handle_jumping():
+	var was_on_floor = is_on_floor()
+	if was_on_floor and !is_on_floor():
+		coyote_timer.start()
 	if is_on_floor():
 		can_jump = true
-	if can_jump:
-		if Input.is_action_just_pressed("jump"):
-			jump_timer.start()
-			jumping = true
-			can_jump = false
-		if Input.is_action_just_released("jump"):
-			jumping = false
-			can_jump = false
+	if Input.is_action_just_pressed("jump") and can_jump:
+		jump_timer.start()
+		jumping = true
+	if Input.is_action_just_released("jump"):
+		jumping = false
+		can_jump = false
+		can_jump = false
 
 func handle_animations():
 	if player_movement_direction < 0.0:
