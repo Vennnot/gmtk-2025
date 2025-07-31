@@ -6,13 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://cygyj2gepkgaj" path="res://scenes/UI/settings/game_settings.tscn" id="4_l3cfh"]
 [ext_resource type="PackedScene" uid="uid://tiqn0p0soeti" path="res://scenes/characters/player/player.tscn" id="4_ow5a4"]
 [ext_resource type="PackedScene" uid="uid://dhki5ye0ug86b" path="res://scenes/characters/player/player_camera.tscn" id="5_hujxm"]
-[ext_resource type="PackedScene" uid="uid://cy0b3cyww8kv3" path="res://scenes/collectables/collectable.tscn" id="5_ow5a4"]
 [ext_resource type="PackedScene" uid="uid://dx8l3luoxod0x" path="res://resources/environment/parallaxbackground.tscn" id="8_yyfjg"]
 [ext_resource type="PackedScene" uid="uid://dbe4j3lpi0ika" path="res://scenes/world/Interactables/magnet_spikes.tscn" id="9_b1x3f"]
 [ext_resource type="PackedScene" uid="uid://5wwyga0bugq4" path="res://scenes/world/Interactables/speed_boost.tscn" id="10_a8run"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6q06x"]
 font_size = 48
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a8run"]
+size = Vector2(10000, 20)
 
 [node name="Main" type="Node"]
 process_mode = 3
@@ -24,9 +26,6 @@ script = ExtResource("1_k2fmo")
 unique_name_in_owner = true
 visible = false
 in_game = true
-
-[node name="GameTimer" type="Timer" parent="."]
-unique_name_in_owner = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -71,36 +70,39 @@ vertical_alignment = 1
 unique_name_in_owner = true
 position = Vector2(126, 73)
 
-[node name="Test World" parent="." instance=ExtResource("3_6q06x")]
-process_mode = 1
+[node name="Other" type="Node" parent="."]
 
-[node name="Player" parent="Test World" instance=ExtResource("4_ow5a4")]
+[node name="GameTimer" type="Timer" parent="Other"]
 unique_name_in_owner = true
-position = Vector2(0, 968)
-deceleration = 600.0
-
-[node name="Collectable" parent="Test World" instance=ExtResource("5_ow5a4")]
-modulate = Color(0.627451, 0.12549, 0.941176, 1)
-position = Vector2(-259, 892)
-collectable_type = "time"
 
 [node name="PlayerCamera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_hujxm")]
-position = Vector2(0, 693)
 zoom = Vector2(1.5, 1.5)
-player = NodePath("../Test World/Player")
+player = NodePath("../World/Player")
 follow_speed_x = 800.0
 
-[node name="Parallaxbackground" parent="." instance=ExtResource("8_yyfjg")]
-position = Vector2(2, 563)
+[node name="World" parent="." instance=ExtResource("3_6q06x")]
+process_mode = 1
 
-[node name="Interactables" type="Node2D" parent="."]
+[node name="Environment" type="Node2D" parent="World"]
 
-[node name="Hazard" type="Node2D" parent="Interactables"]
+[node name="Floor" type="StaticBody2D" parent="World/Environment"]
+position = Vector2(211, 11)
 
-[node name="Magnet Spikes" parent="Interactables/Hazard" instance=ExtResource("9_b1x3f")]
-position = Vector2(889, 995)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Environment/Floor"]
+shape = SubResource("RectangleShape2D_a8run")
 
-[node name="Speed Boost" type="Node2D" parent="Interactables"]
+[node name="Interactables" type="Node2D" parent="World/Environment"]
 
-[node name="Speed Boost" parent="Interactables/Speed Boost" instance=ExtResource("10_a8run")]
-position = Vector2(-180, 991)
+[node name="SpeedBoost" parent="World/Environment/Interactables" instance=ExtResource("10_a8run")]
+position = Vector2(103, -1)
+
+[node name="MagnetSpikes" parent="World/Environment/Interactables" instance=ExtResource("9_b1x3f")]
+position = Vector2(391, 4)
+
+[node name="Player" parent="World" instance=ExtResource("4_ow5a4")]
+unique_name_in_owner = true
+position = Vector2(-27, -181)
+deceleration = 600.0
+
+[node name="Parallaxbackground" parent="World" instance=ExtResource("8_yyfjg")]
+z_index = -5
