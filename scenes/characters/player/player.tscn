@@ -434,6 +434,7 @@ animations = [{
 collision_layer = 2
 collision_mask = 157
 script = ExtResource("1_7uws0")
+gravity_force = 1000.0
 
 [node name="Regular Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_t61fv")
