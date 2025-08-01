@@ -389,22 +389,28 @@ position = Vector2(0, -264)
 position = Vector2(-406, -77)
 
 [node name="MagnetSpikes" parent="World/Environment/Interactables" instance=ExtResource("12_ox8il")]
-position = Vector2(1637, 263)
+position = Vector2(1370, 264)
 
 [node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("13_n8pxb")]
-position = Vector2(-48, 219.119)
+position = Vector2(-48, 193.485)
 
 [node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("13_n8pxb")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(-126, 225.165)
+position = Vector2(-126, 199.474)
 monitoring = false
 tape = 1
 
 [node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("13_n8pxb")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(26, 216.388)
+position = Vector2(26, 190.693)
 monitoring = false
 tape = 2
+
+[node name="MagnetSpikes2" parent="World/Environment/Interactables" instance=ExtResource("12_ox8il")]
+position = Vector2(3597, 263)
+
+[node name="MagnetSpikes3" parent="World/Environment/Interactables" instance=ExtResource("12_ox8il")]
+position = Vector2(4396, 264)
 
 [node name="Loop" parent="World/Environment" instance=ExtResource("14_v1k4d")]
 visible = false
@@ -423,6 +429,8 @@ unique_name_in_owner = true
 position = Vector2(-70, -370)
 jump_fx_position = Vector2(0, 20)
 deceleration = 600.0
+jump_force = 25000.0
+gravity_force = 500.0
 
 [node name="Parallaxbackground" parent="World" instance=ExtResource("17_3x7fh")]
 z_index = -5

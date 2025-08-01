@@ -151,6 +151,7 @@ func _apply_tape_power():
 			#player.velocity.y += 5000
 			#powerup_text = "fall instantly"
 		Global.TAPE.YELLOW:
+			player.velocity.y = 0;
 			player.velocity.y -= 1000
 			powerup_text = "air jump"
 			$UI/MarginContainer/VBoxContainer/SpeedIcon.visible = true;
