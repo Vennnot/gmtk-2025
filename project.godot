@@ -25,7 +25,6 @@ SceneChanger="*res://autoloads/scene_changer.tscn"
 AudioManager="*res://autoloads/audio_manager.tscn"
 EventBus="*res://autoloads/event_bus.gd"
 UserSettings="*res://autoloads/user_settings.gd"
-PlayerManager="*res://autoloads/player_manager.gd"
 Global="*res://autoloads/global.gd"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 

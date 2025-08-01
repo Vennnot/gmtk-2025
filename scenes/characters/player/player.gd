@@ -69,7 +69,6 @@ func control_movement(_delta):
 		velocity.x = move_toward(velocity.x, player_facing_direction * current_maximum_velocity, deceleration * _delta)
 	
 	
-	
 	#Handle Jump
 	handle_jumping()
 	
@@ -97,6 +96,50 @@ func control_movement(_delta):
 	
 	move_and_slide()
 
+func upsidedown_control_movement(_delta):
+	#print("Dir: " + str(player_movement_direction) + " Velocity: " + str(velocity)) # Collect Player dir and velocity data
+	
+	player_movement_direction = Input.get_axis("left", "right")
+	
+	
+	#Handle x movement
+	velocity.x += player_movement_direction * acceleration * _delta
+	if velocity.x < 0 and player_movement_direction > 0:
+		velocity.x += player_movement_direction * deceleration * _delta
+	if velocity.x > 0 and player_movement_direction < 0:
+		velocity.x += player_movement_direction * deceleration * _delta
+	
+	#Clamp maximum player x velocity
+	if abs(velocity.x) > current_maximum_velocity:
+		velocity.x = move_toward(velocity.x, player_facing_direction * current_maximum_velocity, deceleration * _delta)
+	
+	
+	#Handle Jump
+	handle_upsidedown_jumping()
+	
+	if is_colliding_with_rails():
+		move_along_railing(_delta)
+		return
+	
+	# If player is slow stop them
+	if abs(velocity.x) <= deceleration_point and player_movement_direction == 0:
+		velocity.x = move_toward(velocity.x, 0, _delta * deceleration)
+	
+	if can_jump or !coyote_timer.is_stopped():
+		if jumping:
+			velocity.y = jump_force * _delta
+	
+	# Handle Gravity
+	velocity.y -= current_gravity_force * _delta
+	
+	
+	#Handle Player Collisions
+	handle_collisions()
+	
+	#Handle Railing
+	handle_railing()
+	
+	move_and_slide()
 
 func move_along_railing(delta):
 	if not is_colliding_with_rails() or not railing:
@@ -260,6 +303,21 @@ func handle_jumping():
 		jumping = false
 		can_jump = false
 
+func handle_upsidedown_jumping():
+	var was_on_floor = is_on_ceiling()
+	if was_on_floor and !is_on_ceiling():
+		coyote_timer.start()
+	if is_on_ceiling() or is_colliding_with_rails():
+		can_jump = true
+	if Input.is_action_just_pressed("jump") and can_jump:
+		if is_colliding_with_rails():
+			reset_railing()
+		jump_timer.start()
+		jumping = true
+	if Input.is_action_just_released("jump"):
+		jumping = false
+		can_jump = false
+
 func handle_animations():
 	if player_movement_direction < 0.0:
 		player_anim_sprite.flip_h = true
@@ -288,6 +346,39 @@ func handle_animations():
 		anim_tree["parameters/conditions/falling"] = true
 		anim_tree["parameters/conditions/landed"] = false
 	if !jumping and is_on_floor():
+		anim_tree["parameters/conditions/jumping"] = false
+		anim_tree["parameters/conditions/falling"] = false
+		anim_tree["parameters/conditions/landed"] = true
+
+func handle_upsidedown_animations():
+	player_anim_sprite.flip_v = true
+	if player_movement_direction < 0.0:
+		player_anim_sprite.flip_h = true
+		player_facing_direction = -1.0
+	if player_movement_direction > 0.0:
+		player_anim_sprite.flip_h = false
+		player_facing_direction = 1.0
+	if player_movement_direction == 0.0 and velocity.x == 0.0:
+		anim_tree["parameters/conditions/idle"] = true
+		anim_tree["parameters/conditions/running"] = false
+		anim_tree["parameters/conditions/skidding"] = false
+	if velocity.x != 0.0:
+		anim_tree["parameters/conditions/idle"] = false
+		anim_tree["parameters/conditions/running"] = true
+		anim_tree["parameters/conditions/skidding"] = false
+	if (player_movement_direction < 0.0 and velocity.x > 0.0) or (player_movement_direction > 0.0 and velocity.x < 0.0):
+		anim_tree["parameters/conditions/idle"] = false
+		anim_tree["parameters/conditions/running"] = false
+		anim_tree["parameters/conditions/skidding"] = true
+	if velocity.y > 0.0:
+		anim_tree["parameters/conditions/jumping"] = true
+		anim_tree["parameters/conditions/falling"] = false
+		anim_tree["parameters/conditions/landed"] = false
+	if velocity.y < 0.0:
+		anim_tree["parameters/conditions/jumping"] = false
+		anim_tree["parameters/conditions/falling"] = true
+		anim_tree["parameters/conditions/landed"] = false
+	if !jumping and is_on_ceiling():
 		anim_tree["parameters/conditions/jumping"] = false
 		anim_tree["parameters/conditions/falling"] = false
 		anim_tree["parameters/conditions/landed"] = true
