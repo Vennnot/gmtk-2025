@@ -95,4 +95,4 @@ time_until_destroy = 0.15
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_o88c3")
 autoplay = "default"
-frame_progress = 0.83257
+frame_progress = 0.33721

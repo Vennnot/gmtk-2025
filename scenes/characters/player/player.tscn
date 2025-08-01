@@ -517,6 +517,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_4fvev")
 }
@@ -553,4 +554,14 @@ monitorable = false
 position = Vector2(1.25, -3.5)
 shape = SubResource("RectangleShape2D_kxlma")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+volume_db = 24.0
+autoplay = true
+bus = &"sfx"
+
+[node name="TapeActionTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
 [connection signal="timeout" from="Jump Timer" to="." method="_on_jump_timer_timeout"]
+[connection signal="timeout" from="TapeActionTimer" to="." method="_on_tape_action_timer_timeout"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bkuq7o4w65h7h"
+path="res://.godot/imported/rail grind loop fx.ogg-a2e7134e0e625be98495af620a3f6551.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sfx/rail grind loop fx.ogg"
+dest_files=["res://.godot/imported/rail grind loop fx.ogg-a2e7134e0e625be98495af620a3f6551.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

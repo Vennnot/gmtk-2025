@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bgod4f04so5wy"
+path="res://.godot/imported/died fx.ogg-a130257af00b0db6a13d8f1b2c13f896.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sfx/died fx.ogg"
+dest_files=["res://.godot/imported/died fx.ogg-a130257af00b0db6a13d8f1b2c13f896.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -143,10 +143,10 @@ func _apply_tape_power():
 			player.global_position.x += 100*player.player_facing_direction
 			powerup_text = "dash"
 		Global.TAPE.CYAN:
-			player.velocity.y += 5000
+			player.velocity.y = 5000
 			powerup_text = "fall instantly"
 		Global.TAPE.YELLOW:
-			player.velocity.y -= 1000
+			player.velocity.y = -1000
 			powerup_text = "air jump"
 		Global.TAPE.GREEN:
 			player.velocity.x += 500*player.player_facing_direction
