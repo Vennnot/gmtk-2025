@@ -13,9 +13,6 @@ var current_maximum_velocity := 300.0
 @export var gravity_force := 2500.0
 var current_gravity_force := 2500.0
 
-@export var double_jump_timer_bpm = 111.0;
-var double_jump_timer = 0.0;
-
 @onready var jump_timer := %"Jump Timer"
 var jumping := false
 var can_jump := false
@@ -64,15 +61,15 @@ func control_movement(_delta):
 	
 	
 	#Handle x movement
-	velocity.x = 15000.0 * _delta
-	#if velocity.x < 0 and player_movement_direction > 0:
-		#velocity.x += player_movement_direction * deceleration * _delta
-	#if velocity.x > 0 and player_movement_direction < 0:
-		#velocity.x += player_movement_direction * deceleration * _delta
+	velocity.x += player_movement_direction * acceleration * _delta
+	if velocity.x < 0 and player_movement_direction > 0:
+		velocity.x += player_movement_direction * deceleration * _delta
+	if velocity.x > 0 and player_movement_direction < 0:
+		velocity.x += player_movement_direction * deceleration * _delta
 	
 	#Clamp maximum player x velocity
-	#if abs(velocity.x) > current_maximum_velocity:
-		#velocity.x = move_toward(velocity.x, player_facing_direction * current_maximum_velocity, deceleration * _delta)
+	if abs(velocity.x) > current_maximum_velocity:
+		velocity.x = move_toward(velocity.x, player_facing_direction * current_maximum_velocity, deceleration * _delta)
 	
 	
 	#Handle Jump
@@ -83,8 +80,8 @@ func control_movement(_delta):
 		return
 	
 	# If player is slow stop them
-	#if abs(velocity.x) <= deceleration_point and player_movement_direction == 0:
-		#velocity.x = move_toward(velocity.x, 0, _delta * deceleration)
+	if abs(velocity.x) <= deceleration_point and player_movement_direction == 0:
+		velocity.x = move_toward(velocity.x, 0, _delta * deceleration)
 	
 	if can_jump or !coyote_timer.is_stopped():
 		if jumping:
@@ -109,15 +106,15 @@ func upsidedown_control_movement(_delta):
 	
 	
 	#Handle x movement
-	velocity.x = 300.0 * _delta;
-	#if velocity.x < 0 and player_movement_direction > 0:
-		#velocity.x += player_movement_direction * deceleration * _delta
-	#if velocity.x > 0 and player_movement_direction < 0:
-		#velocity.x += player_movement_direction * deceleration * _delta
+	velocity.x += player_movement_direction * acceleration * _delta
+	if velocity.x < 0 and player_movement_direction > 0:
+		velocity.x += player_movement_direction * deceleration * _delta
+	if velocity.x > 0 and player_movement_direction < 0:
+		velocity.x += player_movement_direction * deceleration * _delta
 	
 	#Clamp maximum player x velocity
-	#if abs(velocity.x) > current_maximum_velocity:
-		#velocity.x = move_toward(velocity.x, player_facing_direction * current_maximum_velocity, deceleration * _delta)
+	if abs(velocity.x) > current_maximum_velocity:
+		velocity.x = move_toward(velocity.x, player_facing_direction * current_maximum_velocity, deceleration * _delta)
 	
 	
 	#Handle Jump
@@ -128,8 +125,8 @@ func upsidedown_control_movement(_delta):
 		return
 	
 	# If player is slow stop them
-	#if abs(velocity.x) <= deceleration_point and player_movement_direction == 0:
-		#velocity.x = move_toward(velocity.x, 0, _delta * deceleration)
+	if abs(velocity.x) <= deceleration_point and player_movement_direction == 0:
+		velocity.x = move_toward(velocity.x, 0, _delta * deceleration)
 	
 	if can_jump or !coyote_timer.is_stopped():
 		if jumping:
@@ -170,7 +167,7 @@ func move_along_railing(delta):
 			return
 		
 		# Player is actively moving - use their input speed and direction
-		#current_speed = max(abs(velocity.x), 50.0)
+		current_speed = max(abs(velocity.x), 50.0)
 		movement_dir = player_movement_direction
 		railing_direction = player_movement_direction  # Update stored direction
 	else:

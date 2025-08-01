@@ -350,7 +350,7 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(-70, -370)
+position = Vector2(-69, -370)
 script = ExtResource("7_qnqg5")
 follow_mode = 5
 follow_target = NodePath("../World/Player")
@@ -364,7 +364,7 @@ metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
 [node name="Camera" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
-position = Vector2(-70, -370)
+position = Vector2(-69, -370)
 zoom = Vector2(4, 4)
 process_callback = 0
 limit_bottom = 220
@@ -392,17 +392,17 @@ position = Vector2(-406, -77)
 position = Vector2(2461, 270)
 
 [node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("13_n8pxb")]
-position = Vector2(-48, 199.376)
+position = Vector2(-48, 206.87)
 
 [node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("13_n8pxb")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(-126, 205.37)
+position = Vector2(-126, 212.839)
 monitoring = false
 tape = 1
 
 [node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("13_n8pxb")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(26, 196.589)
+position = Vector2(26, 204.064)
 monitoring = false
 tape = 2
 
@@ -410,14 +410,26 @@ tape = 2
 position = Vector2(2750, 264)
 
 [node name="MagnetSpikes3" parent="World/Environment/Interactables" instance=ExtResource("12_ox8il")]
-position = Vector2(4047, 264)
+position = Vector2(4044, 262)
 
 [node name="MagnetSpikes4" parent="World/Environment/Interactables" instance=ExtResource("12_ox8il")]
-position = Vector2(4460, 264)
-scale = Vector2(3.44509, 0.584903)
+position = Vector2(6267, 262)
+scale = Vector2(1.72511, 0.584903)
+
+[node name="MagnetSpikes5" parent="World/Environment/Interactables" instance=ExtResource("12_ox8il")]
+position = Vector2(5687, 268)
+scale = Vector2(0.88509, 0.584903)
+
+[node name="MagnetSpikes6" parent="World/Environment/Interactables" instance=ExtResource("12_ox8il")]
+position = Vector2(7545, 266)
+scale = Vector2(2.92911, 0.584903)
+
+[node name="MagnetSpikes7" parent="World/Environment/Interactables" instance=ExtResource("12_ox8il")]
+position = Vector2(8919, 201)
+scale = Vector2(0.529111, 0.584903)
 
 [node name="Loop" parent="World/Environment" instance=ExtResource("14_v1k4d")]
-position = Vector2(4295, -255)
+position = Vector2(4290, -258)
 points = PackedVector2Array(13, 58, 215, 58, 347, 15, 433, -117, 402, -248, 291, -278, 200, -209, 248, -110, 414, 25, 622, 50)
 texture = ExtResource("15_vbnww")
 texture_mode = 1
@@ -430,7 +442,7 @@ autoplay = "default"
 
 [node name="Player" parent="World" instance=ExtResource("16_4vpjq")]
 unique_name_in_owner = true
-position = Vector2(-70, -370)
+position = Vector2(-69, -370)
 jump_fx_position = Vector2(0, 20)
 deceleration = 600.0
 jump_force = 25000.0

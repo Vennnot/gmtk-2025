@@ -17,6 +17,7 @@ collision_mask = 2
 script = ExtResource("1_8ou1n")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+visible = false
 modulate = Color(1, 0, 0, 1)
 position = Vector2(0, -5)
 scale = Vector2(1, 0.5)

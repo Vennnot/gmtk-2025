@@ -118,7 +118,7 @@ func _input(_event: InputEvent) -> void:
 		return
 	
 	if Input.is_action_just_pressed(&"switch_tape"):
-		if infinity_loop.sprite_in_middle:
+		#if infinity_loop.sprite_in_middle:
 			AudioManager.play(AudioManager.tape)
 			ui_animator.play(&"ripple")
 			#slow_down_and_restore()
