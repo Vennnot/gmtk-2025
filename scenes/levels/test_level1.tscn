@@ -1,0 +1,421 @@
+[gd_scene load_steps=46 format=3 uid="uid://vrvl0qd74ljx"]
+
+[ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_q8mpi"]
+[ext_resource type="PackedScene" uid="uid://cygyj2gepkgaj" path="res://scenes/UI/settings/game_settings.tscn" id="2_e0r63"]
+[ext_resource type="PackedScene" uid="uid://dyr2o0k4wj1m6" path="res://scenes/UI/track_visuals/infinity_loop.tscn" id="3_p8nk6"]
+[ext_resource type="PackedScene" uid="uid://biarbyhnbgx0i" path="res://scenes/UI/track_visuals/cassette_ui.tscn" id="4_d3ib7"]
+[ext_resource type="Shader" uid="uid://dyrjkywkwsd3g" path="res://resources/glitch.gdshader" id="5_gavr1"]
+[ext_resource type="Shader" uid="uid://bua05pf3sf71g" path="res://resources/ripple.gdshader" id="6_7w0cq"]
+[ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="7_qnqg5"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="8_k2pq3"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="9_qw3hg"]
+[ext_resource type="PackedScene" uid="uid://dlsuigoh14we6" path="res://scenes/test/test_world.tscn" id="10_bmkxy"]
+[ext_resource type="PackedScene" uid="uid://5wwyga0bugq4" path="res://scenes/world/Interactables/speed_boost.tscn" id="11_sw8sh"]
+[ext_resource type="PackedScene" uid="uid://dbe4j3lpi0ika" path="res://scenes/world/Interactables/magnet_spikes.tscn" id="12_ox8il"]
+[ext_resource type="PackedScene" uid="uid://djhx27a5tudm0" path="res://scenes/collectables/cassette_collectable.tscn" id="13_n8pxb"]
+[ext_resource type="PackedScene" uid="uid://b8rrp8w73ic70" path="res://scenes/world/railing/railing.tscn" id="14_v1k4d"]
+[ext_resource type="Texture2D" uid="uid://dbg0jkasopjf1" path="res://assets/environment/textures/RailTexture.png" id="15_vbnww"]
+[ext_resource type="PackedScene" uid="uid://tiqn0p0soeti" path="res://scenes/characters/player/player.tscn" id="16_4vpjq"]
+[ext_resource type="Texture2D" uid="uid://csyax0er4a0ag" path="res://assets/environment/pngs/GrafittiArrow-Sheet.png" id="16_q8mpi"]
+[ext_resource type="PackedScene" uid="uid://dx8l3luoxod0x" path="res://assets/environment/parallaxbackground.tscn" id="17_3x7fh"]
+[ext_resource type="PackedScene" uid="uid://danamx8m8yjpq" path="res://scenes/ground/groundtilemap.tscn" id="19_15dcc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6q06x"]
+font_size = 48
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nvumn"]
+shader = ExtResource("5_gavr1")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_rate = 1.0
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ou6is"]
+shader = ExtResource("6_7w0cq")
+shader_parameter/strength = 0.1
+shader_parameter/center = Vector2(0.2, 0.2)
+shader_parameter/radius = 0.0
+shader_parameter/aberration = 0.425
+shader_parameter/width = 0.04
+shader_parameter/feather = 0.135
+
+[sub_resource type="Animation" id="Animation_ou6is"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%RippleEffect:material:shader_parameter/radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%RippleEffect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_nvumn"]
+resource_name = "ripple"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%RippleEffect:material:shader_parameter/radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%RippleEffect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_necax"]
+_data = {
+&"RESET": SubResource("Animation_ou6is"),
+&"ripple": SubResource("Animation_nvumn")
+}
+
+[sub_resource type="Resource" id="Resource_raeie"]
+script = ExtResource("8_k2pq3")
+duration = 1.0
+transition = 0
+ease = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0r63"]
+atlas = ExtResource("16_q8mpi")
+region = Rect2(0, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8nk6"]
+atlas = ExtResource("16_q8mpi")
+region = Rect2(128, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3ib7"]
+atlas = ExtResource("16_q8mpi")
+region = Rect2(256, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gavr1"]
+atlas = ExtResource("16_q8mpi")
+region = Rect2(384, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7w0cq"]
+atlas = ExtResource("16_q8mpi")
+region = Rect2(512, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnqg5"]
+atlas = ExtResource("16_q8mpi")
+region = Rect2(640, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2pq3"]
+atlas = ExtResource("16_q8mpi")
+region = Rect2(768, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qw3hg"]
+atlas = ExtResource("16_q8mpi")
+region = Rect2(896, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmkxy"]
+atlas = ExtResource("16_q8mpi")
+region = Rect2(1024, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sw8sh"]
+atlas = ExtResource("16_q8mpi")
+region = Rect2(1152, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ox8il"]
+atlas = ExtResource("16_q8mpi")
+region = Rect2(1280, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8pxb"]
+atlas = ExtResource("16_q8mpi")
+region = Rect2(1408, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1k4d"]
+atlas = ExtResource("16_q8mpi")
+region = Rect2(1536, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbnww"]
+atlas = ExtResource("16_q8mpi")
+region = Rect2(1664, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vpjq"]
+atlas = ExtResource("16_q8mpi")
+region = Rect2(1792, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3x7fh"]
+atlas = ExtResource("16_q8mpi")
+region = Rect2(1920, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b47n4"]
+atlas = ExtResource("16_q8mpi")
+region = Rect2(2048, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15dcc"]
+atlas = ExtResource("16_q8mpi")
+region = Rect2(2176, 0, 128, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4jk58"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e0r63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8nk6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3ib7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gavr1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7w0cq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qnqg5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2pq3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qw3hg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmkxy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sw8sh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ox8il")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8pxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1k4d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbnww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vpjq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3x7fh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b47n4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15dcc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="Main" type="Node"]
+process_mode = 3
+script = ExtResource("1_q8mpi")
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+
+[node name="GameSettings" parent="PauseMenu" instance=ExtResource("2_e0r63")]
+unique_name_in_owner = true
+visible = false
+in_game = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer"]
+layout_mode = 2
+
+[node name="TimeLabel" type="Label" parent="UI/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+text = "00:00"
+label_settings = SubResource("LabelSettings_6q06x")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DebugLabel" type="Label" parent="UI/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+text = "current cassete: blue"
+label_settings = SubResource("LabelSettings_6q06x")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PowerLabel" type="Label" parent="UI/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+text = "current power:"
+label_settings = SubResource("LabelSettings_6q06x")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InfinityLoop" parent="UI" instance=ExtResource("3_p8nk6")]
+unique_name_in_owner = true
+position = Vector2(126, 73)
+
+[node name="Cassette UI" parent="UI" instance=ExtResource("4_d3ib7")]
+unique_name_in_owner = true
+position = Vector2(123, 184)
+scale = Vector2(10, 10)
+
+[node name="GlitchEffect" type="ColorRect" parent="UI"]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_nvumn")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RippleEffect" type="ColorRect" parent="UI"]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_ou6is")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UIAnimator" type="AnimationPlayer" parent="UI"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_necax")
+}
+
+[node name="Other" type="Node" parent="."]
+
+[node name="GameTimer" type="Timer" parent="Other"]
+unique_name_in_owner = true
+
+[node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
+unique_name_in_owner = true
+physics_interpolation_mode = 1
+top_level = true
+position = Vector2(-70, -370)
+script = ExtResource("7_qnqg5")
+follow_mode = 5
+follow_target = NodePath("../World/Player")
+zoom = Vector2(4, 4)
+tween_resource = SubResource("Resource_raeie")
+tween_on_load = false
+follow_damping = true
+draw_limits = true
+limit_bottom = 220
+metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
+
+[node name="Camera" type="Camera2D" parent="."]
+physics_interpolation_mode = 1
+position = Vector2(-70, -370)
+zoom = Vector2(4, 4)
+process_callback = 0
+limit_bottom = 220
+editor_draw_limits = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("9_qw3hg")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="World" parent="." instance=ExtResource("10_bmkxy")]
+process_mode = 1
+
+[node name="Environment" type="Node2D" parent="World"]
+position = Vector2(3, 179)
+
+[node name="Interactables" type="Node2D" parent="World/Environment"]
+position = Vector2(0, -264)
+
+[node name="SpeedBoost" parent="World/Environment/Interactables" instance=ExtResource("11_sw8sh")]
+position = Vector2(-406, -77)
+
+[node name="MagnetSpikes" parent="World/Environment/Interactables" instance=ExtResource("12_ox8il")]
+position = Vector2(-118, -72)
+
+[node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("13_n8pxb")]
+position = Vector2(-48, 186.564)
+
+[node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("13_n8pxb")]
+modulate = Color(1, 1, 1, 0.1)
+position = Vector2(-126, 192.626)
+monitoring = false
+tape = 1
+
+[node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("13_n8pxb")]
+modulate = Color(1, 1, 1, 0.1)
+position = Vector2(26, 183.843)
+monitoring = false
+tape = 2
+
+[node name="Loop" parent="World/Environment" instance=ExtResource("14_v1k4d")]
+position = Vector2(3687, -81)
+points = PackedVector2Array(13, 58, 215, 58, 347, 15, 433, -117, 402, -248, 291, -278, 200, -209, 248, -110, 414, 25, 622, 50)
+texture = ExtResource("15_vbnww")
+texture_mode = 1
+
+[node name="GrafittiArrow" type="AnimatedSprite2D" parent="World/Environment"]
+position = Vector2(320, -37)
+sprite_frames = SubResource("SpriteFrames_4jk58")
+autoplay = "default"
+
+[node name="Player" parent="World" instance=ExtResource("16_4vpjq")]
+unique_name_in_owner = true
+position = Vector2(-70, -370)
+jump_fx_position = Vector2(0, 20)
+deceleration = 600.0
+
+[node name="Parallaxbackground" parent="World" instance=ExtResource("17_3x7fh")]
+z_index = -5
+
+[node name="PlayerSpawnPosition" type="Marker2D" parent="World"]
+unique_name_in_owner = true
+position = Vector2(0, 144)
+
+[node name="Groundtilemap" parent="." instance=ExtResource("19_15dcc")]
+position = Vector2(-176, 180)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://csi1cl7hy8dk4"]
 
-[ext_resource type="Texture2D" uid="uid://vuovygtpdslb" path="res://icon.svg" id="1_te6n8"]
+[ext_resource type="Texture2D" uid="uid://dh5jyc1isfbh" path="res://assets/environment/icons/RockFingers.png" id="1_te6n8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jtc0t"]
 radius = 50.0

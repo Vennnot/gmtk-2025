@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dyr2o0k4wj1m6"]
+[gd_scene load_steps=6 format=3 uid="uid://dyr2o0k4wj1m6"]
 
 [ext_resource type="Script" uid="uid://bm5lqyaevuxw7" path="res://scenes/UI/track_visuals/infinity_loop.gd" id="1_bc7kx"]
+[ext_resource type="Texture2D" uid="uid://hul5st5xyais" path="res://assets/environment/textures/Figure8Texture.png" id="1_jtc0t"]
 [ext_resource type="Texture2D" uid="uid://gyg8npslaq7x" path="res://proxy-image.png" id="2_oyk0g"]
 
 [sub_resource type="Curve" id="Curve_jjqlk"]
@@ -14,6 +15,8 @@ radius = 14.0
 points = PackedVector2Array(15, 19, 28, 31, 47, 38, 69, 29, 85, 3, 76, -22, 55, -35, 29, -29, -35, 33, -50, 35, -75, 26, -86, -3, -73, -25, -54, -40, -31, -30, -19, -19)
 width = 14.0
 width_curve = SubResource("Curve_jjqlk")
+texture = ExtResource("1_jtc0t")
+texture_mode = 2
 joint_mode = 1
 begin_cap_mode = 2
 end_cap_mode = 2

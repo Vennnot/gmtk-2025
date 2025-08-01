@@ -254,17 +254,17 @@ position = Vector2(-406, -77)
 position = Vector2(-118, -72)
 
 [node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
-position = Vector2(-48, 186.444)
+position = Vector2(-48, 203.628)
 
 [node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(-126, 192.46)
+position = Vector2(-126, 209.664)
 monitoring = false
 tape = 1
 
 [node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(26, 183.676)
+position = Vector2(26, 200.879)
 monitoring = false
 tape = 2
 

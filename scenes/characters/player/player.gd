@@ -1,8 +1,11 @@
 class_name Player
 extends CharacterBody2D
 
+var jump_fx = preload("res://assets/sprites/FX/jumpfx.tscn");
+@export var jump_fx_position = Vector2(0.0, -50.0);
+
 @export var maximum_velocity := 600.0
-var current_maximum_velocity := 600.0
+var current_maximum_velocity := 300.0
 @export var acceleration := 350.0
 @export var deceleration := 1050.0
 @export var deceleration_point := 200.0
@@ -298,6 +301,9 @@ func handle_jumping():
 		if is_colliding_with_rails():
 			reset_railing()
 		jump_timer.start()
+		var jump_fx_instantiate = jump_fx.instantiate()
+		add_child(jump_fx_instantiate)
+		jump_fx_instantiate.transform.origin = jump_fx_position;
 		jumping = true
 	if Input.is_action_just_released("jump"):
 		jumping = false
