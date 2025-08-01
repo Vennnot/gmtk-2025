@@ -14,11 +14,11 @@ func _on_body_entered(body: Node2D) -> void:
 		get_tree().call_deferred("reload_current_scene") 
 
 
-func _on_magnet_pull_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player"):
-		can_pull = true
-		player = body
-
-func _on_magnet_pull_body_exited(body: Node2D) -> void:
-	if body.is_in_group("Player"):
-		can_pull = false
+#func _on_magnet_pull_body_entered(body: Node2D) -> void:
+	#if body.is_in_group("Player"):
+		#can_pull = true
+		#player = body
+#
+#func _on_magnet_pull_body_exited(body: Node2D) -> void:
+	#if body.is_in_group("Player"):
+		#can_pull = false

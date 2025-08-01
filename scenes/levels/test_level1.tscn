@@ -298,11 +298,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="JumpIcon" type="Sprite2D" parent="UI/MarginContainer/VBoxContainer"]
-visible = false
 position = Vector2(255, 194)
 texture = ExtResource("3_e0r63")
 
 [node name="SpeedIcon" type="Sprite2D" parent="UI/MarginContainer/VBoxContainer"]
+visible = false
 position = Vector2(258, 193)
 texture = ExtResource("4_p8nk6")
 
@@ -389,35 +389,39 @@ position = Vector2(0, -264)
 position = Vector2(-406, -77)
 
 [node name="MagnetSpikes" parent="World/Environment/Interactables" instance=ExtResource("12_ox8il")]
-position = Vector2(1370, 264)
+position = Vector2(2461, 270)
 
 [node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("13_n8pxb")]
-position = Vector2(-48, 193.485)
+position = Vector2(-48, 199.376)
 
 [node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("13_n8pxb")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(-126, 199.474)
+position = Vector2(-126, 205.37)
 monitoring = false
 tape = 1
 
 [node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("13_n8pxb")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(26, 190.693)
+position = Vector2(26, 196.589)
 monitoring = false
 tape = 2
 
 [node name="MagnetSpikes2" parent="World/Environment/Interactables" instance=ExtResource("12_ox8il")]
-position = Vector2(3597, 263)
+position = Vector2(2750, 264)
 
 [node name="MagnetSpikes3" parent="World/Environment/Interactables" instance=ExtResource("12_ox8il")]
-position = Vector2(4396, 264)
+position = Vector2(4047, 264)
+
+[node name="MagnetSpikes4" parent="World/Environment/Interactables" instance=ExtResource("12_ox8il")]
+position = Vector2(4460, 264)
+scale = Vector2(3.44509, 0.584903)
 
 [node name="Loop" parent="World/Environment" instance=ExtResource("14_v1k4d")]
-visible = false
-position = Vector2(3687, -81)
+position = Vector2(4295, -255)
 points = PackedVector2Array(13, 58, 215, 58, 347, 15, 433, -117, 402, -248, 291, -278, 200, -209, 248, -110, 414, 25, 622, 50)
 texture = ExtResource("15_vbnww")
 texture_mode = 1
+tape = 1
 
 [node name="GrafittiArrow" type="AnimatedSprite2D" parent="World/Environment"]
 position = Vector2(320, -37)
