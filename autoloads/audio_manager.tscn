@@ -16,7 +16,7 @@ tape = ExtResource("3_plitr")
 [node name="DefaultMusic" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("2_k2mv4")
-volume_db = -80.0
+volume_db = -40.0
 autoplay = true
 bus = &"music"
 parameters/looping = true
@@ -24,7 +24,7 @@ parameters/looping = true
 [node name="DigiMusic" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("3_vovef")
-volume_db = -80.0
+volume_db = -40.0
 autoplay = true
 bus = &"music"
 parameters/looping = true
@@ -32,7 +32,7 @@ parameters/looping = true
 [node name="FunkMusic" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("4_a4ose")
-volume_db = -80.0
+volume_db = -40.0
 autoplay = true
 bus = &"music"
 parameters/looping = true
@@ -40,7 +40,7 @@ parameters/looping = true
 [node name="GravMusic" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("5_plitr")
-volume_db = -80.0
+volume_db = -40.0
 autoplay = true
 bus = &"music"
 parameters/looping = true

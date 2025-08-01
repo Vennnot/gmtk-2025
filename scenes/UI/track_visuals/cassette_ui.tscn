@@ -5,6 +5,33 @@
 [ext_resource type="Texture2D" uid="uid://cc8ntccflpciu" path="res://assets/sprites/Collectables/Casette/cassette white.png" id="2_4k0bl"]
 [ext_resource type="Texture2D" uid="uid://c1v6e7t5reies" path="res://assets/sprites/Collectables/Casette/casette front alt.png" id="2_77hvu"]
 
+[sub_resource type="Animation" id="Animation_efwht"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="Animation" id="Animation_77hvu"]
 resource_name = "change_tape"
 length = 0.3
@@ -32,33 +59,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(0.5, -0.5, 0.5, 1),
 "update": 0,
 "values": [0.0, -0.523599, 0.523599, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_efwht"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_efwht"]

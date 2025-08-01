@@ -84,8 +84,8 @@ position = Vector2(126, 73)
 
 [node name="Cassette UI" parent="UI" instance=ExtResource("4_raeie")]
 unique_name_in_owner = true
-position = Vector2(1720, 60)
-scale = Vector2(5, 5)
+position = Vector2(123, 184)
+scale = Vector2(10, 10)
 
 [node name="Other" type="Node" parent="."]
 
@@ -144,17 +144,17 @@ position = Vector2(103, -1)
 position = Vector2(391, 4)
 
 [node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
-position = Vector2(-48, 178.719)
+position = Vector2(-48, 176.346)
 
 [node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(-126, 184.71)
+position = Vector2(-126, 182.336)
 monitoring = false
 tape = 1
 
 [node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(26, 175.922)
+position = Vector2(26, 173.547)
 monitoring = false
 tape = 2
 

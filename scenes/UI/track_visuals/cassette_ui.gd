@@ -11,5 +11,4 @@ func _ready() -> void:
 
 func _on_tape_changed():
 	animation_player.play("change_tape")
-	await  animation_player.animation_finished
 	cassette_white.self_modulate = Global.get_tape_color()

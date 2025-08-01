@@ -20,7 +20,7 @@ func play(sound: AudioStream, parent:Node=self,sound_bus: String="sfx"):
 		var audio_player := AudioStreamPlayer.new()
 		parent.add_child(audio_player)
 		audio_player.stream = sound
-		audio_player.volume_db = -20
+		audio_player.volume_db = -25
 		audio_player.bus = sound_bus
 		audio_player.play(0.0)
 		audio_player.pitch_scale += randf_range(-0.05, 0.05)
@@ -33,18 +33,16 @@ func play(sound: AudioStream, parent:Node=self,sound_bus: String="sfx"):
 		ambience.stream = sound
 
 
-func fade_in(music:AudioStreamPlayer,duration: float = 0.5):
-	music.volume_db = -40
-	music.play()
+func fade_in(music:AudioStreamPlayer,duration: float = 0.25):
+	music.volume_db = -30
 	var tween = create_tween()
 	tween.tween_property(music, "volume_db", 0, duration)
 
 
-func fade_out(music:AudioStreamPlayer,duration: float = 0.5):
+func fade_out(music:AudioStreamPlayer,duration: float = 0.25):
 	var tween = create_tween()
-	tween.tween_property(music, "volume_db", -40, duration)
+	tween.tween_property(music, "volume_db", -30, duration)
 	await tween.finished
-	music.stop()
 
 
 func _on_tape_changed():
@@ -61,5 +59,5 @@ func switch_to_track(index: int):
 
 func await_fade_in(index:int):
 	var tracks := [default_music, digi_music, funk_music, grav_music]
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.25).timeout
 	fade_in(tracks[index])
