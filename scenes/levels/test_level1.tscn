@@ -1,6 +1,6 @@
 [gd_scene load_steps=46 format=3 uid="uid://vrvl0qd74ljx"]
 
-[ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_q8mpi"]
+[ext_resource type="Script" path="res://scenes/main/main.gd" id="1_q8mpi"]
 [ext_resource type="PackedScene" uid="uid://cygyj2gepkgaj" path="res://scenes/UI/settings/game_settings.tscn" id="2_e0r63"]
 [ext_resource type="PackedScene" uid="uid://dyr2o0k4wj1m6" path="res://scenes/UI/track_visuals/infinity_loop.tscn" id="3_p8nk6"]
 [ext_resource type="PackedScene" uid="uid://biarbyhnbgx0i" path="res://scenes/UI/track_visuals/cassette_ui.tscn" id="4_d3ib7"]
@@ -379,17 +379,17 @@ position = Vector2(-406, -77)
 position = Vector2(-118, -72)
 
 [node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("13_n8pxb")]
-position = Vector2(-48, 207.836)
+position = Vector2(-48, 214.533)
 
 [node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("13_n8pxb")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(-126, 213.902)
+position = Vector2(-126, 220.605)
 monitoring = false
 tape = 1
 
 [node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("13_n8pxb")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(26, 205.126)
+position = Vector2(26, 211.829)
 monitoring = false
 tape = 2
 

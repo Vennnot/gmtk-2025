@@ -493,7 +493,7 @@ size = Vector2(13.5, 7)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
-collision_mask = 413
+collision_mask = 925
 script = ExtResource("1_7uws0")
 gravity_force = 1000.0
 
