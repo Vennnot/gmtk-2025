@@ -27,6 +27,8 @@ var player_facing_direction := 1.0
 @onready var regular_collision := $"Regular Collision"
 @onready var croutch_collision := $"Croutch Collision"
 
+var dead : bool =false
+
 func _ready() -> void:
 	coyote_timer.wait_time = coyote_time
 
@@ -37,8 +39,10 @@ func reset_max_velocity():
 	current_maximum_velocity = maximum_velocity
 
 func _physics_process(delta: float) -> void:
-	control_movement(delta)
 	handle_animations()
+	if dead:
+		return
+	control_movement(delta)
 
 func control_movement(_delta):
 	#print("Dir: " + str(player_movement_direction) + " Velocity: " + str(velocity)) # Collect Player dir and velocity data

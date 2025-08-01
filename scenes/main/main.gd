@@ -2,11 +2,15 @@ class_name Main
 extends Node
 
 
-@export var base_game_time : float = 60
+@export var base_game_time : float = 10
 @export var camera_distance_offset : float = 350
 @export var camera_speed_offset : float = 0.1
 @export var camera_max_zoom : float = 4
 @export var camera_min_zoom : float = 2.5
+
+@export var death_duration : float = 3
+@export var camera_death_zoom : float = 6
+
 
 @onready var game_settings: GameSettingsUI = %GameSettings
 @onready var game_timer: Timer = %GameTimer
@@ -16,8 +20,8 @@ extends Node
 @onready var infinity_loop: InfinityLoop = %InfinityLoop
 @onready var power_label: Label = %PowerLabel
 @onready var phantom_camera: PhantomCamera2D = %PhantomCamera2D
-
-var player_starting_pos := Vector2.ZERO
+@onready var player_spawn_position: Marker2D = %PlayerSpawnPosition
+@onready var glitch_effect: ColorRect = %GlitchEffect
 
 
 
@@ -32,14 +36,27 @@ func _ready() -> void:
 
 
 func restart_game():
-	EventBus.game_restarted.emit()
+	player.global_position = player_spawn_position.global_position
+	player.dead = false
 	game_timer.wait_time = base_game_time
 	game_timer.start()
+	EventBus.game_restarted.emit()
+
+
+func game_over():
+	AudioManager.play(AudioManager.glitch)
+	glitch_effect.show()
+	game_timer.stop()
+	AudioManager.fade_out_all_tracks()
+	player.dead = true
+	var tween := create_tween()
+	tween.tween_property(player,^"global_position",player_spawn_position.global_position,death_duration)
+	await tween.finished
+	get_tree().reload_current_scene()
 
 
 func _on_game_timer_timeout():
-	player.position = player_starting_pos
-	restart_game()
+	game_over()
 
 
 func _on_collectable(type:String):
@@ -50,9 +67,17 @@ func _on_collectable(type:String):
 			game_timer.start()
 
 
-func _process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	if player.dead:
+		_set_camera_dead_offset()
+		return
 	time_label.text = format_time()
 	_set_camera_offset()
+
+
+func _set_camera_dead_offset():
+	var target_zoom : Vector2= lerp(phantom_camera.zoom, Vector2(camera_death_zoom, camera_death_zoom), 1)
+	phantom_camera.zoom = phantom_camera.zoom.lerp(target_zoom, get_process_delta_time() * camera_speed_offset*5)
 
 func _set_camera_offset():
 	var direction : float= sign(player.velocity.x)
@@ -87,11 +112,23 @@ func toggle_pause():
 
 
 func _input(_event: InputEvent) -> void:
+	if player.dead:
+		return
+	
 	if Input.is_action_just_pressed(&"switch_tape"):
 		if infinity_loop.sprite_in_middle:
 			AudioManager.play(AudioManager.tape)
+			slow_down_and_restore()
 			infinity_loop.sprite_in_middle = false
 			Global.next_tape()
+
+
+func slow_down_and_restore(duration: float = 0.25):
+	var tween := create_tween()
+	var half := duration / 2.0
+	tween.tween_property(Engine, "time_scale", 0.2, half).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(Engine, "time_scale", 1.0, half).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
 
 
 func _on_tape_changed():
@@ -127,7 +164,8 @@ func _apply_tape_power():
 
 
 func _slow_time():
-	Engine.time_scale = 0.7
+	#Engine.time_scale = 0.7
+	pass
 
 func _increase_speed():
 	player.current_maximum_velocity *= 2
@@ -139,6 +177,6 @@ func _increase_gravity():
 	player.current_gravity_force *= 2
 
 func _reset_values():
-	Engine.time_scale = 1
+	#Engine.time_scale = 1
 	player.reset_gravity()
 	player.reset_max_velocity()

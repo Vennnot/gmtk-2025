@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dhtruibsgo1o4"]
+[gd_scene load_steps=21 format=3 uid="uid://dhtruibsgo1o4"]
 
 [ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_k2fmo"]
 [ext_resource type="PackedScene" uid="uid://dlsuigoh14we6" path="res://scenes/test/test_world.tscn" id="3_6q06x"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cygyj2gepkgaj" path="res://scenes/UI/settings/game_settings.tscn" id="4_l3cfh"]
 [ext_resource type="PackedScene" uid="uid://tiqn0p0soeti" path="res://scenes/characters/player/player.tscn" id="4_ow5a4"]
 [ext_resource type="PackedScene" uid="uid://biarbyhnbgx0i" path="res://scenes/UI/track_visuals/cassette_ui.tscn" id="4_raeie"]
+[ext_resource type="Shader" uid="uid://dyrjkywkwsd3g" path="res://resources/glitch.gdshader" id="5_hxu8e"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_th5th"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="6_7smn1"]
 [ext_resource type="PackedScene" uid="uid://dx8l3luoxod0x" path="res://assets/environment/parallaxbackground.tscn" id="8_yyfjg"]
@@ -18,6 +19,14 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_6q06x"]
 font_size = 48
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nvumn"]
+shader = ExtResource("5_hxu8e")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_rate = 1.0
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
 
 [sub_resource type="Resource" id="Resource_raeie"]
 script = ExtResource("5_th5th")
@@ -40,6 +49,7 @@ visible = false
 in_game = true
 
 [node name="UI" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="UI"]
 anchors_preset = 15
@@ -86,6 +96,16 @@ position = Vector2(126, 73)
 unique_name_in_owner = true
 position = Vector2(123, 184)
 scale = Vector2(10, 10)
+
+[node name="GlitchEffect" type="ColorRect" parent="UI"]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_nvumn")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Other" type="Node" parent="."]
 
@@ -144,17 +164,17 @@ position = Vector2(103, -1)
 position = Vector2(391, 4)
 
 [node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
-position = Vector2(-48, 176.346)
+position = Vector2(-48, 170.918)
 
 [node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(-126, 182.336)
+position = Vector2(-126, 176.911)
 monitoring = false
 tape = 1
 
 [node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(26, 173.547)
+position = Vector2(26, 168.126)
 monitoring = false
 tape = 2
 
@@ -165,6 +185,10 @@ deceleration = 600.0
 
 [node name="Parallaxbackground" parent="World" instance=ExtResource("8_yyfjg")]
 z_index = -5
+
+[node name="PlayerSpawnPosition" type="Marker2D" parent="World"]
+unique_name_in_owner = true
+position = Vector2(0, 144)
 
 [node name="Railing" parent="." instance=ExtResource("12_blune")]
 position = Vector2(-639, 157)

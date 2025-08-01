@@ -61,3 +61,9 @@ func await_fade_in(index:int):
 	var tracks := [default_music, digi_music, funk_music, grav_music]
 	await get_tree().create_timer(0.25).timeout
 	fade_in(tracks[index])
+
+
+func fade_out_all_tracks():
+	var tracks := [default_music, digi_music, funk_music, grav_music]
+	for i in range(tracks.size()):
+		fade_out(tracks[i])
