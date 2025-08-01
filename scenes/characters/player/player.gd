@@ -30,16 +30,12 @@ var player_facing_direction := 1.0
 
 var dead : bool =false
 var railing : Railing
-var railing_count := 0 :
-	set(value):
-		railing_count = max(0,value)
 var railing_progress := 0.0
 var railing_momentum := 0.0
 var railing_direction := 1.0
 
 func _ready() -> void:
 	railing_area.area_entered.connect(_on_area_entered)
-	railing_area.area_exited.connect(_on_area_exited)
 	coyote_timer.wait_time = coyote_time
 
 func reset_gravity():
@@ -241,7 +237,6 @@ func reset_railing():
 	rotation = 0
 	railing = null
 	railing_progress = 0
-	railing_count = 0
 	railing_momentum = 0.0
 	railing_direction = 1.0
 	velocity.y = 0
@@ -254,13 +249,13 @@ func handle_jumping():
 	var was_on_floor = is_on_floor()
 	if was_on_floor and !is_on_floor():
 		coyote_timer.start()
-	if is_on_floor():
+	if is_on_floor() or is_colliding_with_rails():
 		can_jump = true
 	if Input.is_action_just_pressed("jump") and can_jump:
-		jump_timer.start()
-		jumping = true
 		if is_colliding_with_rails():
 			reset_railing()
+		jump_timer.start()
+		jumping = true
 	if Input.is_action_just_released("jump"):
 		jumping = false
 		can_jump = false
@@ -326,19 +321,7 @@ func _on_area_entered(area:Area2D):
 	if not railing:
 		railing_progress = calculate_starting_progress()
 		railing = area.get_parent()
-	railing_count += 1
-
-
-func _on_area_exited(area:Area2D):
-	if area is not RailingArea:
-		return
-	
-	railing_count -= 1
-	if railing_count < 0:
-		print("Issue with railings")
-	elif not is_colliding_with_rails():
-		reset_railing()
 
 
 func is_colliding_with_rails()->bool:
-	return railing_count > 0 and abs(velocity.x) >= maximum_velocity / 4
+	return railing and abs(velocity.x) >= maximum_velocity / 4
