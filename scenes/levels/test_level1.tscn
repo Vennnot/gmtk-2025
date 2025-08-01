@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://vrvl0qd74ljx"]
+[gd_scene load_steps=49 format=3 uid="uid://vrvl0qd74ljx"]
 
 [ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/UI/main.gd" id="1_q8mpi"]
 [ext_resource type="PackedScene" uid="uid://cygyj2gepkgaj" path="res://scenes/UI/settings/game_settings.tscn" id="2_e0r63"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://csyax0er4a0ag" path="res://assets/environment/pngs/GrafittiArrow-Sheet.png" id="16_q8mpi"]
 [ext_resource type="PackedScene" uid="uid://dx8l3luoxod0x" path="res://assets/environment/parallaxbackground.tscn" id="17_3x7fh"]
 [ext_resource type="PackedScene" uid="uid://danamx8m8yjpq" path="res://scenes/ground/groundtilemap.tscn" id="19_15dcc"]
+[ext_resource type="PackedScene" uid="uid://dw7538s3gf5c4" path="res://assets/environment/finish_line_smoke.tscn" id="21_d3ib7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6q06x"]
 font_size = 48
@@ -392,17 +393,17 @@ position = Vector2(-406, -77)
 position = Vector2(2461, 270)
 
 [node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("13_n8pxb")]
-position = Vector2(-48, 206.87)
+position = Vector2(-48, 198.337)
 
 [node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("13_n8pxb")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(-126, 212.839)
+position = Vector2(-126, 204.262)
 monitoring = false
 tape = 1
 
 [node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("13_n8pxb")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(26, 204.064)
+position = Vector2(26, 195.501)
 monitoring = false
 tape = 2
 
@@ -424,12 +425,16 @@ scale = Vector2(0.88509, 0.584903)
 position = Vector2(7545, 266)
 scale = Vector2(2.92911, 0.584903)
 
-[node name="MagnetSpikes7" parent="World/Environment/Interactables" instance=ExtResource("12_ox8il")]
-position = Vector2(8919, 201)
-scale = Vector2(0.529111, 0.584903)
+[node name="MagnetSpikes8" parent="World/Environment/Interactables" instance=ExtResource("12_ox8il")]
+position = Vector2(9086, 154)
+scale = Vector2(0.870548, -1.23922)
+
+[node name="MagnetSpikes9" parent="World/Environment/Interactables" instance=ExtResource("12_ox8il")]
+position = Vector2(8797, 154)
+scale = Vector2(0.870548, -1.23922)
 
 [node name="Loop" parent="World/Environment" instance=ExtResource("14_v1k4d")]
-position = Vector2(4290, -258)
+position = Vector2(4289, -258)
 points = PackedVector2Array(13, 58, 215, 58, 347, 15, 433, -117, 402, -248, 291, -278, 200, -209, 248, -110, 414, 25, 622, 50)
 texture = ExtResource("15_vbnww")
 texture_mode = 1
@@ -454,6 +459,9 @@ z_index = -5
 [node name="PlayerSpawnPosition" type="Marker2D" parent="World"]
 unique_name_in_owner = true
 position = Vector2(0, 144)
+
+[node name="FinishLineSmoke" parent="World" instance=ExtResource("21_d3ib7")]
+position = Vector2(9719, 43)
 
 [node name="Groundtilemap" parent="." instance=ExtResource("19_15dcc")]
 position = Vector2(-176, 180)
