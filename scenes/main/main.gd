@@ -2,7 +2,7 @@ class_name Main
 extends Node
 
 
-@export var base_game_time : float = 10
+@export var base_game_time : float = 60
 @export var camera_distance_offset : float = 350
 @export var camera_speed_offset : float = 0.1
 @export var camera_max_zoom : float = 4
@@ -22,6 +22,7 @@ extends Node
 @onready var phantom_camera: PhantomCamera2D = %PhantomCamera2D
 @onready var player_spawn_position: Marker2D = %PlayerSpawnPosition
 @onready var glitch_effect: ColorRect = %GlitchEffect
+@onready var ui_animator: AnimationPlayer = %UIAnimator
 
 
 
@@ -36,6 +37,7 @@ func _ready() -> void:
 
 
 func restart_game():
+	Engine.time_scale = 1
 	player.global_position = player_spawn_position.global_position
 	player.dead = false
 	game_timer.wait_time = base_game_time
@@ -118,6 +120,7 @@ func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed(&"switch_tape"):
 		if infinity_loop.sprite_in_middle:
 			AudioManager.play(AudioManager.tape)
+			ui_animator.play(&"ripple")
 			slow_down_and_restore()
 			infinity_loop.sprite_in_middle = false
 			Global.next_tape()
@@ -126,7 +129,7 @@ func _input(_event: InputEvent) -> void:
 func slow_down_and_restore(duration: float = 0.25):
 	var tween := create_tween()
 	var half := duration / 2.0
-	tween.tween_property(Engine, "time_scale", 0.2, half).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(Engine, "time_scale", 0.1, half).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(Engine, "time_scale", 1.0, half).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 
