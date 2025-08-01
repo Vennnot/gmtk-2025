@@ -8,8 +8,6 @@
 [node name="Collectable" type="Node2D"]
 modulate = Color(0.627451, 0.12549, 0.941176, 1)
 script = ExtResource("1_vtu06")
-collectable_type = null
-tape = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true

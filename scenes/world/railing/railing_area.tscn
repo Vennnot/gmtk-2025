@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://8juli8n1yxy2"]
+
+[ext_resource type="Script" uid="uid://de218pr4i1l1a" path="res://scenes/world/railing/railing_area.gd" id="1_h00mb"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_hv82j"]
+b = Vector2(0, 0)
+
+[node name="RailingArea" type="Area2D"]
+physics_interpolation_mode = 1
+collision_layer = 256
+collision_mask = 2
+monitoring = false
+script = ExtResource("1_h00mb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+physics_interpolation_mode = 1
+shape = SubResource("SegmentShape2D_hv82j")

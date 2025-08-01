@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dhtruibsgo1o4"]
+[gd_scene load_steps=27 format=3 uid="uid://dhtruibsgo1o4"]
 
 [ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_k2fmo"]
 [ext_resource type="PackedScene" uid="uid://dlsuigoh14we6" path="res://scenes/test/test_world.tscn" id="3_6q06x"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://5wwyga0bugq4" path="res://scenes/world/Interactables/speed_boost.tscn" id="10_a8run"]
 [ext_resource type="PackedScene" uid="uid://dv1optwloa0al" path="res://scenes/world/Interactables/railing.tscn" id="12_blune"]
 [ext_resource type="PackedScene" uid="uid://danamx8m8yjpq" path="res://scenes/ground/groundtilemap.tscn" id="13_th5th"]
+[ext_resource type="PackedScene" uid="uid://b8rrp8w73ic70" path="res://scenes/world/railing/railing.tscn" id="14_ou6is"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6q06x"]
 font_size = 48
@@ -37,6 +38,33 @@ shader_parameter/radius = 0.0
 shader_parameter/aberration = 0.425
 shader_parameter/width = 0.04
 shader_parameter/feather = 0.135
+
+[sub_resource type="Animation" id="Animation_ou6is"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%RippleEffect:material:shader_parameter/radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%RippleEffect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_nvumn"]
 resource_name = "ripple"
@@ -65,33 +93,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_ou6is"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%RippleEffect:material:shader_parameter/radius")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("%RippleEffect:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_necax"]
@@ -246,25 +247,35 @@ shape = SubResource("RectangleShape2D_a8run")
 position = Vector2(0, -264)
 
 [node name="SpeedBoost" parent="World/Environment/Interactables" instance=ExtResource("10_a8run")]
-position = Vector2(103, -1)
+position = Vector2(-406, -77)
 
 [node name="MagnetSpikes" parent="World/Environment/Interactables" instance=ExtResource("9_b1x3f")]
-position = Vector2(391, 4)
+position = Vector2(-118, -72)
 
 [node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
-position = Vector2(-48, 167.533)
+position = Vector2(-48, 166.44)
 
 [node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(-126, 173.518)
+position = Vector2(-126, 172.438)
 monitoring = false
 tape = 1
 
 [node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(26, 164.731)
+position = Vector2(26, 163.653)
 monitoring = false
 tape = 2
+
+[node name="Railing" parent="World/Environment" instance=ExtResource("14_ou6is")]
+visible = false
+position = Vector2(4, -78)
+points = PackedVector2Array(24, 28, 629, 33)
+
+[node name="Loop" parent="World/Environment" instance=ExtResource("14_ou6is")]
+position = Vector2(4, -78)
+points = PackedVector2Array(13, 58, 215, 58, 347, 15, 433, -117, 399, -246, 291, -278, 200, -209, 248, -110, 414, 25, 622, 50)
+tape = 1
 
 [node name="Player" parent="World" instance=ExtResource("4_ow5a4")]
 unique_name_in_owner = true

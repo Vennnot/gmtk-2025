@@ -26,10 +26,20 @@ var player_facing_direction := 1.0
 
 @onready var regular_collision := $"Regular Collision"
 @onready var croutch_collision := $"Croutch Collision"
+@onready var railing_area: Area2D = %RailingArea
 
 var dead : bool =false
+var railing : Railing
+var railing_count := 0 :
+	set(value):
+		railing_count = max(0,value)
+var railing_progress := 0.0
+var railing_momentum := 0.0
+var railing_direction := 1.0
 
 func _ready() -> void:
+	railing_area.area_entered.connect(_on_area_entered)
+	railing_area.area_exited.connect(_on_area_exited)
 	coyote_timer.wait_time = coyote_time
 
 func reset_gravity():
@@ -40,6 +50,7 @@ func reset_max_velocity():
 
 func _physics_process(delta: float) -> void:
 	handle_animations()
+	
 	if dead:
 		return
 	control_movement(delta)
@@ -49,8 +60,6 @@ func control_movement(_delta):
 	
 	player_movement_direction = Input.get_axis("left", "right")
 	
-	# Handle Gravity
-	velocity.y += current_gravity_force * _delta
 	
 	#Handle x movement
 	velocity.x += player_movement_direction * acceleration * _delta
@@ -63,15 +72,26 @@ func control_movement(_delta):
 	if abs(velocity.x) > current_maximum_velocity:
 		velocity.x = move_toward(velocity.x, player_facing_direction * current_maximum_velocity, deceleration * _delta)
 	
-	#If player is slow, stop them
-	if abs(velocity.x) <= deceleration_point and player_movement_direction == 0:
-		velocity.x = move_toward(velocity.x, 0, _delta * deceleration)
+	
 	
 	#Handle Jump
 	handle_jumping()
+	
+	if is_colliding_with_rails():
+		move_along_railing(_delta)
+		return
+	
+	# If player is slow stop them
+	if abs(velocity.x) <= deceleration_point and player_movement_direction == 0:
+		velocity.x = move_toward(velocity.x, 0, _delta * deceleration)
+	
 	if can_jump or !coyote_timer.is_stopped():
 		if jumping:
 			velocity.y = -jump_force * _delta
+	
+	# Handle Gravity
+	velocity.y += current_gravity_force * _delta
+	
 	
 	#Handle Player Collisions
 	handle_collisions()
@@ -80,6 +100,151 @@ func control_movement(_delta):
 	handle_railing()
 	
 	move_and_slide()
+
+
+func move_along_railing(delta):
+	if not is_colliding_with_rails() or not railing:
+		return
+	
+	# If this is the first frame on the railing, calculate starting position and momentum
+	if railing_progress == 0.0:
+		railing_progress = calculate_starting_progress()
+		# Store the momentum and direction from when we landed on the railing
+		railing_momentum = abs(velocity.x) if abs(velocity.x) > 50.0 else 100.0
+		# Determine initial direction based on velocity or default to right
+		railing_direction = 1.0 if velocity.x >= 0 else -1.0
+	
+	var current_speed: float
+	var movement_dir: float
+
+	# Use player input to modify momentum and direction, or maintain current momentum
+	if player_movement_direction != 0:
+		# Check if player is trying to reverse direction - if so, fall off
+		if player_movement_direction != railing_direction and railing_direction != 0:
+			reset_railing()
+			return
+		
+		# Player is actively moving - use their input speed and direction
+		current_speed = max(abs(velocity.x), 50.0)
+		movement_dir = player_movement_direction
+		railing_direction = player_movement_direction  # Update stored direction
+	else:
+		railing_momentum = max(railing_momentum, 50.0)  # Minimum sliding speed
+		current_speed = railing_momentum
+		movement_dir = railing_direction  # Use stored direction
+	
+	# Calculate progress increment
+	var progress_increment = (current_speed / get_total_length(railing)) * delta * movement_dir
+	railing_progress += progress_increment
+	
+	# Check bounds and reset if needed
+	if railing_progress >= 0.99 or railing_progress <= 0.05:
+		reset_railing()
+		return
+	
+	var pos := get_point_on_line(railing, railing_progress, movement_dir)
+	var next_progress = railing_progress + 0.01 * movement_dir
+	next_progress = clamp(next_progress, 0.0, 1.0)  # Ensure next_progress is within bounds
+	var next_pos := get_point_on_line(railing, next_progress, movement_dir)
+	
+	global_position = railing.to_global(pos)
+	
+	# Calculate rotation based on movement direction
+	var direction_vector = railing.to_global(next_pos) - railing.to_global(pos)
+	if movement_dir < 0:
+		# When moving left, flip the direction vector
+		direction_vector = -direction_vector
+	rotation = direction_vector.angle()
+
+func calculate_starting_progress() -> float:
+	if not railing:
+		return 0.0
+	
+	var global_points := []
+	for p in railing.points:
+		global_points.append(railing.to_global(p))
+	
+	var player_pos := global_position
+	var closest_progress := 0.0
+	var min_distance := INF
+	var total_length := 0.0
+	var current_length := 0.0
+	var segment_lengths := []
+	
+	# Calculate segment lengths
+	for i in range(global_points.size() - 1):
+		var seg_len = global_points[i].distance_to(global_points[i + 1])
+		segment_lengths.append(seg_len)
+		total_length += seg_len
+	
+	# Find closest point on the line
+	for i in range(global_points.size() - 1):
+		var a = global_points[i]
+		var b = global_points[i + 1]
+		var segment = b - a
+		var seg_len = segment_lengths[i]
+		
+		if seg_len == 0:
+			continue
+			
+		var t = clamp((player_pos - a).dot(segment) / segment.length_squared(), 0.0, 1.0)
+		var projected = a + segment * t
+		var dist = projected.distance_to(player_pos)
+		
+		if dist < min_distance:
+			min_distance = dist
+			closest_progress = current_length + seg_len * t
+		
+		current_length += seg_len
+	
+	if total_length == 0:
+		return 0.0
+	
+	return closest_progress / total_length
+
+func get_total_length(line: Line2D) -> float:
+	var length := 0.0
+	for i in range(line.points.size() - 1):
+		length += line.points[i].distance_to(line.points[i + 1])
+	return length
+
+func get_point_on_line(line: Line2D, t: float, movement_direction: float) -> Vector2:
+	var points = line.points
+	if points.size() < 2:
+		return Vector2.ZERO
+	
+	var segment_lengths = []
+	var total_length := 0.0
+	for i in range(points.size() - 1):
+		var length := points[i].distance_to(points[i + 1])
+		segment_lengths.append(length)
+		total_length += length
+	
+	if total_length == 0:
+		return points[0]
+	
+	var clamped_t = clamp(t, 0.0, 1.0)
+	var target_distance = clamped_t * total_length
+	var current_distance := 0.0
+	
+	# Always traverse in the natural order of points
+	for i in range(segment_lengths.size()):
+		var seg_len = segment_lengths[i]
+		if current_distance + seg_len >= target_distance:
+			var local_t = (target_distance - current_distance) / seg_len
+			return points[i].lerp(points[i + 1], local_t)
+		current_distance += seg_len
+	
+	return points[-1]
+
+func reset_railing():
+	rotation = 0
+	railing = null
+	railing_progress = 0
+	railing_count = 0
+	railing_momentum = 0.0
+	railing_direction = 1.0
+	velocity.y = 0
 
 
 func _on_jump_timer_timeout() -> void:
@@ -94,9 +259,10 @@ func handle_jumping():
 	if Input.is_action_just_pressed("jump") and can_jump:
 		jump_timer.start()
 		jumping = true
+		if is_colliding_with_rails():
+			reset_railing()
 	if Input.is_action_just_released("jump"):
 		jumping = false
-		can_jump = false
 		can_jump = false
 
 func handle_animations():
@@ -148,3 +314,31 @@ func handle_railing():
 				position.y += 1.0
 			else:
 				pass
+
+
+func _on_area_entered(area:Area2D):
+	if area is not RailingArea:
+		return
+	
+	if velocity.y < 0:
+		return
+	
+	if not railing:
+		railing_progress = calculate_starting_progress()
+		railing = area.get_parent()
+	railing_count += 1
+
+
+func _on_area_exited(area:Area2D):
+	if area is not RailingArea:
+		return
+	
+	railing_count -= 1
+	if railing_count < 0:
+		print("Issue with railings")
+	elif not is_colliding_with_rails():
+		reset_railing()
+
+
+func is_colliding_with_rails()->bool:
+	return railing_count > 0 and abs(velocity.x) >= maximum_velocity / 4

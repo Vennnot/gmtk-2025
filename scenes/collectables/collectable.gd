@@ -1,10 +1,6 @@
 @tool
 class_name Collectable
 extends Area2D
-#extends Node2D
-#
-#@onready var sprite: Sprite2D = %Sprite2D
-#@onready var area: Area2D = %Area2D
 
 @onready var colored_sprite: Sprite2D = $CassetteWhite
 @onready var area : Area2D = self

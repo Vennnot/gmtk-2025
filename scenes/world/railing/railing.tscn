@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8rrp8w73ic70"]
+
+[ext_resource type="Script" uid="uid://bjbilxlgyjle3" path="res://scenes/world/railing/railing.gd" id="1_hv82j"]
+
+[node name="Railing" type="Line2D"]
+width = 5.0
+joint_mode = 1
+script = ExtResource("1_hv82j")
