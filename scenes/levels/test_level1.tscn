@@ -1,9 +1,11 @@
-[gd_scene load_steps=46 format=3 uid="uid://vrvl0qd74ljx"]
+[gd_scene load_steps=48 format=3 uid="uid://vrvl0qd74ljx"]
 
-[ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_q8mpi"]
+[ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/UI/main.gd" id="1_q8mpi"]
 [ext_resource type="PackedScene" uid="uid://cygyj2gepkgaj" path="res://scenes/UI/settings/game_settings.tscn" id="2_e0r63"]
+[ext_resource type="Texture2D" uid="uid://cyhhecr3unpv0" path="res://assets/environment/icons/JumpIcon.png" id="3_e0r63"]
 [ext_resource type="PackedScene" uid="uid://dyr2o0k4wj1m6" path="res://scenes/UI/track_visuals/infinity_loop.tscn" id="3_p8nk6"]
 [ext_resource type="PackedScene" uid="uid://biarbyhnbgx0i" path="res://scenes/UI/track_visuals/cassette_ui.tscn" id="4_d3ib7"]
+[ext_resource type="Texture2D" uid="uid://dnvbme4nqh5gh" path="res://assets/environment/icons/SpeedIcon.png" id="4_p8nk6"]
 [ext_resource type="Shader" uid="uid://dyrjkywkwsd3g" path="res://resources/glitch.gdshader" id="5_gavr1"]
 [ext_resource type="Shader" uid="uid://bua05pf3sf71g" path="res://resources/ripple.gdshader" id="6_7w0cq"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="7_qnqg5"]
@@ -277,6 +279,7 @@ vertical_alignment = 1
 
 [node name="DebugLabel" type="Label" parent="UI/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 0
 text = "current cassete: blue"
@@ -286,12 +289,22 @@ vertical_alignment = 1
 
 [node name="PowerLabel" type="Label" parent="UI/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 0
 text = "current power:"
 label_settings = SubResource("LabelSettings_6q06x")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="JumpIcon" type="Sprite2D" parent="UI/MarginContainer/VBoxContainer"]
+visible = false
+position = Vector2(255, 194)
+texture = ExtResource("3_e0r63")
+
+[node name="SpeedIcon" type="Sprite2D" parent="UI/MarginContainer/VBoxContainer"]
+position = Vector2(258, 193)
+texture = ExtResource("4_p8nk6")
 
 [node name="InfinityLoop" parent="UI" instance=ExtResource("3_p8nk6")]
 unique_name_in_owner = true
@@ -376,24 +389,25 @@ position = Vector2(0, -264)
 position = Vector2(-406, -77)
 
 [node name="MagnetSpikes" parent="World/Environment/Interactables" instance=ExtResource("12_ox8il")]
-position = Vector2(-118, -72)
+position = Vector2(1637, 263)
 
 [node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("13_n8pxb")]
-position = Vector2(-48, 207.967)
+position = Vector2(-48, 219.119)
 
 [node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("13_n8pxb")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(-126, 214.03)
+position = Vector2(-126, 225.165)
 monitoring = false
 tape = 1
 
 [node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("13_n8pxb")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(26, 205.253)
+position = Vector2(26, 216.388)
 monitoring = false
 tape = 2
 
 [node name="Loop" parent="World/Environment" instance=ExtResource("14_v1k4d")]
+visible = false
 position = Vector2(3687, -81)
 points = PackedVector2Array(13, 58, 215, 58, 347, 15, 433, -117, 402, -248, 291, -278, 200, -209, 248, -110, 414, 25, 622, 50)
 texture = ExtResource("15_vbnww")

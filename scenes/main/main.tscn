@@ -1,6 +1,6 @@
 [gd_scene load_steps=28 format=3 uid="uid://dhtruibsgo1o4"]
 
-[ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_k2fmo"]
+[ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/UI/main.gd" id="1_k2fmo"]
 [ext_resource type="PackedScene" uid="uid://dlsuigoh14we6" path="res://scenes/test/test_world.tscn" id="3_6q06x"]
 [ext_resource type="PackedScene" uid="uid://dyr2o0k4wj1m6" path="res://scenes/UI/track_visuals/infinity_loop.tscn" id="3_hujxm"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="4_blune"]

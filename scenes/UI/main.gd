@@ -32,7 +32,7 @@ func _ready() -> void:
 	Global.tape_changed.connect(_on_tape_changed)
 	EventBus.collectable_collected.connect(_on_collectable)
 	
-	_on_tape_changed()
+	#_on_tape_changed() <-- Tapes are more active ability so we won't need this.
 	restart_game()
 
 
@@ -121,7 +121,7 @@ func _input(_event: InputEvent) -> void:
 		if infinity_loop.sprite_in_middle:
 			AudioManager.play(AudioManager.tape)
 			ui_animator.play(&"ripple")
-			slow_down_and_restore()
+			#slow_down_and_restore()
 			infinity_loop.sprite_in_middle = false
 			Global.next_tape()
 
@@ -136,23 +136,28 @@ func slow_down_and_restore(duration: float = 0.25):
 
 func _on_tape_changed():
 	debug_label.text = "Cassette Tape: %s" % Global.get_tape_string() + ", Next Tape: %s" % Global.get_tape_string(Global.get_next_tape())
-	await get_tree().create_timer(0.2).timeout
+	#Removed this delay, it felt weird to have to wait for an ability to fire.
+	#await get_tree().create_timer(0.2).timeout
 	_apply_tape_power()
 
 
 func _apply_tape_power():
 	var powerup_text := ""
 	match Global.current_tape_index:
-		Global.TAPE.NEON_PINK:
-			player.global_position.x += 100*player.player_facing_direction
-			powerup_text = "dash"
-		Global.TAPE.CYAN:
-			player.velocity.y += 5000
-			powerup_text = "fall instantly"
+		#Global.TAPE.NEON_PINK:
+			#player.global_position.x += 100*player.player_facing_direction
+			#powerup_text = "dash"
+		#Global.TAPE.CYAN:
+			#player.velocity.y += 5000
+			#powerup_text = "fall instantly"
 		Global.TAPE.YELLOW:
 			player.velocity.y -= 1000
 			powerup_text = "air jump"
+			$UI/MarginContainer/VBoxContainer/SpeedIcon.visible = true;
+			$UI/MarginContainer/VBoxContainer/JumpIcon.visible = false;
 		Global.TAPE.GREEN:
 			player.velocity.x += 500*player.player_facing_direction
 			powerup_text = "speed boost"
+			$UI/MarginContainer/VBoxContainer/SpeedIcon.visible = false;
+			$UI/MarginContainer/VBoxContainer/JumpIcon.visible = true;
 	power_label.text = "current power: %s" % powerup_text
