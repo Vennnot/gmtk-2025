@@ -238,7 +238,7 @@ process_mode = 1
 position = Vector2(3, 179)
 
 [node name="Floor" type="StaticBody2D" parent="World/Environment"]
-position = Vector2(211, 156)
+position = Vector2(224, 14)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Environment/Floor"]
 shape = SubResource("RectangleShape2D_a8run")
@@ -253,17 +253,17 @@ position = Vector2(-406, -77)
 position = Vector2(-118, -72)
 
 [node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
-position = Vector2(-48, 166.44)
+position = Vector2(-48, 172.559)
 
 [node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(-126, 172.438)
+position = Vector2(-126, 178.562)
 monitoring = false
 tape = 1
 
 [node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(26, 163.653)
+position = Vector2(26, 169.777)
 monitoring = false
 tape = 2
 
