@@ -1,0 +1,130 @@
+[gd_scene load_steps=3 format=3 uid="uid://xf1kfjedcgd"]
+
+[ext_resource type="Script" uid="uid://c6av3xe4m2ujl" path="res://addons/madtalk/runtime/madtalk_runtime.gd" id="1_yfpdx"]
+
+[sub_resource type="GDScript" id="GDScript_53p2i"]
+script/source = "extends Node2D
+
+
+
+func _ready():
+	# set_locale_automatic() uses the OS locale, so the project settings
+	# will be ignored
+	#MadTalkGlobals.set_locale_automatic()
+	
+	# set_locale_from_project() does what it says on the tin
+	MadTalkGlobals.set_locale_from_project()
+	
+	# If you want to set manually:
+	#MadTalkGlobals.set_default_locale(\"en\") # the language used in the default tab of messages
+	#MadTalkGlobals.set_locale(\"es\") # the locale to use in the game
+	
+	
+	$MadTalk.start_dialog(\"localized\")
+
+
+func _input(event):
+	if (
+		(event is InputEventKey) and (event.pressed) and (not event.echo) and (event.keycode in [KEY_SPACE, KEY_ENTER, KEY_KP_ENTER])
+	) or (
+		(event is InputEventMouseButton) and (event.pressed) and (event.button_index == MOUSE_BUTTON_LEFT)
+	):
+		$MadTalk.dialog_acknowledge()
+
+
+func _on_mad_talk_voice_clip_requested(speaker_id: String, clip_path: String) -> void:
+	var voice_player: AudioStreamPlayer = $CanvasLayer/Dialog/VoicePlayer
+	
+	if voice_player.playing:
+		voice_player.stop()
+	
+	if clip_path != \"\": # Because signal is emitted even if clip_path is blank
+		voice_player.stream = load(clip_path)
+		voice_player.play()
+"
+
+[node name="Scene" type="Node2D"]
+script = SubResource("GDScript_53p2i")
+
+[node name="MadTalk" type="Node" parent="."]
+script = ExtResource("1_yfpdx")
+DialogMainControl = NodePath("../CanvasLayer/Dialog")
+DialogMessageBox = NodePath("../CanvasLayer/Dialog/MessagePanel")
+DialogMessageLabel = NodePath("../CanvasLayer/Dialog/MessagePanel/MessageRichLabel")
+DialogButtonsMenu = NodePath("../CanvasLayer/Dialog/MenuBox")
+DialogButtonsContainer = NodePath("../CanvasLayer/Dialog/MenuBox/MenuContainer")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Dialog" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MessagePanel" type="Panel" parent="CanvasLayer/Dialog"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_top = -152.0
+offset_right = 400.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MessageRichLabel" type="RichTextLabel" parent="CanvasLayer/Dialog/MessagePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 16.0
+offset_right = -20.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Lorem ipsum"
+
+[node name="MenuBox" type="Panel" parent="CanvasLayer/Dialog"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 188.0
+offset_top = -455.0
+offset_right = 424.0
+offset_bottom = -195.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MenuContainer" type="VBoxContainer" parent="CanvasLayer/Dialog/MenuBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VoicePlayer" type="AudioStreamPlayer" parent="CanvasLayer/Dialog"]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 35.0
+offset_top = 16.0
+offset_right = 791.0
+offset_bottom = 234.0
+text = "To test languages different from your system, go to Project Settings (enable advanced settings), then Internationalization -> Locale, and set the desired locale in the field \"Test\"."
+autowrap_mode = 3
+
+[connection signal="voice_clip_requested" from="MadTalk" to="." method="_on_mad_talk_voice_clip_requested"]

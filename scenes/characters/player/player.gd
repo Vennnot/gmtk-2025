@@ -8,7 +8,7 @@ var jump_fx = preload("res://assets/sprites/FX/jumpfx.tscn");
 var current_maximum_velocity := 300.0
 @export var acceleration := 350.0
 @export var deceleration := 1050.0
-@export var deceleration_point := 200.0
+@export var deceleration_point := 600.0
 @export var jump_force := 30000.0
 @export var gravity_force := 2500.0
 var current_gravity_force := 2500.0
@@ -40,6 +40,7 @@ var railing_direction := 1.0
 func _ready() -> void:
 	railing_area.area_entered.connect(_on_area_entered)
 	coyote_timer.wait_time = coyote_time
+	reset_max_velocity()
 
 func reset_gravity():
 	current_gravity_force = gravity_force
@@ -48,11 +49,12 @@ func reset_max_velocity():
 	current_maximum_velocity = maximum_velocity
 
 func _physics_process(delta: float) -> void:
-	handle_animations()
+	handle_animations() if !Global.player_upside_down else handle_upsidedown_animations()
 	
-	if dead:
+	if dead or !Global.player_controllable:
 		return
-	control_movement(delta)
+	
+	control_movement(delta) if !Global.player_upside_down else upsidedown_control_movement(delta)
 
 func control_movement(_delta):
 	#print("Dir: " + str(player_movement_direction) + " Velocity: " + str(velocity)) # Collect Player dir and velocity data
@@ -69,6 +71,7 @@ func control_movement(_delta):
 	
 	#Clamp maximum player x velocity
 	if abs(velocity.x) > current_maximum_velocity:
+		print("A")
 		velocity.x = move_toward(velocity.x, player_facing_direction * current_maximum_velocity, deceleration * _delta)
 	
 	
@@ -79,9 +82,12 @@ func control_movement(_delta):
 		move_along_railing(_delta)
 		return
 	
-	# If player is slow stop them
+	# Natural Friction
+	# Friction if facing opposite way of velocity
 	if abs(velocity.x) <= deceleration_point and player_movement_direction == 0:
 		velocity.x = move_toward(velocity.x, 0, _delta * deceleration)
+	if (player_facing_direction < 0.0 and velocity.x > 0.0) or (player_facing_direction > 0.0 and velocity.x < 0.0):
+		velocity.x = move_toward(velocity.x, 0, _delta * deceleration/2)
 	
 	if can_jump or !coyote_timer.is_stopped():
 		if jumping:
@@ -127,6 +133,8 @@ func upsidedown_control_movement(_delta):
 	# If player is slow stop them
 	if abs(velocity.x) <= deceleration_point and player_movement_direction == 0:
 		velocity.x = move_toward(velocity.x, 0, _delta * deceleration)
+	if (player_facing_direction < 0.0 and velocity.x > 0.0) or (player_facing_direction > 0.0 and velocity.x < 0.0):
+		velocity.x = move_toward(velocity.x, 0, _delta * deceleration/2)
 	
 	if can_jump or !coyote_timer.is_stopped():
 		if jumping:
@@ -287,7 +295,6 @@ func reset_railing():
 	railing_direction = 1.0
 	velocity.y = 0
 
-
 func _on_jump_timer_timeout() -> void:
 	jumping = false
 
@@ -407,7 +414,6 @@ func handle_railing():
 			else:
 				pass
 
-
 func _on_area_entered(area:Area2D):
 	if area is not RailingArea:
 		return
@@ -418,7 +424,6 @@ func _on_area_entered(area:Area2D):
 	if not railing:
 		railing_progress = calculate_starting_progress()
 		railing = area.get_parent()
-
 
 func is_colliding_with_rails()->bool:
 	return railing and abs(velocity.x) >= maximum_velocity / 4

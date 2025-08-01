@@ -8,6 +8,9 @@ enum TAPE {NEON_PINK, CYAN, YELLOW, GREEN}
 const TAPE_STRINGS := ["neon_pink","cyan","yellow","green"]
 const TAPE_COLORS := [Color.HOT_PINK,Color.CYAN,Color.YELLOW,Color.GREEN]
 
+var player_upside_down := false
+var player_controllable := true
+
 var current_tape_index : int = 0 :
 	set(value):
 		current_tape_index = value

@@ -11,7 +11,6 @@ extends Node
 @export var death_duration : float = 3
 @export var camera_death_zoom : float = 6
 
-
 @onready var game_settings: GameSettingsUI = %GameSettings
 @onready var game_timer: Timer = %GameTimer
 @onready var time_label: Label = %TimeLabel
@@ -24,14 +23,11 @@ extends Node
 @onready var glitch_effect: ColorRect = %GlitchEffect
 @onready var ui_animator: AnimationPlayer = %UIAnimator
 
-
-
 func _ready() -> void:
 	game_settings.exit_pressed.connect(toggle_pause)
 	game_timer.timeout.connect(_on_game_timer_timeout)
 	Global.tape_changed.connect(_on_tape_changed)
 	EventBus.collectable_collected.connect(_on_collectable)
-	
 	_on_tape_changed()
 	restart_game()
 
