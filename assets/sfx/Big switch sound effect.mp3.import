@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://hiwwit76t5"
+path="res://.godot/imported/Big switch sound effect.mp3-a41ba256c861e0a63ef12b61d83e8d77.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/Big switch sound effect.mp3"
+dest_files=["res://.godot/imported/Big switch sound effect.mp3-a41ba256c861e0a63ef12b61d83e8d77.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

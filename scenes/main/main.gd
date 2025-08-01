@@ -4,7 +4,7 @@ extends Node
 
 @export var base_game_time : float = 60
 @export var camera_distance_offset : float = 350
-@export var camera_speed_offset : float = 1
+@export var camera_speed_offset : float = 0.1
 @export var camera_max_zoom : float = 4
 @export var camera_min_zoom : float = 2.5
 
@@ -89,6 +89,7 @@ func toggle_pause():
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed(&"switch_tape"):
 		if infinity_loop.sprite_in_middle:
+			AudioManager.play(AudioManager.tape)
 			infinity_loop.sprite_in_middle = false
 			Global.next_tape()
 

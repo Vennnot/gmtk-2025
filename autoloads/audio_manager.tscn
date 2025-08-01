@@ -1,12 +1,49 @@
-[gd_scene load_steps=2 format=3 uid="uid://dwosq7w7qg1ok"]
+[gd_scene load_steps=8 format=3 uid="uid://dwosq7w7qg1ok"]
 
 [ext_resource type="Script" uid="uid://cgji4lf1ujfn" path="res://autoloads/audio_manager.gd" id="1_tr7pb"]
+[ext_resource type="AudioStream" uid="uid://23tuo2pugsix" path="res://assets/sfx/Glitch Sound Effect.mp3" id="2_a4ose"]
+[ext_resource type="AudioStream" uid="uid://cpb1wacw8n5w" path="res://assets/audio_tracks/default.mp3" id="2_k2mv4"]
+[ext_resource type="AudioStream" uid="uid://hiwwit76t5" path="res://assets/sfx/Big switch sound effect.mp3" id="3_plitr"]
+[ext_resource type="AudioStream" uid="uid://gbkfmfyd8k0w" path="res://assets/audio_tracks/digi.mp3" id="3_vovef"]
+[ext_resource type="AudioStream" uid="uid://d03j8y2jjncgp" path="res://assets/audio_tracks/funk.mp3" id="4_a4ose"]
+[ext_resource type="AudioStream" uid="uid://c2my5ctx04d70" path="res://assets/audio_tracks/grav.mp3" id="5_plitr"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_tr7pb")
+glitch = ExtResource("2_a4ose")
+tape = ExtResource("3_plitr")
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
+[node name="DefaultMusic" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
+stream = ExtResource("2_k2mv4")
+volume_db = -80.0
+autoplay = true
+bus = &"music"
+parameters/looping = true
+
+[node name="DigiMusic" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_vovef")
+volume_db = -80.0
+autoplay = true
+bus = &"music"
+parameters/looping = true
+
+[node name="FunkMusic" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_a4ose")
+volume_db = -80.0
+autoplay = true
+bus = &"music"
+parameters/looping = true
+
+[node name="GravMusic" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_plitr")
+volume_db = -80.0
+autoplay = true
+bus = &"music"
+parameters/looping = true
 
 [node name="Ambience" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

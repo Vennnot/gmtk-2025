@@ -22,21 +22,25 @@ offset_bottom = 40.0
 [node name="PlayButton" type="Button" parent="UI/MainButtons"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 128
 text = "play"
 
 [node name="SettingsButton" type="Button" parent="UI/MainButtons"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 128
 text = "settings"
 
 [node name="CreditsButton" type="Button" parent="UI/MainButtons"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 128
 text = "credits"
 
 [node name="ExitButton" type="Button" parent="UI/MainButtons"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 128
 text = "exit"
 
 [node name="GameSettings" parent="UI" instance=ExtResource("2_6l5je")]

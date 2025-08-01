@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/grav.mp3-1138661c853c6a7576a1367f1fc9fdc6.mp3
 
 [params]
 
-loop=false
-loop_offset=0
-bpm=0
+loop=true
+loop_offset=0.0
+bpm=111.0
 beat_count=0
 bar_beats=4
