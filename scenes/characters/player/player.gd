@@ -81,6 +81,7 @@ func control_movement(_delta):
 	
 	move_and_slide()
 
+
 func _on_jump_timer_timeout() -> void:
 	jumping = false
 

@@ -136,50 +136,23 @@ func slow_down_and_restore(duration: float = 0.25):
 
 func _on_tape_changed():
 	debug_label.text = "Cassette Tape: %s" % Global.get_tape_string() + ", Next Tape: %s" % Global.get_tape_string(Global.get_next_tape())
+	await get_tree().create_timer(0.2).timeout
 	_apply_tape_power()
 
 
 func _apply_tape_power():
-	_reset_values()
 	var powerup_text := ""
 	match Global.current_tape_index:
-		#Global.TAPE.BLUE:
-			#_increase_gravity()
-			#powerup_text = "increased gravity"
-		#Global.TAPE.RED:
-			#_slow_time()
-			#powerup_text = "time slowed"
-		#Global.TAPE.PURPLE:
-			#_decrease_gravity()
-			#powerup_text = "decreased gravity"
 		Global.TAPE.NEON_PINK:
-			_increase_gravity()
-			powerup_text = "increased gravity"
+			player.global_position.x += 100*player.player_facing_direction
+			powerup_text = "dash"
 		Global.TAPE.CYAN:
-			_slow_time()
-			powerup_text = "time slowed"
+			player.velocity.y += 5000
+			powerup_text = "fall instantly"
 		Global.TAPE.YELLOW:
-			_decrease_gravity()
-			powerup_text = "decreased gravity"
-		#3:
-			#_increase_speed()
+			player.velocity.y -= 1000
+			powerup_text = "air jump"
+		Global.TAPE.GREEN:
+			player.velocity.x += 500*player.player_facing_direction
+			powerup_text = "speed boost"
 	power_label.text = "current power: %s" % powerup_text
-
-
-func _slow_time():
-	#Engine.time_scale = 0.7
-	pass
-
-func _increase_speed():
-	player.current_maximum_velocity *= 2
-
-func _decrease_gravity():
-	player.current_gravity_force /= 2
-
-func _increase_gravity():
-	player.current_gravity_force *= 2
-
-func _reset_values():
-	#Engine.time_scale = 1
-	player.reset_gravity()
-	player.reset_max_velocity()
