@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dyr2o0k4wj1m6"]
+[gd_scene load_steps=5 format=3 uid="uid://dyr2o0k4wj1m6"]
 
 [ext_resource type="Script" uid="uid://bm5lqyaevuxw7" path="res://scenes/UI/track_visuals/infinity_loop.gd" id="1_bc7kx"]
 [ext_resource type="Texture2D" uid="uid://gyg8npslaq7x" path="res://proxy-image.png" id="2_oyk0g"]
-[ext_resource type="PackedScene" uid="uid://csi1cl7hy8dk4" path="res://scenes/UI/track_visuals/beat_sprite.tscn" id="3_jtc0t"]
 
 [sub_resource type="Curve" id="Curve_jjqlk"]
 _data = [Vector2(0, 0.457831), 0.0, 0.0, 0, 0, Vector2(0.49162, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.481928), 0.0, 0.0, 0, 0]
@@ -12,23 +11,19 @@ point_count = 3
 radius = 14.0
 
 [node name="InfinityLoop" type="Line2D"]
-points = PackedVector2Array(8, 9, 28, 31, 47, 38, 69, 29, 85, 3, 76, -22, 55, -35, 29, -29, -35, 33, -50, 35, -75, 26, -86, -3, -73, -25, -54, -40, -31, -30, -10, -10)
+points = PackedVector2Array(15, 19, 28, 31, 47, 38, 69, 29, 85, 3, 76, -22, 55, -35, 29, -29, -35, 33, -50, 35, -75, 26, -86, -3, -73, -25, -54, -40, -31, -30, -19, -19)
 width = 14.0
 width_curve = SubResource("Curve_jjqlk")
 joint_mode = 1
 begin_cap_mode = 2
 end_cap_mode = 2
 script = ExtResource("1_bc7kx")
-speed = 0.6
 
 [node name="Proxy-image" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.156863)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_oyk0g")
-
-[node name="BeatSprite" parent="." instance=ExtResource("3_jtc0t")]
-unique_name_in_owner = true
 
 [node name="CenterArea" type="Area2D" parent="."]
 unique_name_in_owner = true
@@ -39,3 +34,7 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CenterArea"]
 shape = SubResource("CircleShape2D_jtc0t")
 debug_color = Color(0.853814, 0.272051, 0.633779, 0.42)
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
