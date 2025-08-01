@@ -102,13 +102,22 @@ func _apply_tape_power():
 	_reset_values()
 	var powerup_text := ""
 	match Global.current_tape_index:
-		Global.TAPE.BLUE:
+		#Global.TAPE.BLUE:
+			#_increase_gravity()
+			#powerup_text = "increased gravity"
+		#Global.TAPE.RED:
+			#_slow_time()
+			#powerup_text = "time slowed"
+		#Global.TAPE.PURPLE:
+			#_decrease_gravity()
+			#powerup_text = "decreased gravity"
+		Global.TAPE.NEON_PINK:
 			_increase_gravity()
 			powerup_text = "increased gravity"
-		Global.TAPE.RED:
+		Global.TAPE.CYAN:
 			_slow_time()
 			powerup_text = "time slowed"
-		Global.TAPE.PURPLE:
+		Global.TAPE.YELLOW:
 			_decrease_gravity()
 			powerup_text = "decreased gravity"
 		#3:

@@ -3,10 +3,13 @@ extends Node
 
 signal tape_changed
 
-enum TAPE {BLUE, RED, PURPLE}
+#enum TAPE {BLUE, RED, PURPLE}
+enum TAPE {NEON_PINK, CYAN, YELLOW}
 
-const TAPE_STRINGS := ["blue","red","purple"]
-const TAPE_COLORS := [Color.BLUE,Color.RED,Color.PURPLE]
+#const TAPE_STRINGS := ["blue","red","purple"]
+#const TAPE_COLORS := [Color.BLUE,Color.RED,Color.PURPLE]
+const TAPE_STRINGS := ["neon_pink","cyan","yellow"]
+const TAPE_COLORS := [Color.HOT_PINK,Color.CYAN,Color.YELLOW]
 
 var current_tape_index : int = 0 :
 	set(value):

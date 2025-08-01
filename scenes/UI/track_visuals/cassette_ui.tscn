@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://biarbyhnbgx0i"]
+
+[ext_resource type="Texture2D" uid="uid://faexro2nqmg8" path="res://assets/sprites/Collectables/Casette/casette front.png" id="1_bh25f"]
+[ext_resource type="Texture2D" uid="uid://cc8ntccflpciu" path="res://assets/sprites/Collectables/Casette/cassette white.png" id="2_4k0bl"]
+[ext_resource type="Texture2D" uid="uid://c1v6e7t5reies" path="res://assets/sprites/Collectables/Casette/casette front alt.png" id="2_77hvu"]
+
+[node name="Cassette_UI" type="Node2D"]
+
+[node name="CasetteFront" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+texture = ExtResource("1_bh25f")
+
+[node name="CasetteFrontAlt" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 1)
+texture = ExtResource("2_77hvu")
+
+[node name="CassetteWhite" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 1)
+texture = ExtResource("2_4k0bl")

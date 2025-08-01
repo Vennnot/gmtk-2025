@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dhtruibsgo1o4"]
+[gd_scene load_steps=18 format=3 uid="uid://dhtruibsgo1o4"]
 
 [ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_k2fmo"]
 [ext_resource type="PackedScene" uid="uid://dlsuigoh14we6" path="res://scenes/test/test_world.tscn" id="3_6q06x"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="4_blune"]
 [ext_resource type="PackedScene" uid="uid://cygyj2gepkgaj" path="res://scenes/UI/settings/game_settings.tscn" id="4_l3cfh"]
 [ext_resource type="PackedScene" uid="uid://tiqn0p0soeti" path="res://scenes/characters/player/player.tscn" id="4_ow5a4"]
-[ext_resource type="PackedScene" uid="uid://biarbyhnbgx0i" path="res://scenes/UI/track_visuals/cassette_ui.tscn" id="4_raeie"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_th5th"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="6_7smn1"]
 [ext_resource type="PackedScene" uid="uid://dx8l3luoxod0x" path="res://assets/environment/parallaxbackground.tscn" id="8_yyfjg"]
@@ -82,11 +81,6 @@ vertical_alignment = 1
 unique_name_in_owner = true
 position = Vector2(126, 73)
 
-[node name="Cassette UI" parent="UI" instance=ExtResource("4_raeie")]
-unique_name_in_owner = true
-position = Vector2(1720, 60)
-scale = Vector2(5, 5)
-
 [node name="Other" type="Node" parent="."]
 
 [node name="GameTimer" type="Timer" parent="Other"]
@@ -144,17 +138,17 @@ position = Vector2(103, -1)
 position = Vector2(391, 4)
 
 [node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
-position = Vector2(-48, 185.225)
+position = Vector2(-48, 212.446)
 
 [node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(-126, 191.218)
+position = Vector2(-126, 218.514)
 monitoring = false
 tape = 1
 
 [node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(26, 182.43)
+position = Vector2(26, 209.716)
 monitoring = false
 tape = 2
 

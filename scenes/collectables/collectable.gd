@@ -1,24 +1,33 @@
 @tool
 class_name Collectable
-extends Node2D
+extends Area2D
+#extends Node2D
+#
+#@onready var sprite: Sprite2D = %Sprite2D
+#@onready var area: Area2D = %Area2D
 
-@onready var sprite: Sprite2D = %Sprite2D
-@onready var area: Area2D = %Area2D
+@onready var colored_sprite: Sprite2D = $CassetteWhite
+@onready var area : Area2D = self
 
 @export var collectable_type : String = "time"
 @export var tape: Global.TAPE :
 	set(value):
 		tape = value
-		update_visuals()
+		#update_visuals()
 
 func _ready() -> void:
 	Global.tape_changed.connect(_on_tape_changed)
-	area.body_entered.connect(_on_body_entered)
+	self.body_entered.connect(_on_body_entered)
 	_on_tape_changed()
 	update_visuals()
 
+func _physics_process(delta: float) -> void:
+	position.y += 0.25 * sin((delta * Time.get_ticks_msec()) / 5)
+
 func update_visuals():
-	modulate = Global.get_tape_color(tape)
+	#modulate = Global.get_tape_color(tape)
+	colored_sprite.modulate = Global.get_tape_color(tape)
+	
 
 func _on_tape_changed():
 	if Global.current_tape_index == tape:

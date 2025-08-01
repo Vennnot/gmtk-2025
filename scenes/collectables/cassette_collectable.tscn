@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://djhx27a5tudm0"]
+
+[ext_resource type="Script" uid="uid://d0rrd63ejl2hd" path="res://scenes/collectables/collectable.gd" id="1_cysyv"]
+[ext_resource type="Texture2D" uid="uid://cc8ntccflpciu" path="res://assets/sprites/Collectables/Casette/cassette white.png" id="2_hmwjm"]
+[ext_resource type="Texture2D" uid="uid://faexro2nqmg8" path="res://assets/sprites/Collectables/Casette/casette front.png" id="3_e67u1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k5pyp"]
+
+[node name="Cassette Collectable" type="Area2D"]
+position = Vector2(0, -17.5845)
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("1_cysyv")
+
+[node name="CassetteWhite" type="Sprite2D" parent="."]
+modulate = Color(1, 0.411765, 0.705882, 1)
+z_index = -1
+texture = ExtResource("2_hmwjm")
+
+[node name="CassetteFront" type="Sprite2D" parent="."]
+texture = ExtResource("3_e67u1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_k5pyp")
