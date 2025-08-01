@@ -22,7 +22,7 @@ var player_movement_direction := 0.0
 var player_facing_direction := 1.0
 
 @onready var anim_tree := %AnimationTree
-@onready var player_anim_sprite := %AnimatedSprite2D
+@onready var player_anim_sprite := $AnimatedSprite2D
 
 @onready var regular_collision := $"Regular Collision"
 @onready var croutch_collision := $"Croutch Collision"
@@ -104,9 +104,15 @@ func handle_animations():
 	if player_movement_direction == 0.0 and velocity.x == 0.0:
 		anim_tree["parameters/conditions/idle"] = true
 		anim_tree["parameters/conditions/running"] = false
+		anim_tree["parameters/conditions/skidding"] = false
 	if velocity.x != 0.0:
 		anim_tree["parameters/conditions/idle"] = false
 		anim_tree["parameters/conditions/running"] = true
+		anim_tree["parameters/conditions/skidding"] = false
+	if (player_movement_direction < 0.0 and velocity.x > 0.0) or (player_movement_direction > 0.0 and velocity.x < 0.0):
+		anim_tree["parameters/conditions/idle"] = false
+		anim_tree["parameters/conditions/running"] = false
+		anim_tree["parameters/conditions/skidding"] = true
 	if velocity.y < 0.0:
 		anim_tree["parameters/conditions/jumping"] = true
 		anim_tree["parameters/conditions/falling"] = false
