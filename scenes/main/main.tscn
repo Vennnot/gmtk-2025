@@ -256,20 +256,17 @@ position = Vector2(-406, -77)
 position = Vector2(-319, 257)
 
 [node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
-position = Vector2(-48, 181.751)
+position = Vector2(-48, 182.477)
 
 [node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(-126, 187.783)
-
+position = Vector2(-126, 188.509)
 monitoring = false
 tape = 1
 
 [node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
 modulate = Color(1, 1, 1, 0.1)
-
-position = Vector2(26, 179)
-
+position = Vector2(26, 179.726)
 monitoring = false
 tape = 2
 
@@ -278,7 +275,6 @@ position = Vector2(4, -78)
 points = PackedVector2Array(13, 58, 215, 58, 347, 15, 433, -117, 402, -248, 291, -278, 200, -209, 248, -110, 414, 25, 622, 50)
 texture = ExtResource("15_necax")
 texture_mode = 1
-tape = 1
 
 [node name="Player" parent="World" instance=ExtResource("4_ow5a4")]
 unique_name_in_owner = true

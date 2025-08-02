@@ -25,6 +25,7 @@ extends Node
 
 
 func _ready() -> void:
+	Global.next_tape()
 	black_color.show()
 	game_settings.exit_pressed.connect(toggle_pause)
 	game_timer.timeout.connect(_on_game_timer_timeout)
@@ -141,7 +142,6 @@ func slow_down_and_restore(duration: float = 0.25):
 
 
 func _on_tape_changed():
-	print_stack()
 	_apply_tape_power()
 
 
