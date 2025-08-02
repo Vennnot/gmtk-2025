@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://duerv0ofv7f24"]
+[gd_scene load_steps=29 format=4 uid="uid://duerv0ofv7f24"]
 
 [ext_resource type="Texture2D" uid="uid://c036lp8q8qli3" path="res://assets/environment/tileset/Tileset1-Sheet.png" id="1_6vykw"]
 [ext_resource type="PackedScene" uid="uid://cygyj2gepkgaj" path="res://scenes/UI/settings/game_settings.tscn" id="2_snejb"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://p73wc03e4d5y" path="res://scenes/world/Interactables/level_finish.tscn" id="7_mciyi"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="8_ogvu4"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="9_57hwl"]
+[ext_resource type="PackedScene" uid="uid://cvq84204lh2b2" path="res://scenes/world/Interactables/dialogue.tscn" id="10_law1f"]
 [ext_resource type="PackedScene" uid="uid://dlsuigoh14we6" path="res://scenes/test/test_world.tscn" id="10_u8mbc"]
 [ext_resource type="PackedScene" uid="uid://tiqn0p0soeti" path="res://scenes/characters/player/player.tscn" id="11_ncq4e"]
 [ext_resource type="PackedScene" uid="uid://dx8l3luoxod0x" path="res://assets/environment/parallaxbackground.tscn" id="12_o0v18"]
@@ -260,6 +261,9 @@ tile_set = SubResource("TileSet_jm1hj")
 [node name="Level Finish" parent="." instance=ExtResource("7_mciyi")]
 position = Vector2(464, -64)
 next_scene = ExtResource("3_6xo4l")
+
+[node name="Dialogue" parent="." instance=ExtResource("10_law1f")]
+position = Vector2(84, -82)
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 

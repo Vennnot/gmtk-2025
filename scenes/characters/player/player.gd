@@ -31,6 +31,10 @@ var can_jump := false
 var can_use_tape_action = true
 @onready var tape_action_timer = %TapeActionTimer
 
+var no_control_target : float
+
+@onready var tape_particple := %TapeParticles
+
 @onready var collision_check = $CollisionCheck
 
 var player_movement_direction := 0.0
@@ -65,7 +69,10 @@ func _physics_process(delta: float) -> void:
 	handle_animations() if !Global.player_upside_down else handle_upsidedown_animations()
 	handle_sfx()
 	
-	if dead or !Global.player_controllable:
+	if dead:
+		return
+	if !Global.player_controllable:
+		global_position.x = move_toward(global_position.x, no_control_target, 500 * delta)
 		return
 	
 	control_movement(delta) if !Global.player_upside_down else upsidedown_control_movement(delta)

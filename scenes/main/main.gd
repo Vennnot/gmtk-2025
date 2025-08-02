@@ -1,7 +1,6 @@
 class_name Main
 extends Node
 
-
 @export var base_game_time : float = 60
 @export var camera_distance_offset : float = 350
 @export var camera_speed_offset : float = 0.1
@@ -72,7 +71,6 @@ func _physics_process(delta: float) -> void:
 	time_label.text = format_time()
 	_set_camera_offset()
 
-
 func _set_camera_dead_offset():
 	var target_zoom : Vector2= lerp(phantom_camera.zoom, Vector2(camera_death_zoom, camera_death_zoom), 1)
 	phantom_camera.zoom = phantom_camera.zoom.lerp(target_zoom, get_process_delta_time() * camera_speed_offset*5)
@@ -142,13 +140,21 @@ func _apply_tape_power():
 		Global.TAPE.NEON_PINK:
 			player.global_position.x += 100*player.player_facing_direction
 			powerup_text = "dash"
+			player.tape_particple.color = Global.TAPE_COLORS[Global.current_tape_index]
+			player.tape_particple.emitting = true
 		Global.TAPE.CYAN:
 			player.velocity.y = 5000
 			powerup_text = "fall instantly"
+			player.tape_particple.color = Global.TAPE_COLORS[Global.current_tape_index]
+			player.tape_particple.emitting = true
 		Global.TAPE.YELLOW:
 			player.velocity.y = -1000
 			powerup_text = "air jump"
+			player.tape_particple.color = Global.TAPE_COLORS[Global.current_tape_index]
+			player.tape_particple.emitting = true
 		Global.TAPE.GREEN:
 			player.velocity.x += 500*player.player_facing_direction
 			powerup_text = "speed boost"
+			player.tape_particple.color = Global.TAPE_COLORS[Global.current_tape_index]
+			player.tape_particple.emitting = true
 	power_label.text = "current power: %s" % powerup_text

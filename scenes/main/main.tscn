@@ -1,11 +1,13 @@
-[gd_scene load_steps=28 format=3 uid="uid://dhtruibsgo1o4"]
+[gd_scene load_steps=31 format=3 uid="uid://dhtruibsgo1o4"]
 
-[ext_resource type="Script" path="res://scenes/main/main.gd" id="1_k2fmo"]
+[ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_k2fmo"]
 [ext_resource type="PackedScene" uid="uid://dlsuigoh14we6" path="res://scenes/test/test_world.tscn" id="3_6q06x"]
 [ext_resource type="PackedScene" uid="uid://dyr2o0k4wj1m6" path="res://scenes/UI/track_visuals/infinity_loop.tscn" id="3_hujxm"]
+[ext_resource type="PackedScene" uid="uid://bmeiv1c8q5tey" path="res://addons/dialogue/scenes/dialogue_manager.tscn" id="3_m4h2d"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="4_blune"]
 [ext_resource type="PackedScene" uid="uid://cygyj2gepkgaj" path="res://scenes/UI/settings/game_settings.tscn" id="4_l3cfh"]
 [ext_resource type="PackedScene" uid="uid://tiqn0p0soeti" path="res://scenes/characters/player/player.tscn" id="4_ow5a4"]
+[ext_resource type="PackedScene" uid="uid://dnrcj1mhyy4b3" path="res://addons/dialogue/scenes/dialogue.tscn" id="4_p8abn"]
 [ext_resource type="PackedScene" uid="uid://biarbyhnbgx0i" path="res://scenes/UI/track_visuals/cassette_ui.tscn" id="4_raeie"]
 [ext_resource type="Shader" uid="uid://dyrjkywkwsd3g" path="res://resources/glitch.gdshader" id="5_hxu8e"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_th5th"]
@@ -19,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://danamx8m8yjpq" path="res://scenes/ground/groundtilemap.tscn" id="13_th5th"]
 [ext_resource type="PackedScene" uid="uid://b8rrp8w73ic70" path="res://scenes/world/railing/railing.tscn" id="14_ou6is"]
 [ext_resource type="Texture2D" uid="uid://dbg0jkasopjf1" path="res://assets/environment/textures/RailTexture.png" id="15_necax"]
+[ext_resource type="PackedScene" uid="uid://cvq84204lh2b2" path="res://scenes/world/Interactables/dialogue.tscn" id="20_r4lks"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6q06x"]
 font_size = 48
@@ -124,6 +127,13 @@ in_game = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 2
+
+[node name="dialogue_manager" parent="UI" instance=ExtResource("3_m4h2d")]
+name_ = "Friend"
+name__ = "Jeanie"
+
+[node name="dialogue" parent="UI/dialogue_manager" instance=ExtResource("4_p8abn")]
+messages = ["1;You're still working at that store, Jeanie?!;1", "2;Been doing it everyday, for almost as long I can remember. Clock in, clock out. Same @!#$, different day..;1", "1;Well, you better hurry, you’re gonna be late.;1", "2;Nah, I’ve never been late. I’ve skated there a million times.;1"]
 
 [node name="MarginContainer" type="MarginContainer" parent="UI"]
 anchors_preset = 15
@@ -254,17 +264,17 @@ position = Vector2(-406, -77)
 position = Vector2(-118, -72)
 
 [node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
-position = Vector2(-48, 196.844)
+position = Vector2(-48, 188.003)
 
 [node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(-126, 202.864)
+position = Vector2(-126, 194.077)
 monitoring = false
 tape = 1
 
 [node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(26, 194.071)
+position = Vector2(26, 185.285)
 monitoring = false
 tape = 2
 
@@ -297,3 +307,7 @@ position = Vector2(-639, 157)
 
 [node name="Groundtilemap" parent="." instance=ExtResource("13_th5th")]
 position = Vector2(-176, 180)
+
+[node name="Dialogue" parent="." node_paths=PackedStringArray("dialogue_manager") instance=ExtResource("20_r4lks")]
+position = Vector2(-395, 138)
+dialogue_manager = NodePath("../UI/dialogue_manager")
