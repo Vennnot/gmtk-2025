@@ -55,7 +55,7 @@ func _ready() -> void:
 		restart_game()
 
 func _on_dialogue_ended():
-	if black_color.visible:
+	if finish_line:
 		Engine.time_scale = 1
 		await fade_black(true)
 		restart_game()
@@ -67,7 +67,7 @@ func fade_black(from:bool):
 	var alpha : float = 0 if from else 1
 	var tween := create_tween()
 	tween.tween_property(black_color,^"self_modulate",Color(0,0,0,alpha),2)
-	await  tween.finished
+	await tween.finished
 
 
 func restart_game():
@@ -107,7 +107,7 @@ func _physics_process(delta: float) -> void:
 		_set_camera_dead_offset()
 		return
 	if finish_line:
-		if player.global_position.x > finish_line.x:
+		if player.global_position.x > finish_line.global_position.x:
 			level_cleared()
 			finish_line = null
 	time_label.text = format_time()
@@ -193,8 +193,9 @@ func _apply_tape_power():
 			$UI/MarginContainer/VBoxContainer/JumpIcon.visible = true
 
 func level_cleared():
-	fade_black(false)
-	dialogue_manager.__name = "Boss"
+	await fade_black(false)
+	Engine.time_scale = 0
+	dialogue_manager.name__ = "Boss"
 	dialogue_manager.name_color__ = Color.RED
 	#dialogue_manager.avatar__
 	dialogue_manager.start("end_dialogue")

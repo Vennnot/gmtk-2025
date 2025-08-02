@@ -99,11 +99,15 @@ func _process(delta: float) -> void:
 			advance_message()
 
 func advance_message():
+	if $TextBox.visible == false:
+		return
+	
 	message_position += 1
 
 	if message_position >= messages.size():
+		message_position = -1
+		$TextBox.hide()
 		EventBus.dialogue_ended.emit()
-		queue_free()
 		return
 
 	var dialogue = messages[message_position].split(separator)

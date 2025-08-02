@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dhtruibsgo1o4"]
+[gd_scene load_steps=35 format=3 uid="uid://dhtruibsgo1o4"]
 
 [ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_k2fmo"]
 [ext_resource type="PackedScene" uid="uid://ngygcn2kyp8s" path="res://scenes/dialogues/level1_start.tscn" id="2_s17dp"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://danamx8m8yjpq" path="res://scenes/ground/groundtilemap.tscn" id="13_th5th"]
 [ext_resource type="PackedScene" uid="uid://b8rrp8w73ic70" path="res://scenes/world/railing/railing.tscn" id="14_ou6is"]
 [ext_resource type="Texture2D" uid="uid://dbg0jkasopjf1" path="res://assets/environment/textures/RailTexture.png" id="15_necax"]
+[ext_resource type="PackedScene" uid="uid://dw7538s3gf5c4" path="res://assets/environment/finish_line_smoke.tscn" id="26_6llfj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6q06x"]
 font_size = 48
@@ -117,12 +118,13 @@ ease = 2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a8run"]
 size = Vector2(10000, 20)
 
-[node name="Main" type="Node" node_paths=PackedStringArray("dialogue_manager")]
+[node name="Main" type="Node" node_paths=PackedStringArray("dialogue_manager", "finish_line")]
 process_mode = 3
 script = ExtResource("1_k2fmo")
 dialogue_manager = NodePath("UI/DialogueManager")
 start_dialogue = ExtResource("2_s17dp")
 end_dialogue = ExtResource("3_37hlw")
+finish_line = NodePath("FinishLineSmoke")
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 
@@ -271,17 +273,17 @@ position = Vector2(-406, -77)
 position = Vector2(-319, 257)
 
 [node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
-position = Vector2(-48, 188.665)
+position = Vector2(-48, 186.288)
 
 [node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(-126, 194.694)
+position = Vector2(-126, 192.318)
 monitoring = false
 tape = 1
 
 [node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(26, 185.9)
+position = Vector2(26, 183.529)
 monitoring = false
 tape = 2
 
@@ -308,3 +310,6 @@ position = Vector2(-639, 157)
 
 [node name="Groundtilemap" parent="." instance=ExtResource("13_th5th")]
 position = Vector2(-176, 180)
+
+[node name="FinishLineSmoke" parent="." instance=ExtResource("26_6llfj")]
+position = Vector2(503, 110)
