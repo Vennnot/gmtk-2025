@@ -3,10 +3,10 @@ extends Node
 
 signal tape_changed
 
-enum TAPE {GREEN, YELLOW}
+enum TAPE {YELLOW, GREEN}
 
-const TAPE_STRINGS := ["green", "yellow"]
-const TAPE_COLORS := [Color.GREEN, Color.YELLOW, ]
+const TAPE_STRINGS := ["yellow", "green"]
+const TAPE_COLORS := [Color.YELLOW, Color.GREEN]
 
 var player_upside_down := false
 var player_controllable := true
