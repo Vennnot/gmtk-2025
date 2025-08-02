@@ -106,6 +106,10 @@ func _physics_process(delta: float) -> void:
 	if player.dead:
 		_set_camera_dead_offset()
 		return
+	if finish_line:
+		if player.global_position.x > finish_line.x:
+			level_cleared()
+			finish_line = null
 	time_label.text = format_time()
 	_set_camera_offset()
 
@@ -190,8 +194,10 @@ func _apply_tape_power():
 
 func level_cleared():
 	fade_black(false)
-	
-	#TODO DIALOGUE TRIGGER GOES HERE and calls below when done
+	dialogue_manager.__name = "Boss"
+	dialogue_manager.name_color__ = Color.RED
+	#dialogue_manager.avatar__
+	dialogue_manager.start("end_dialogue")
 
 
 func next_scene():

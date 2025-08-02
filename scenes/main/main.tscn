@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dhtruibsgo1o4"]
+[gd_scene load_steps=34 format=3 uid="uid://dhtruibsgo1o4"]
 
 [ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_k2fmo"]
 [ext_resource type="PackedScene" uid="uid://ngygcn2kyp8s" path="res://scenes/dialogues/level1_start.tscn" id="2_s17dp"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://dbe4j3lpi0ika" path="res://scenes/world/Interactables/magnet_spikes.tscn" id="9_b1x3f"]
 [ext_resource type="PackedScene" uid="uid://djhx27a5tudm0" path="res://scenes/collectables/cassette_collectable.tscn" id="10_7smn1"]
 [ext_resource type="PackedScene" uid="uid://5wwyga0bugq4" path="res://scenes/world/Interactables/speed_boost.tscn" id="10_a8run"]
+[ext_resource type="Texture2D" uid="uid://cown6thg3s5ql" path="res://scenes/dialogues/jeanie.png" id="12_37hlw"]
 [ext_resource type="PackedScene" uid="uid://dv1optwloa0al" path="res://scenes/world/Interactables/railing.tscn" id="12_blune"]
 [ext_resource type="PackedScene" uid="uid://danamx8m8yjpq" path="res://scenes/ground/groundtilemap.tscn" id="13_th5th"]
 [ext_resource type="PackedScene" uid="uid://b8rrp8w73ic70" path="res://scenes/world/railing/railing.tscn" id="14_ou6is"]
@@ -209,7 +210,10 @@ color = Color(0, 0, 0, 1)
 [node name="DialogueManager" parent="UI" instance=ExtResource("3_m4h2d")]
 style = 1
 typing_animation = false
-show_avatar_ = false
+name_ = "Sammy"
+name_color_ = Color(0, 1, 0.45098, 1)
+name__ = "Jeanie"
+avatar__ = ExtResource("12_37hlw")
 
 [node name="Other" type="Node" parent="."]
 
@@ -267,17 +271,17 @@ position = Vector2(-406, -77)
 position = Vector2(-319, 257)
 
 [node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
-position = Vector2(-48, 175.489)
+position = Vector2(-48, 188.665)
 
 [node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(-126, 181.513)
+position = Vector2(-126, 194.694)
 monitoring = false
 tape = 1
 
 [node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(26, 172.715)
+position = Vector2(26, 185.9)
 monitoring = false
 tape = 2
 

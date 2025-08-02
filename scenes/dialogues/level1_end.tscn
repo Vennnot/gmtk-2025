@@ -5,3 +5,4 @@
 [node name="dialogue" type="Node"]
 editor_description = "character;message;time showing message;time showing choices;choices..."
 script = ExtResource("1_0k6n8")
+messages = ["1;Jeanie...  EXACTLY on time. Ever thought about showing up early?;1", "2;Why? Not like anyone shops in this stupid store.;2", "1;Get to work punk.;1"]
