@@ -677,7 +677,10 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 collision_layer = 2
 collision_mask = 925
 script = ExtResource("1_7uws0")
-gravity_force = 1000.0
+jump_boost = -800.0
+deceleration = 600.0
+jump_force = 25000.0
+gravity_force = 500.0
 
 [node name="Regular Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -17)

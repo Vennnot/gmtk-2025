@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://dgpc5ajj3jw5u"]
+[gd_scene load_steps=50 format=3 uid="uid://dgpc5ajj3jw5u"]
 
 [ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_hl16f"]
 [ext_resource type="PackedScene" uid="uid://cygyj2gepkgaj" path="res://scenes/UI/settings/game_settings.tscn" id="2_v6yyo"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://dbg0jkasopjf1" path="res://assets/environment/textures/RailTexture.png" id="18_pj0a0"]
 [ext_resource type="Texture2D" uid="uid://csyax0er4a0ag" path="res://assets/environment/pngs/GrafittiArrow-Sheet.png" id="19_q7jno"]
 [ext_resource type="PackedScene" uid="uid://dx8l3luoxod0x" path="res://assets/environment/parallaxbackground.tscn" id="20_ojfwg"]
+[ext_resource type="Texture2D" uid="uid://cm5vmqeuhm4fk" path="res://assets/environment/pngs/NightMart.png" id="20_v6yyo"]
 [ext_resource type="PackedScene" uid="uid://dw7538s3gf5c4" path="res://assets/environment/finish_line_smoke.tscn" id="21_8n51c"]
 [ext_resource type="PackedScene" uid="uid://b1321arudhcwm" path="res://scenes/ground/groundtilemap3.tscn" id="22_dvr8a"]
 
@@ -389,10 +390,6 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 [node name="Player" parent="." instance=ExtResource("12_0y7c6")]
 unique_name_in_owner = true
 position = Vector2(-69, -370)
-jump_fx_position = Vector2(0, 20)
-deceleration = 600.0
-jump_force = 25000.0
-gravity_force = 500.0
 
 [node name="World" parent="." instance=ExtResource("13_d1mne")]
 process_mode = 1
@@ -408,24 +405,24 @@ position = Vector2(-406, -77)
 
 [node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("15_dc8aq")]
 visible = false
-position = Vector2(-48, 173.154)
+position = Vector2(-48, 148.412)
 
 [node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("15_dc8aq")]
 visible = false
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(-126, 178.996)
+position = Vector2(-126, 154.253)
 monitoring = false
 tape = 1
 
 [node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("15_dc8aq")]
 visible = false
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(26, 170.237)
+position = Vector2(26, 145.49)
 monitoring = false
 tape = 2
 
 [node name="MagnetSpikes2" parent="World/Environment/Interactables" instance=ExtResource("16_5bnxw")]
-position = Vector2(1230, 106)
+position = Vector2(1230, 154)
 scale = Vector2(0.960156, 1)
 
 [node name="Loop" parent="World/Environment/Interactables" instance=ExtResource("17_swbdl")]
@@ -433,22 +430,45 @@ position = Vector2(2375, 189)
 points = PackedVector2Array(1, 24, 209, 24, 361, 24, 463, 24, 633, 24)
 texture = ExtResource("18_pj0a0")
 texture_mode = 1
-tape = 1
 
 [node name="MagnetSpikes3" parent="World/Environment/Interactables" instance=ExtResource("16_5bnxw")]
 position = Vector2(2460, 259)
 scale = Vector2(10.8002, 1)
 
-[node name="Loop" parent="World/Environment" instance=ExtResource("17_swbdl")]
-position = Vector2(4163, -287)
-points = PackedVector2Array(13, 58, 215, 58, 427, -20, 452.29, -122.847, 472, -203, 346, -384, 25, -381)
+[node name="MagnetSpikes4" parent="World/Environment/Interactables" instance=ExtResource("16_5bnxw")]
+position = Vector2(4299, 265)
+scale = Vector2(6.01574, 1)
+
+[node name="MagnetSpikes5" parent="World/Environment/Interactables" instance=ExtResource("16_5bnxw")]
+position = Vector2(6223, 201)
+scale = Vector2(0.592755, 1)
+
+[node name="MagnetSpikes6" parent="World/Environment/Interactables" instance=ExtResource("16_5bnxw")]
+position = Vector2(6781, 201)
+scale = Vector2(0.592755, 1)
+
+[node name="Loop2" parent="World/Environment/Interactables" instance=ExtResource("17_swbdl")]
+position = Vector2(8198, 113)
+points = PackedVector2Array(-9, 17, 8, 9, 81, -25, 249, -134, 363, -228, 568, -232)
 texture = ExtResource("18_pj0a0")
 texture_mode = 1
 
+[node name="MagnetSpikes7" parent="World/Environment/Interactables" instance=ExtResource("16_5bnxw")]
+position = Vector2(8419, 262)
+scale = Vector2(8.35276, 1)
+
+[node name="MagnetSpikes8" parent="World/Environment/Interactables" instance=ExtResource("16_5bnxw")]
+position = Vector2(9303, 262)
+scale = Vector2(6.79276, 1)
+
 [node name="GrafittiArrow" type="AnimatedSprite2D" parent="World/Environment"]
-position = Vector2(320, -37)
+position = Vector2(-23, -37)
 sprite_frames = SubResource("SpriteFrames_4jk58")
 autoplay = "default"
+
+[node name="Sprite2D" type="Sprite2D" parent="World/Environment"]
+position = Vector2(10715, -129)
+texture = ExtResource("20_v6yyo")
 
 [node name="Parallaxbackground" parent="World" instance=ExtResource("20_ojfwg")]
 z_index = -5
@@ -458,7 +478,7 @@ unique_name_in_owner = true
 position = Vector2(0, 144)
 
 [node name="FinishLineSmoke" parent="World" instance=ExtResource("21_8n51c")]
-position = Vector2(1235, -214)
+position = Vector2(10624, 171)
 
 [node name="Groundtilemap3" parent="World" instance=ExtResource("22_dvr8a")]
 position = Vector2(-1550, 180)

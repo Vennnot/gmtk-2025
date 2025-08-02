@@ -1,7 +1,8 @@
-[gd_scene load_steps=49 format=3 uid="uid://cjae4hhh2rr15"]
+[gd_scene load_steps=51 format=3 uid="uid://cjae4hhh2rr15"]
 
 [ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_db1r7"]
 [ext_resource type="PackedScene" uid="uid://cygyj2gepkgaj" path="res://scenes/UI/settings/game_settings.tscn" id="2_6gwlt"]
+[ext_resource type="PackedScene" uid="uid://b7qua5kkocm0x" path="res://scenes/levels/level2.tscn" id="2_c2nc4"]
 [ext_resource type="Texture2D" uid="uid://cyhhecr3unpv0" path="res://assets/environment/icons/JumpIcon.png" id="3_c2nc4"]
 [ext_resource type="Texture2D" uid="uid://dnvbme4nqh5gh" path="res://assets/environment/icons/SpeedIcon.png" id="4_vhxpm"]
 [ext_resource type="PackedScene" uid="uid://dyr2o0k4wj1m6" path="res://scenes/UI/track_visuals/infinity_loop.tscn" id="5_arkx4"]
@@ -19,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://b8rrp8w73ic70" path="res://scenes/world/railing/railing.tscn" id="17_b2isc"]
 [ext_resource type="Texture2D" uid="uid://dbg0jkasopjf1" path="res://assets/environment/textures/RailTexture.png" id="18_qg8x4"]
 [ext_resource type="Texture2D" uid="uid://csyax0er4a0ag" path="res://assets/environment/pngs/GrafittiArrow-Sheet.png" id="19_nm6kf"]
+[ext_resource type="Texture2D" uid="uid://cm5vmqeuhm4fk" path="res://assets/environment/pngs/NightMart.png" id="20_6gwlt"]
 [ext_resource type="PackedScene" uid="uid://dx8l3luoxod0x" path="res://assets/environment/parallaxbackground.tscn" id="20_88m6t"]
 [ext_resource type="PackedScene" uid="uid://dw7538s3gf5c4" path="res://assets/environment/finish_line_smoke.tscn" id="21_oub7f"]
 [ext_resource type="PackedScene" uid="uid://danamx8m8yjpq" path="res://scenes/ground/groundtilemap.tscn" id="22_db1r7"]
@@ -245,9 +247,11 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="Level3" type="Node"]
+[node name="Level3" type="Node" node_paths=PackedStringArray("finish_line")]
 process_mode = 3
 script = ExtResource("1_db1r7")
+NEXT_SCENE = ExtResource("2_c2nc4")
+finish_line = NodePath("World/Environment/Sprite2D")
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 
@@ -389,9 +393,6 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 [node name="Player" parent="." instance=ExtResource("12_igeo0")]
 unique_name_in_owner = true
 position = Vector2(-69, -370)
-deceleration = 600.0
-jump_force = 25000.0
-gravity_force = 500.0
 
 [node name="World" parent="." instance=ExtResource("13_y71nm")]
 process_mode = 1
@@ -407,19 +408,19 @@ position = Vector2(-406, -77)
 
 [node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("15_7plwd")]
 visible = false
-position = Vector2(-48, 180.777)
+position = Vector2(-48, 173.179)
 
 [node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("15_7plwd")]
 visible = false
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(-126, 186.704)
+position = Vector2(-126, 179.078)
 monitoring = false
 tape = 1
 
 [node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("15_7plwd")]
 visible = false
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(26, 177.935)
+position = Vector2(26, 170.316)
 monitoring = false
 tape = 2
 
@@ -437,33 +438,32 @@ position = Vector2(4044, 264)
 position = Vector2(6267, 261)
 scale = Vector2(1.72511, 0.584903)
 
-[node name="MagnetSpikes5" parent="World/Environment/Interactables" instance=ExtResource("16_agrr7")]
-position = Vector2(5688, 263)
-scale = Vector2(0.88509, 0.584903)
-
 [node name="MagnetSpikes6" parent="World/Environment/Interactables" instance=ExtResource("16_agrr7")]
-position = Vector2(7545, 264)
-scale = Vector2(2.92911, 0.584903)
+position = Vector2(7527, 264)
+scale = Vector2(3.56911, 0.584903)
 
 [node name="MagnetSpikes7" parent="World/Environment/Interactables" instance=ExtResource("16_agrr7")]
 position = Vector2(8797, 166)
 scale = Vector2(0.88509, 0.584903)
 
 [node name="MagnetSpikes8" parent="World/Environment/Interactables" instance=ExtResource("16_agrr7")]
-position = Vector2(9084, 166)
+position = Vector2(9197, 166)
 scale = Vector2(0.88509, 0.584903)
 
 [node name="Loop" parent="World/Environment" instance=ExtResource("17_b2isc")]
-position = Vector2(4289, -258)
-points = PackedVector2Array(13, 58, 215, 58, 347, 15, 433, -117, 402, -248, 291, -278, 200, -209, 248, -110, 414, 25, 622, 50)
+position = Vector2(4684, -267)
+points = PackedVector2Array(13, 58, 30, 58, 220, 52, 347, 15, 433, -117, 402, -248, 291, -278, 200, -209, 248, -110, 414, 25, 622, 50)
 texture = ExtResource("18_qg8x4")
 texture_mode = 1
-tape = 1
 
 [node name="GrafittiArrow" type="AnimatedSprite2D" parent="World/Environment"]
-position = Vector2(320, -37)
+position = Vector2(-7, -37)
 sprite_frames = SubResource("SpriteFrames_6gwlt")
 autoplay = "default"
+
+[node name="Sprite2D" type="Sprite2D" parent="World/Environment"]
+position = Vector2(10727, -126)
+texture = ExtResource("20_6gwlt")
 
 [node name="Parallaxbackground" parent="World" instance=ExtResource("20_88m6t")]
 z_index = -5
@@ -473,7 +473,7 @@ unique_name_in_owner = true
 position = Vector2(0, 144)
 
 [node name="FinishLineSmoke" parent="World" instance=ExtResource("21_oub7f")]
-position = Vector2(9719, 43)
+position = Vector2(10635, 171)
 
 [node name="Groundtilemap" parent="World" instance=ExtResource("22_db1r7")]
 position = Vector2(-176, 180)
