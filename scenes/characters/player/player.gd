@@ -66,7 +66,9 @@ func reset_max_velocity():
 	current_maximum_velocity = maximum_velocity
 
 func _physics_process(delta: float) -> void:
-	handle_animations() if !Global.player_upside_down else handle_upsidedown_animations()
+	if !Global.player_upside_down:
+		handle_animations()
+	else: handle_upsidedown_animations()
 	handle_sfx()
 	
 	if dead:
@@ -75,7 +77,16 @@ func _physics_process(delta: float) -> void:
 		global_position.x = move_toward(global_position.x, no_control_target, 500 * delta)
 		return
 	
-	control_movement(delta) if !Global.player_upside_down else upsidedown_control_movement(delta)
+	if is_on_wall():
+		handle_walls(delta)
+		print("A")
+	if !Global.player_upside_down and !is_on_wall():
+		control_movement(delta)
+		print("B")
+	if Global.player_upside_down and !is_on_wall(): 
+		upsidedown_control_movement(delta) 
+		print("C")
+	move_and_slide()
 
 func control_movement(_delta):
 	#print("Dir: " + str(player_movement_direction) + " Velocity: " + str(velocity)) # Collect Player dir and velocity data
@@ -125,8 +136,7 @@ func control_movement(_delta):
 	
 	# Handle Player Tape
 	handle_tape_action()
-	
-	move_and_slide()
+
 
 func upsidedown_control_movement(_delta):
 	#print("Dir: " + str(player_movement_direction) + " Velocity: " + str(velocity)) # Collect Player dir and velocity data
@@ -480,3 +490,12 @@ func handle_tape_action():
 
 func _on_tape_action_timer_timeout() -> void:
 	can_use_tape_action = true
+
+func handle_walls(_delta):
+	
+	#Handle y movement
+	velocity = Vector2.ZERO
+	
+	if Input.is_action_just_pressed("jump"):
+		velocity.x += -player_facing_direction * _delta * jump_force
+		velocity.y += -jump_force * _delta
