@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
-@onready var main = get_node("/root/Main")
+@onready var main = get_node("/root/").get_child(6)
 
 var jump_fx = preload("res://assets/sprites/FX/jumpfx.tscn");
 @export var jump_fx_position = Vector2(0.0, -50.0);
@@ -358,10 +358,22 @@ func handle_animations():
 		anim_tree["parameters/conditions/idle"] = true
 		anim_tree["parameters/conditions/running"] = false
 		anim_tree["parameters/conditions/skidding"] = false
+		if Input.is_action_pressed("crouch"):
+			anim_tree["parameters/conditions/crouching"] = true
+			anim_tree["parameters/conditions/not crouching"] = false
+		else:
+			anim_tree["parameters/conditions/not crouching"] = true
+			anim_tree["parameters/conditions/crouching"] = false
 	if velocity.x != 0.0:
 		anim_tree["parameters/conditions/idle"] = false
 		anim_tree["parameters/conditions/running"] = true
 		anim_tree["parameters/conditions/skidding"] = false
+		if Input.is_action_pressed("crouch"):
+			anim_tree["parameters/conditions/crouching"] = true
+			anim_tree["parameters/conditions/not crouching"] = false
+		else:
+			anim_tree["parameters/conditions/not crouching"] = true
+			anim_tree["parameters/conditions/crouching"] = false
 	if (player_movement_direction < 0.0 and velocity.x > 0.0) or (player_movement_direction > 0.0 and velocity.x < 0.0):
 		anim_tree["parameters/conditions/idle"] = false
 		anim_tree["parameters/conditions/running"] = false

@@ -122,6 +122,7 @@ tape_action={
 2d_physics/layer_7="track_beat"
 2d_physics/layer_8="Interactables"
 2d_physics/layer_9="Railing"
+2d_physics/layer_10="Wall"
 
 [physics]
 
