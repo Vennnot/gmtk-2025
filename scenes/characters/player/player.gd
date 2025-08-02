@@ -85,13 +85,10 @@ func _physics_process(delta: float) -> void:
 	
 	if is_on_wall():
 		handle_walls(delta)
-		print("A")
 	if !Global.player_upside_down and !is_on_wall():
 		control_movement(delta)
-		print("B")
 	if Global.player_upside_down and !is_on_wall(): 
 		upsidedown_control_movement(delta) 
-		print("C")
 	move_and_slide()
 
 func control_movement(_delta):
