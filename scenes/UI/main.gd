@@ -30,7 +30,6 @@ func _ready() -> void:
 	Global.tape_changed.connect(_on_tape_changed)
 	EventBus.collectable_collected.connect(_on_collectable)
 	
-	#_on_tape_changed() <-- Tapes are more active ability so we won't need this.
 	restart_game()
 
 
@@ -44,6 +43,7 @@ func restart_game():
 
 
 func game_over():
+	AudioManager.play(AudioManager.death)
 	AudioManager.play(AudioManager.glitch)
 	glitch_effect.show()
 	game_timer.stop()

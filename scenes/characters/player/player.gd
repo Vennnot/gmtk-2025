@@ -49,7 +49,13 @@ var player_facing_direction := 1.0
 @onready var railing_area: Area2D = %RailingArea
 
 var dead : bool =false
-var railing : Railing
+var railing : Railing : 
+	set(value):
+		railing = value
+		if railing:
+			AudioManager.is_on_rail = true
+		else:
+			AudioManager.is_on_rail = false
 var railing_progress := 0.0
 var railing_momentum := 0.0
 var railing_direction := 1.0
@@ -336,14 +342,17 @@ func handle_jumping():
 	if was_on_floor and !is_on_floor():
 		coyote_timer.start()
 	if is_on_floor() or is_colliding_with_rails():
-		can_jump = true
+		if not can_jump:
+			AudioManager.play(AudioManager.land)
+			can_jump = true
 	if Input.is_action_just_pressed("jump") and can_jump:
 		if is_colliding_with_rails():
 			reset_railing()
 		jump_timer.start()
 		var jump_fx_instantiate = jump_fx.instantiate()
 		add_child(jump_fx_instantiate)
-		jump_fx_instantiate.transform.origin = jump_fx_position;
+		jump_fx_instantiate.transform.origin = jump_fx_position
+		AudioManager.play(AudioManager.jump)
 		jumping = true
 	if Input.is_action_just_released("jump"):
 		jumping = false
@@ -354,12 +363,15 @@ func handle_upsidedown_jumping():
 	if was_on_floor and !is_on_ceiling():
 		coyote_timer.start()
 	if is_on_ceiling() or is_colliding_with_rails():
-		can_jump = true
+		if not can_jump:
+			AudioManager.play(AudioManager.land)
+			can_jump = true
 	if Input.is_action_just_pressed("jump") and can_jump:
 		if is_colliding_with_rails():
 			reset_railing()
 		jump_timer.start()
 		jumping = true
+		AudioManager.play(AudioManager.jump)
 	if Input.is_action_just_released("jump"):
 		jumping = false
 		can_jump = false
@@ -492,10 +504,10 @@ func _on_tape_action_timer_timeout() -> void:
 	can_use_tape_action = true
 
 func handle_walls(_delta):
-	
 	#Handle y movement
 	velocity = Vector2.ZERO
 	
 	if Input.is_action_just_pressed("jump"):
+		AudioManager.play(AudioManager.jump)
 		velocity.x += -player_facing_direction * _delta * jump_force
 		velocity.y += -jump_force * _delta

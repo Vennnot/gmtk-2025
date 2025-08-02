@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dbe4j3lpi0ika"]
+[gd_scene load_steps=9 format=3 uid="uid://dbe4j3lpi0ika"]
 
 [ext_resource type="Script" uid="uid://1wv621ddhf4b" path="res://scenes/world/Interactables/magnet_spikes.gd" id="1_8ou1n"]
 [ext_resource type="Texture2D" uid="uid://bbji2mgv7enya" path="res://assets/environment/textures/sparktexture.png" id="2_18od2"]
+[ext_resource type="AudioStream" uid="uid://vk4r8tsc2ygl" path="res://assets/sfx/magnetic field fx.ogg" id="3_fr66b"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_u1efy"]
 size = Vector3(100, 20, 1)
@@ -55,6 +56,14 @@ spread = 180.0
 gravity = Vector2(0, 0)
 scale_amount_curve = SubResource("Curve_fr66b")
 color_ramp = SubResource("Gradient_3asek")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_fr66b")
+autoplay = true
+max_distance = 200.0
+attenuation = 2.0
+bus = &"sfx"
+parameters/looping = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="Magnet Pull" to="." method="_on_magnet_pull_body_entered"]

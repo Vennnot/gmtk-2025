@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dwosq7w7qg1ok"]
+[gd_scene load_steps=12 format=3 uid="uid://dwosq7w7qg1ok"]
 
 [ext_resource type="Script" uid="uid://cgji4lf1ujfn" path="res://autoloads/audio_manager.gd" id="1_tr7pb"]
 [ext_resource type="AudioStream" uid="uid://cb6aethmpdsr2" path="res://assets/sfx/rewind + button fx.ogg" id="2_a4ose"]
@@ -10,7 +10,6 @@
 [ext_resource type="AudioStream" uid="uid://q74lp0adfd7u" path="res://assets/sfx/land fx.ogg" id="5_f21h8"]
 [ext_resource type="AudioStream" uid="uid://c2my5ctx04d70" path="res://assets/audio_tracks/grav.mp3" id="5_plitr"]
 [ext_resource type="AudioStream" uid="uid://clye4ohsd24ws" path="res://assets/sfx/jump fx.ogg" id="6_thxvw"]
-[ext_resource type="AudioStream" uid="uid://vk4r8tsc2ygl" path="res://assets/sfx/magnetic field fx.ogg" id="7_hscw7"]
 [ext_resource type="AudioStream" uid="uid://bkuq7o4w65h7h" path="res://assets/sfx/rail grind loop fx.ogg" id="8_8w84n"]
 
 [node name="AudioManager" type="Node"]
@@ -20,8 +19,6 @@ tape = ExtResource("3_plitr")
 death = ExtResource("4_44o5v")
 land = ExtResource("5_f21h8")
 jump = ExtResource("6_thxvw")
-magnetic_field = ExtResource("7_hscw7")
-rail_grind_loop = ExtResource("8_8w84n")
 
 [node name="DefaultMusic" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
@@ -57,3 +54,10 @@ parameters/looping = true
 
 [node name="Ambience" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
+
+[node name="RailGrind" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("8_8w84n")
+volume_db = -80.0
+autoplay = true
+parameters/looping = true

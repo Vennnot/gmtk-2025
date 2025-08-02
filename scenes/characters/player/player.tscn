@@ -766,5 +766,8 @@ scale_amount_min = 0.25
 scale_amount_max = 0.5
 color_ramp = SubResource("Gradient_em43t")
 
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true
+
 [connection signal="timeout" from="Jump Timer" to="." method="_on_jump_timer_timeout"]
 [connection signal="timeout" from="TapeActionTimer" to="." method="_on_tape_action_timer_timeout"]

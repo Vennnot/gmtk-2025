@@ -244,20 +244,20 @@ position = Vector2(0, -264)
 position = Vector2(-406, -77)
 
 [node name="MagnetSpikes" parent="World/Environment/Interactables" instance=ExtResource("9_b1x3f")]
-position = Vector2(-118, -72)
+position = Vector2(-319, 257)
 
 [node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
-position = Vector2(-48, 212.197)
+position = Vector2(-48, 217.225)
 
 [node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(-126, 218.233)
+position = Vector2(-126, 223.26)
 monitoring = false
 tape = 1
 
 [node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(26, 209.447)
+position = Vector2(26, 214.474)
 monitoring = false
 tape = 2
 

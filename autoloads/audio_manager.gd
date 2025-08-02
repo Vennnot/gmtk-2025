@@ -7,6 +7,7 @@ const AUDIO_BUS_LAYOUT := preload("res://resources/audio/audio_bus_layout.tres")
 @onready var funk_music: AudioStreamPlayer = %FunkMusic
 @onready var grav_music: AudioStreamPlayer = %GravMusic
 @onready var ambience: AudioStreamPlayer = %Ambience
+@onready var rail_grind: AudioStreamPlayer = %RailGrind
 
 @export var glitch: AudioStream
 @export var tape:AudioStream
@@ -14,10 +15,13 @@ const AUDIO_BUS_LAYOUT := preload("res://resources/audio/audio_bus_layout.tres")
 @export var land:AudioStream
 @export var jump:AudioStream
 
-#looping sfx
-
-@export var magnetic_field:AudioStream
-@export var rail_grind_loop : AudioStream
+var is_on_rail := false :
+	set(value):
+		is_on_rail = value
+		if is_on_rail:
+			rail_grind.volume_db = -15
+		else:
+			rail_grind.volume_db = -80
 
 func _ready() -> void:
 	Global.tape_changed.connect(_on_tape_changed)
