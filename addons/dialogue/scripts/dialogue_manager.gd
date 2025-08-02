@@ -102,6 +102,7 @@ func advance_message():
 	message_position += 1
 
 	if message_position >= messages.size():
+		Global.player_controllable = true
 		queue_free()
 		return
 
