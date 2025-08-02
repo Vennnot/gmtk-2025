@@ -1,18 +1,13 @@
 class_name Player
 extends CharacterBody2D
 
+
+@export_category("Powerups")
+@export var jump_boost : float = 500
+@export var speed_boost : float = 500
+
 @onready var main = get_node("/root/").get_child(6)
-
-var jump_fx = preload("res://assets/sprites/FX/jumpfx.tscn");
-@export var jump_fx_position = Vector2(0.0, -50.0);
-
-@export var jump_sfx = preload("res://assets/sfx/jump fx.ogg")
-@export var died_sfx = preload("res://assets/sfx/died fx.ogg")
-@export var land_sfx = preload("res://assets/sfx/land fx.ogg")
-@export var heavy_land_sfx = preload("res://assets/sfx/heavy land fx.ogg")
-@export var rail_grind_loop_sfx = preload("res://assets/sfx/rail grind loop fx.ogg")
-@onready var audioplayer = %AudioStreamPlayer
-
+@export_category("Movement Values")
 @export var maximum_velocity := 600.0
 var current_maximum_velocity := 300.0
 @export var acceleration := 350.0
@@ -65,6 +60,14 @@ func _ready() -> void:
 	coyote_timer.wait_time = coyote_time
 	reset_max_velocity()
 
+
+func use_jump_powerup():
+	velocity.y = jump_boost
+
+
+func use_speed_powerup():
+	velocity.x += speed_boost*player_facing_direction
+
 func reset_gravity():
 	current_gravity_force = gravity_force
 
@@ -75,7 +78,7 @@ func _physics_process(delta: float) -> void:
 	if !Global.player_upside_down:
 		handle_animations()
 	else: handle_upsidedown_animations()
-	handle_sfx()
+
 	
 	if dead:
 		return
@@ -347,9 +350,6 @@ func handle_jumping():
 		if is_colliding_with_rails():
 			reset_railing()
 		jump_timer.start()
-		var jump_fx_instantiate = jump_fx.instantiate()
-		add_child(jump_fx_instantiate)
-		jump_fx_instantiate.transform.origin = jump_fx_position
 		AudioManager.play(AudioManager.jump)
 		jumping = true
 	if Input.is_action_just_released("jump"):
@@ -418,15 +418,6 @@ func handle_animations():
 		anim_tree["parameters/conditions/falling"] = false
 		anim_tree["parameters/conditions/landed"] = true
 
-func handle_sfx():
-	match anim_player.current_animation:
-		"Run":
-			audioplayer.stream = rail_grind_loop_sfx
-		"Jump":
-			audioplayer.stream = jump_sfx
-		"Land":
-			audioplayer.stream = land_sfx
-
 func handle_upsidedown_animations():
 	player_anim_sprite.flip_v = true
 	if player_movement_direction < 0.0:
@@ -490,7 +481,9 @@ func _on_area_entered(area:Area2D):
 		railing = area.get_parent()
 
 func is_colliding_with_rails()->bool:
-	return railing and abs(velocity.x) >= maximum_velocity / 4
+	return railing != null
+
+# and abs(velocity.x) >= maximum_velocity / 7
 
 func handle_tape_action():
 	if Input.is_action_just_pressed("tape_action") and can_use_tape_action:

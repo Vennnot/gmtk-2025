@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4pgv7f1twefu"]
+
+[ext_resource type="Script" uid="uid://cw6ptf6ace68i" path="res://addons/dialogue/scripts/dialogue.gd" id="1_0k6n8"]
+
+[node name="dialogue" type="Node"]
+editor_description = "character;message;time showing message;time showing choices;choices..."
+script = ExtResource("1_0k6n8")
