@@ -17,10 +17,6 @@ var current_tape_index : int = 0 :
 		tape_changed.emit()
 
 
-func _ready() -> void:
-	EventBus.game_restarted.connect(reset_tape)
-
-
 func previous_tape():
 	current_tape_index = (current_tape_index - 1 + TAPE.size()) % TAPE.size()
 

@@ -1,8 +1,5 @@
-
+class_name Main
 extends Node
-
-const CURRENT_SCENE := preload("res://scenes/levels/test_level1.tscn")
-const NEXT_SCENE := preload("res://scenes/levels/test_level2.tscn")
 
 @export var base_game_time : float = 60
 @export var camera_distance_offset : float = 350
@@ -48,11 +45,9 @@ func fade_black(from:bool):
 
 func restart_game():
 	Engine.time_scale = 1
-	player.global_position = player_spawn_position.global_position
 	player.dead = false
 	game_timer.wait_time = base_game_time
 	game_timer.start()
-	EventBus.game_restarted.emit()
 
 
 func game_over():
@@ -75,10 +70,10 @@ func _on_game_timer_timeout():
 func _on_collectable(type:String):
 	match type:
 		"time":
-			game_timer.wait_time = game_timer.time_left
-			game_timer.wait_time += 5
-			game_timer.start()
-
+			#game_timer.wait_time = game_timer.time_left if game_timer.time_left > 0.0 else 1.0
+			#game_timer.wait_time += 5
+			#game_timer.start()
+			pass
 
 func _physics_process(delta: float) -> void:
 	if player.dead:
@@ -146,6 +141,7 @@ func slow_down_and_restore(duration: float = 0.25):
 
 
 func _on_tape_changed():
+	print_stack()
 	_apply_tape_power()
 
 
@@ -170,8 +166,8 @@ func _apply_tape_power():
 func level_cleared():
 	fade_black(false)
 	#TODO DIALOGUE TRIGGER GOES HERE and calls below when done
-	next_scene()
-
-
-func next_scene():
-	SceneChanger.change_scene(NEXT_SCENE)
+	#next_scene()
+#
+#
+#func next_scene():
+	#SceneChanger.change_scene(NEXT_SCENE)

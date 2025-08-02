@@ -1,33 +1,33 @@
-[gd_scene load_steps=49 format=3 uid="uid://btayvwi78l0ha"]
+[gd_scene load_steps=49 format=3 uid="uid://dgpc5ajj3jw5u"]
 
-[ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_k2fmo"]
-[ext_resource type="PackedScene" uid="uid://cygyj2gepkgaj" path="res://scenes/UI/settings/game_settings.tscn" id="2_vflbe"]
-[ext_resource type="Texture2D" uid="uid://cyhhecr3unpv0" path="res://assets/environment/icons/JumpIcon.png" id="3_ufukr"]
-[ext_resource type="Texture2D" uid="uid://dnvbme4nqh5gh" path="res://assets/environment/icons/SpeedIcon.png" id="4_xe422"]
-[ext_resource type="PackedScene" uid="uid://dyr2o0k4wj1m6" path="res://scenes/UI/track_visuals/infinity_loop.tscn" id="5_io8jr"]
-[ext_resource type="PackedScene" uid="uid://biarbyhnbgx0i" path="res://scenes/UI/track_visuals/cassette_ui.tscn" id="6_bje6o"]
-[ext_resource type="Shader" uid="uid://dyrjkywkwsd3g" path="res://resources/glitch.gdshader" id="7_evkmb"]
-[ext_resource type="Shader" uid="uid://bua05pf3sf71g" path="res://resources/ripple.gdshader" id="8_63g24"]
-[ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="9_gpwu0"]
-[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="10_1kfba"]
-[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="11_b28ky"]
-[ext_resource type="PackedScene" uid="uid://dlsuigoh14we6" path="res://scenes/test/test_world.tscn" id="12_ard1p"]
-[ext_resource type="PackedScene" uid="uid://5wwyga0bugq4" path="res://scenes/world/Interactables/speed_boost.tscn" id="13_fh6j8"]
-[ext_resource type="PackedScene" uid="uid://dbe4j3lpi0ika" path="res://scenes/world/Interactables/magnet_spikes.tscn" id="14_ptvka"]
-[ext_resource type="PackedScene" uid="uid://djhx27a5tudm0" path="res://scenes/collectables/cassette_collectable.tscn" id="15_ba5ls"]
-[ext_resource type="PackedScene" uid="uid://b8rrp8w73ic70" path="res://scenes/world/railing/railing.tscn" id="16_7gmpv"]
-[ext_resource type="Texture2D" uid="uid://dbg0jkasopjf1" path="res://assets/environment/textures/RailTexture.png" id="17_xuef6"]
-[ext_resource type="Texture2D" uid="uid://csyax0er4a0ag" path="res://assets/environment/pngs/GrafittiArrow-Sheet.png" id="18_0py8s"]
-[ext_resource type="PackedScene" uid="uid://tiqn0p0soeti" path="res://scenes/characters/player/player.tscn" id="19_5plyw"]
-[ext_resource type="PackedScene" uid="uid://cntmlstgbyife" path="res://scenes/ground/groundtilemap2.tscn" id="19_g6axo"]
-[ext_resource type="PackedScene" uid="uid://dx8l3luoxod0x" path="res://assets/environment/parallaxbackground.tscn" id="20_cpm8i"]
-[ext_resource type="PackedScene" uid="uid://dw7538s3gf5c4" path="res://assets/environment/finish_line_smoke.tscn" id="21_7tept"]
+[ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_hl16f"]
+[ext_resource type="PackedScene" uid="uid://cygyj2gepkgaj" path="res://scenes/UI/settings/game_settings.tscn" id="2_v6yyo"]
+[ext_resource type="Texture2D" uid="uid://cyhhecr3unpv0" path="res://assets/environment/icons/JumpIcon.png" id="3_fhpi3"]
+[ext_resource type="Texture2D" uid="uid://dnvbme4nqh5gh" path="res://assets/environment/icons/SpeedIcon.png" id="4_db4wd"]
+[ext_resource type="PackedScene" uid="uid://dyr2o0k4wj1m6" path="res://scenes/UI/track_visuals/infinity_loop.tscn" id="5_yc51k"]
+[ext_resource type="PackedScene" uid="uid://biarbyhnbgx0i" path="res://scenes/UI/track_visuals/cassette_ui.tscn" id="6_ojkn5"]
+[ext_resource type="Shader" uid="uid://dyrjkywkwsd3g" path="res://resources/glitch.gdshader" id="7_6vxnv"]
+[ext_resource type="Shader" uid="uid://bua05pf3sf71g" path="res://resources/ripple.gdshader" id="8_flme0"]
+[ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="9_0qxt0"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="10_lsxft"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="11_rfqup"]
+[ext_resource type="PackedScene" uid="uid://tiqn0p0soeti" path="res://scenes/characters/player/player.tscn" id="12_0y7c6"]
+[ext_resource type="PackedScene" uid="uid://dlsuigoh14we6" path="res://scenes/test/test_world.tscn" id="13_d1mne"]
+[ext_resource type="PackedScene" uid="uid://5wwyga0bugq4" path="res://scenes/world/Interactables/speed_boost.tscn" id="14_ul42b"]
+[ext_resource type="PackedScene" uid="uid://djhx27a5tudm0" path="res://scenes/collectables/cassette_collectable.tscn" id="15_dc8aq"]
+[ext_resource type="PackedScene" uid="uid://dbe4j3lpi0ika" path="res://scenes/world/Interactables/magnet_spikes.tscn" id="16_5bnxw"]
+[ext_resource type="PackedScene" uid="uid://b8rrp8w73ic70" path="res://scenes/world/railing/railing.tscn" id="17_swbdl"]
+[ext_resource type="Texture2D" uid="uid://dbg0jkasopjf1" path="res://assets/environment/textures/RailTexture.png" id="18_pj0a0"]
+[ext_resource type="Texture2D" uid="uid://csyax0er4a0ag" path="res://assets/environment/pngs/GrafittiArrow-Sheet.png" id="19_q7jno"]
+[ext_resource type="PackedScene" uid="uid://dx8l3luoxod0x" path="res://assets/environment/parallaxbackground.tscn" id="20_ojfwg"]
+[ext_resource type="PackedScene" uid="uid://dw7538s3gf5c4" path="res://assets/environment/finish_line_smoke.tscn" id="21_8n51c"]
+[ext_resource type="PackedScene" uid="uid://b1321arudhcwm" path="res://scenes/ground/groundtilemap3.tscn" id="22_dvr8a"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6q06x"]
 font_size = 48
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nvumn"]
-shader = ExtResource("7_evkmb")
+shader = ExtResource("7_6vxnv")
 shader_parameter/shake_power = 0.03
 shader_parameter/shake_rate = 1.0
 shader_parameter/shake_speed = 5.0
@@ -35,7 +35,7 @@ shader_parameter/shake_block_size = 30.5
 shader_parameter/shake_color_rate = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ou6is"]
-shader = ExtResource("8_63g24")
+shader = ExtResource("8_flme0")
 shader_parameter/strength = 0.1
 shader_parameter/center = Vector2(0.2, 0.2)
 shader_parameter/radius = 0.0
@@ -106,81 +106,81 @@ _data = {
 }
 
 [sub_resource type="Resource" id="Resource_raeie"]
-script = ExtResource("10_1kfba")
+script = ExtResource("10_lsxft")
 duration = 1.0
 transition = 0
 ease = 2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e0r63"]
-atlas = ExtResource("18_0py8s")
+atlas = ExtResource("19_q7jno")
 region = Rect2(0, 0, 128, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p8nk6"]
-atlas = ExtResource("18_0py8s")
+atlas = ExtResource("19_q7jno")
 region = Rect2(128, 0, 128, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d3ib7"]
-atlas = ExtResource("18_0py8s")
+atlas = ExtResource("19_q7jno")
 region = Rect2(256, 0, 128, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gavr1"]
-atlas = ExtResource("18_0py8s")
+atlas = ExtResource("19_q7jno")
 region = Rect2(384, 0, 128, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7w0cq"]
-atlas = ExtResource("18_0py8s")
+atlas = ExtResource("19_q7jno")
 region = Rect2(512, 0, 128, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qnqg5"]
-atlas = ExtResource("18_0py8s")
+atlas = ExtResource("19_q7jno")
 region = Rect2(640, 0, 128, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k2pq3"]
-atlas = ExtResource("18_0py8s")
+atlas = ExtResource("19_q7jno")
 region = Rect2(768, 0, 128, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qw3hg"]
-atlas = ExtResource("18_0py8s")
+atlas = ExtResource("19_q7jno")
 region = Rect2(896, 0, 128, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bmkxy"]
-atlas = ExtResource("18_0py8s")
+atlas = ExtResource("19_q7jno")
 region = Rect2(1024, 0, 128, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sw8sh"]
-atlas = ExtResource("18_0py8s")
+atlas = ExtResource("19_q7jno")
 region = Rect2(1152, 0, 128, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ox8il"]
-atlas = ExtResource("18_0py8s")
+atlas = ExtResource("19_q7jno")
 region = Rect2(1280, 0, 128, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n8pxb"]
-atlas = ExtResource("18_0py8s")
+atlas = ExtResource("19_q7jno")
 region = Rect2(1408, 0, 128, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v1k4d"]
-atlas = ExtResource("18_0py8s")
+atlas = ExtResource("19_q7jno")
 region = Rect2(1536, 0, 128, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vbnww"]
-atlas = ExtResource("18_0py8s")
+atlas = ExtResource("19_q7jno")
 region = Rect2(1664, 0, 128, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4vpjq"]
-atlas = ExtResource("18_0py8s")
+atlas = ExtResource("19_q7jno")
 region = Rect2(1792, 0, 128, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3x7fh"]
-atlas = ExtResource("18_0py8s")
+atlas = ExtResource("19_q7jno")
 region = Rect2(1920, 0, 128, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b47n4"]
-atlas = ExtResource("18_0py8s")
+atlas = ExtResource("19_q7jno")
 region = Rect2(2048, 0, 128, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_15dcc"]
-atlas = ExtResource("18_0py8s")
+atlas = ExtResource("19_q7jno")
 region = Rect2(2176, 0, 128, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4jk58"]
@@ -245,13 +245,13 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="Level2" type="Node"]
+[node name="Level3" type="Node"]
 process_mode = 3
-script = ExtResource("1_k2fmo")
+script = ExtResource("1_hl16f")
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 
-[node name="GameSettings" parent="PauseMenu" instance=ExtResource("2_vflbe")]
+[node name="GameSettings" parent="PauseMenu" instance=ExtResource("2_v6yyo")]
 unique_name_in_owner = true
 visible = false
 in_game = true
@@ -300,18 +300,18 @@ vertical_alignment = 1
 
 [node name="JumpIcon" type="Sprite2D" parent="UI/MarginContainer/VBoxContainer"]
 position = Vector2(255, 194)
-texture = ExtResource("3_ufukr")
+texture = ExtResource("3_fhpi3")
 
 [node name="SpeedIcon" type="Sprite2D" parent="UI/MarginContainer/VBoxContainer"]
 visible = false
 position = Vector2(258, 193)
-texture = ExtResource("4_xe422")
+texture = ExtResource("4_db4wd")
 
-[node name="InfinityLoop" parent="UI" instance=ExtResource("5_io8jr")]
+[node name="InfinityLoop" parent="UI" instance=ExtResource("5_yc51k")]
 unique_name_in_owner = true
 position = Vector2(126, 73)
 
-[node name="Cassette UI" parent="UI" instance=ExtResource("6_bje6o")]
+[node name="Cassette UI" parent="UI" instance=ExtResource("6_ojkn5")]
 unique_name_in_owner = true
 position = Vector2(123, 184)
 scale = Vector2(10, 10)
@@ -359,12 +359,11 @@ unique_name_in_owner = true
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 unique_name_in_owner = true
-physics_interpolation_mode = 1
 top_level = true
 position = Vector2(-69, -370)
-script = ExtResource("9_gpwu0")
+script = ExtResource("9_0qxt0")
 follow_mode = 5
-follow_target = NodePath("../World/Player")
+follow_target = NodePath("../Player")
 zoom = Vector2(4, 4)
 tween_resource = SubResource("Resource_raeie")
 tween_on_load = false
@@ -384,10 +383,18 @@ editor_draw_limits = true
 [node name="PhantomCameraHost" type="Node" parent="Camera"]
 process_priority = 300
 process_physics_priority = 300
-script = ExtResource("11_b28ky")
+script = ExtResource("11_rfqup")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
-[node name="World" parent="." instance=ExtResource("12_ard1p")]
+[node name="Player" parent="." instance=ExtResource("12_0y7c6")]
+unique_name_in_owner = true
+position = Vector2(-69, -370)
+jump_fx_position = Vector2(0, 20)
+deceleration = 600.0
+jump_force = 25000.0
+gravity_force = 500.0
+
+[node name="World" parent="." instance=ExtResource("13_d1mne")]
 process_mode = 1
 
 [node name="Environment" type="Node2D" parent="World"]
@@ -396,57 +403,46 @@ position = Vector2(3, 179)
 [node name="Interactables" type="Node2D" parent="World/Environment"]
 position = Vector2(0, -264)
 
-[node name="SpeedBoost" parent="World/Environment/Interactables" instance=ExtResource("13_fh6j8")]
+[node name="SpeedBoost" parent="World/Environment/Interactables" instance=ExtResource("14_ul42b")]
 position = Vector2(-406, -77)
 
-[node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("15_ba5ls")]
+[node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("15_dc8aq")]
 visible = false
-position = Vector2(-48, 176.108)
+position = Vector2(-48, 169.246)
 
-[node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("15_ba5ls")]
+[node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("15_dc8aq")]
 visible = false
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(-126, 181.824)
+position = Vector2(-126, 175.088)
 monitoring = false
 tape = 1
 
-[node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("15_ba5ls")]
+[node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("15_dc8aq")]
 visible = false
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(26, 173.061)
+position = Vector2(26, 166.329)
 monitoring = false
 tape = 2
 
-[node name="MagnetSpikes2" parent="World/Environment/Interactables" instance=ExtResource("14_ptvka")]
-position = Vector2(1323, 263)
-scale = Vector2(4.16, 1)
+[node name="MagnetSpikes2" parent="World/Environment/Interactables" instance=ExtResource("16_5bnxw")]
+position = Vector2(1230, 106)
+scale = Vector2(0.960156, 1)
 
-[node name="MagnetSpikes3" parent="World/Environment/Interactables" instance=ExtResource("14_ptvka")]
-position = Vector2(2385, 267)
-scale = Vector2(0.600234, 1)
-
-[node name="MagnetSpikes4" parent="World/Environment/Interactables" instance=ExtResource("14_ptvka")]
-position = Vector2(3384, 263)
-scale = Vector2(3.31998, 1)
-
-[node name="MagnetSpikes5" parent="World/Environment/Interactables" instance=ExtResource("14_ptvka")]
-position = Vector2(4273, 186)
-scale = Vector2(0.910726, 1.9331)
-
-[node name="MagnetSpikes6" parent="World/Environment/Interactables" instance=ExtResource("14_ptvka")]
-position = Vector2(2613, 267)
-scale = Vector2(0.600234, 1)
-
-[node name="Loop" parent="World/Environment/Interactables" instance=ExtResource("16_7gmpv")]
-position = Vector2(8934, 183)
-points = PackedVector2Array(13, 58, 215, 58, 360, 16, 457, -28, 458.852, -95.5959, 461, -174, 366, -309, 276, -399, 90, -431)
-texture = ExtResource("17_xuef6")
+[node name="Loop" parent="World/Environment/Interactables" instance=ExtResource("17_swbdl")]
+position = Vector2(2375, 189)
+points = PackedVector2Array(1, 24, 209, 24, 361, 24, 463, 24, 633, 24)
+texture = ExtResource("18_pj0a0")
 texture_mode = 1
+tape = 1
 
-[node name="Loop" parent="World/Environment" instance=ExtResource("16_7gmpv")]
-position = Vector2(5148, -178)
-points = PackedVector2Array(13, 58, 215, 58, 347, 15, 433, -117, 402, -248, 291, -278, 200, -209, 248, -110, 414, 25, 622, 50)
-texture = ExtResource("17_xuef6")
+[node name="MagnetSpikes3" parent="World/Environment/Interactables" instance=ExtResource("16_5bnxw")]
+position = Vector2(2460, 259)
+scale = Vector2(10.8002, 1)
+
+[node name="Loop" parent="World/Environment" instance=ExtResource("17_swbdl")]
+position = Vector2(4163, -287)
+points = PackedVector2Array(13, 58, 215, 58, 427, -20, 452.29, -122.847, 472, -203, 346, -384, 25, -381)
+texture = ExtResource("18_pj0a0")
 texture_mode = 1
 
 [node name="GrafittiArrow" type="AnimatedSprite2D" parent="World/Environment"]
@@ -454,22 +450,15 @@ position = Vector2(320, -37)
 sprite_frames = SubResource("SpriteFrames_4jk58")
 autoplay = "default"
 
-[node name="Groundtilemap1" parent="World/Environment" instance=ExtResource("19_g6axo")]
-
-[node name="Player" parent="World" instance=ExtResource("19_5plyw")]
-unique_name_in_owner = true
-position = Vector2(-69, -370)
-jump_fx_position = Vector2(0, 20)
-deceleration = 600.0
-jump_force = 25000.0
-gravity_force = 500.0
-
-[node name="Parallaxbackground" parent="World" instance=ExtResource("20_cpm8i")]
+[node name="Parallaxbackground" parent="World" instance=ExtResource("20_ojfwg")]
 z_index = -5
 
 [node name="PlayerSpawnPosition" type="Marker2D" parent="World"]
 unique_name_in_owner = true
 position = Vector2(0, 144)
 
-[node name="FinishLineSmoke" parent="World" instance=ExtResource("21_7tept")]
-position = Vector2(8102, -221)
+[node name="FinishLineSmoke" parent="World" instance=ExtResource("21_8n51c")]
+position = Vector2(1235, -214)
+
+[node name="Groundtilemap3" parent="World" instance=ExtResource("22_dvr8a")]
+position = Vector2(-1550, 180)

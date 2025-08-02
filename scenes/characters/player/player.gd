@@ -83,15 +83,12 @@ func _physics_process(delta: float) -> void:
 		global_position.x = move_toward(global_position.x, no_control_target, 500 * delta)
 		return
 	
-	if is_on_wall():
-		handle_walls(delta)
-		print("A")
-	if !Global.player_upside_down and !is_on_wall():
+	if !Global.player_upside_down:
 		control_movement(delta)
-		print("B")
-	if Global.player_upside_down and !is_on_wall(): 
+		#print("B")
+	if Global.player_upside_down: 
 		upsidedown_control_movement(delta) 
-		print("C")
+		#print("C")
 	move_and_slide()
 
 func control_movement(_delta):
@@ -503,11 +500,11 @@ func handle_tape_action():
 func _on_tape_action_timer_timeout() -> void:
 	can_use_tape_action = true
 
-func handle_walls(_delta):
-	#Handle y movement
-	velocity = Vector2.ZERO
-	
-	if Input.is_action_just_pressed("jump"):
-		AudioManager.play(AudioManager.jump)
-		velocity.x += -player_facing_direction * _delta * jump_force
-		velocity.y += -jump_force * _delta
+#func handle_walls(_delta):
+	##Handle y movement
+	#velocity = Vector2.ZERO
+	#
+	#if Input.is_action_just_pressed("jump"):
+		#AudioManager.play(AudioManager.jump)
+		#velocity.x += -player_facing_direction * _delta * jump_force
+		#velocity.y += -jump_force * _delta
