@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dw7538s3gf5c4"]
+[gd_scene load_steps=6 format=3 uid="uid://dw7538s3gf5c4"]
 
 [ext_resource type="Texture2D" uid="uid://bieymbh17npy5" path="res://assets/environment/textures/smokeparticle.png" id="1_jrr86"]
+[ext_resource type="Script" uid="uid://mr6wh8sxc5sx" path="res://assets/environment/finish_line_smoke.gd" id="1_mnf0g"]
 
 [sub_resource type="Curve" id="Curve_mnf0g"]
 _data = [Vector2(0, 0.561798), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -9,7 +10,11 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_pmuxe"]
 colors = PackedColorArray(0.858824, 0.137255, 0.941176, 1, 1, 1, 1, 0)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pmuxe"]
+radius = 21.0238
+
 [node name="FinishLineSmoke" type="Node2D"]
+script = ExtResource("1_mnf0g")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 amount = 50
@@ -21,3 +26,12 @@ radial_accel_max = 58.59
 angle_max = 270.0
 scale_amount_curve = SubResource("Curve_mnf0g")
 color_ramp = SubResource("Gradient_pmuxe")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_pmuxe")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

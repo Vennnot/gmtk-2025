@@ -62,7 +62,7 @@ func _ready() -> void:
 
 
 func use_jump_powerup():
-	velocity.y = jump_boost
+	velocity.y = -jump_boost
 
 
 func use_speed_powerup():

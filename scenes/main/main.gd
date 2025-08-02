@@ -39,6 +39,7 @@ func _ready() -> void:
 	Global.tape_changed.connect(_on_tape_changed)
 	EventBus.collectable_collected.connect(_on_collectable)
 	EventBus.dialogue_ended.connect(_on_dialogue_ended)
+	EventBus.reached_level_finish.connect(_reached_finish_line)
 	if dialogue_manager:
 		Engine.time_scale = 0
 		var start_d := start_dialogue.instantiate()
@@ -106,13 +107,13 @@ func _physics_process(delta: float) -> void:
 	if player.dead:
 		_set_camera_dead_offset()
 		return
-	if finish_line:
-		if player.global_position.x > finish_line.global_position.x:
-			level_cleared()
-			finish_line = null
 	time_label.text = format_time()
 	_set_camera_offset()
 
+func _reached_finish_line():
+	if finish_line:
+		level_cleared()
+		finish_line = null
 
 func _set_camera_dead_offset():
 	var target_zoom : Vector2= lerp(phantom_camera.zoom, Vector2(camera_death_zoom, camera_death_zoom), 1)
