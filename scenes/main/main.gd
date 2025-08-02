@@ -1,8 +1,8 @@
 
 extends Node
 
-#const CURRENT_SCENE := preload("res://scenes/levels/test_level1.tscn")
-#const NEXT_SCENE := preload("res://scenes/levels/test_level2.tscn")
+const CURRENT_SCENE := preload("res://scenes/levels/test_level1.tscn")
+const NEXT_SCENE := preload("res://scenes/levels/test_level2.tscn")
 
 @export var base_game_time : float = 60
 @export var camera_distance_offset : float = 350
@@ -170,8 +170,8 @@ func _apply_tape_power():
 func level_cleared():
 	fade_black(false)
 	#TODO DIALOGUE TRIGGER GOES HERE and calls below when done
-	#next_scene()
-#
-#
-#func next_scene():
-	#SceneChanger.change_scene(NEXT_SCENE)
+	next_scene()
+
+
+func next_scene():
+	SceneChanger.change_scene(NEXT_SCENE)
