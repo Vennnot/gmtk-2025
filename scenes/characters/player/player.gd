@@ -89,6 +89,7 @@ func _physics_process(delta: float) -> void:
 	if Global.player_upside_down: 
 		upsidedown_control_movement(delta) 
 		#print("C")
+
 	move_and_slide()
 
 func control_movement(_delta):

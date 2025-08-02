@@ -3,6 +3,7 @@ extends Node
 # Signals
 signal showed_message(message: String, character_number: int)
 signal made_choice(choice: String, message: String)
+signal dialogue_ended
 
 # Exported Variables
 @export_enum("Subtitle", "Text Box") var style: int = 0
@@ -102,6 +103,7 @@ func advance_message():
 	message_position += 1
 
 	if message_position >= messages.size():
+		Global.player_controllable = true
 		queue_free()
 		return
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://duerv0ofv7f24"]
+[gd_scene load_steps=31 format=4 uid="uid://duerv0ofv7f24"]
 
 [ext_resource type="Texture2D" uid="uid://c036lp8q8qli3" path="res://assets/environment/tileset/Tileset1-Sheet.png" id="1_6vykw"]
 [ext_resource type="PackedScene" uid="uid://cygyj2gepkgaj" path="res://scenes/UI/settings/game_settings.tscn" id="2_snejb"]
@@ -7,8 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://biarbyhnbgx0i" path="res://scenes/UI/track_visuals/cassette_ui.tscn" id="4_6xo4l"]
 [ext_resource type="Shader" uid="uid://dyrjkywkwsd3g" path="res://resources/glitch.gdshader" id="5_gxxv2"]
 [ext_resource type="Shader" uid="uid://bua05pf3sf71g" path="res://resources/ripple.gdshader" id="6_0i4or"]
+[ext_resource type="PackedScene" uid="uid://bmeiv1c8q5tey" path="res://addons/dialogue/scenes/dialogue_manager.tscn" id="6_law1f"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="7_law1f"]
 [ext_resource type="PackedScene" uid="uid://p73wc03e4d5y" path="res://scenes/world/Interactables/level_finish.tscn" id="7_mciyi"]
+[ext_resource type="PackedScene" uid="uid://dnrcj1mhyy4b3" path="res://addons/dialogue/scenes/dialogue.tscn" id="7_ogvu4"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="8_ogvu4"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="9_57hwl"]
 [ext_resource type="PackedScene" uid="uid://cvq84204lh2b2" path="res://scenes/world/Interactables/dialogue.tscn" id="10_law1f"]
@@ -262,8 +264,9 @@ tile_set = SubResource("TileSet_jm1hj")
 position = Vector2(464, -64)
 next_scene = ExtResource("3_6xo4l")
 
-[node name="Dialogue" parent="." instance=ExtResource("10_law1f")]
+[node name="Dialogue" parent="." node_paths=PackedStringArray("dialogue_manager") instance=ExtResource("10_law1f")]
 position = Vector2(84, -82)
+dialogue_manager = NodePath("../UI/dialogue_manager")
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 
@@ -274,6 +277,14 @@ in_game = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 2
+
+[node name="dialogue_manager" parent="UI" instance=ExtResource("6_law1f")]
+style = 1
+name_ = "Friend"
+name__ = "Jeanie"
+
+[node name="dialogue" parent="UI/dialogue_manager" instance=ExtResource("7_ogvu4")]
+messages = ["1;;1", "1;Still working at that store, Jeanie?;1", "1;;1", "2;For as long as I can remember. Same @*!# everyday.;2", "1;;1", "1;Well, not today, you're late.;1", "1;;1", "2;I'm never late when I'm on skates.;2"]
 
 [node name="FadeInRect" type="ColorRect" parent="UI"]
 unique_name_in_owner = true
