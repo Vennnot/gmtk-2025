@@ -40,6 +40,7 @@ func _ready() -> void:
 	EventBus.collectable_collected.connect(_on_collectable)
 	EventBus.dialogue_ended.connect(_on_dialogue_ended)
 	if dialogue_manager:
+		Engine.time_scale = 0
 		var start_d := start_dialogue.instantiate()
 		start_d.name = "start_dialogue"
 		dialogue_manager.add_child(start_d)
@@ -55,6 +56,7 @@ func _ready() -> void:
 
 func _on_dialogue_ended():
 	if black_color.visible:
+		Engine.time_scale = 1
 		await fade_black(true)
 		restart_game()
 	else:
