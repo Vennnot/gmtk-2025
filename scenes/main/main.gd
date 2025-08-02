@@ -1,6 +1,13 @@
 class_name Main
 extends Node
 
+@export var NEXT_SCENE : PackedScene
+@export var dialogue_manager : Node
+@export var start_dialogue : PackedScene
+@export var end_dialogue : PackedScene
+@export var finish_line : Node2D
+@onready var ui: CanvasLayer = $UI
+
 @export var base_game_time : float = 60
 @export var camera_distance_offset : float = 350
 @export var camera_speed_offset : float = 0.1
@@ -31,10 +38,23 @@ func _ready() -> void:
 	game_timer.timeout.connect(_on_game_timer_timeout)
 	Global.tape_changed.connect(_on_tape_changed)
 	EventBus.collectable_collected.connect(_on_collectable)
-	
-	#TODO DIALOGUE TRIGGER GOES HERE and calls below when done
-	await fade_black(true)
-	restart_game()
+	EventBus.dialogue_ended.connect(_on_dialogue_ended)
+	if dialogue_manager:
+		var start_d := start_dialogue.instantiate()
+		start_d.name = "start_dialogue"
+		dialogue_manager.add_child(start_dialogue.instantiate())
+		dialogue_manager.add_child(end_dialogue.instantiate())
+		dialogue_manager.start("start_dialogue")
+	else:
+		await fade_black(true)
+		restart_game()
+
+func _on_dialogue_ended():
+	if black_color.visible:
+		await fade_black(true)
+		restart_game()
+	else:
+		next_scene()
 
 
 func fade_black(from:bool):
@@ -154,20 +174,20 @@ func _apply_tape_power():
 			#player.velocity.y += 5000
 			#powerup_text = "fall instantly"
 		Global.TAPE.YELLOW:
-			player.velocity.y = 0;
-			player.velocity.y -= 750
-			$UI/MarginContainer/VBoxContainer/SpeedIcon.visible = true;
-			$UI/MarginContainer/VBoxContainer/JumpIcon.visible = false;
+			player.velocity.y = 0
+			player.velocity.y = 750
+			$UI/MarginContainer/VBoxContainer/SpeedIcon.visible = true
+			$UI/MarginContainer/VBoxContainer/JumpIcon.visible = false
 		Global.TAPE.GREEN:
 			player.velocity.x += 450*player.player_facing_direction
-			$UI/MarginContainer/VBoxContainer/SpeedIcon.visible = false;
-			$UI/MarginContainer/VBoxContainer/JumpIcon.visible = true;
+			$UI/MarginContainer/VBoxContainer/SpeedIcon.visible = false
+			$UI/MarginContainer/VBoxContainer/JumpIcon.visible = true
 
 func level_cleared():
 	fade_black(false)
+	
 	#TODO DIALOGUE TRIGGER GOES HERE and calls below when done
-	#next_scene()
-#
-#
-#func next_scene():
-	#SceneChanger.change_scene(NEXT_SCENE)
+
+
+func next_scene():
+	SceneChanger.change_scene(NEXT_SCENE)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://dhtruibsgo1o4"]
+[gd_scene load_steps=31 format=3 uid="uid://dhtruibsgo1o4"]
 
 [ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_k2fmo"]
 [ext_resource type="PackedScene" uid="uid://dlsuigoh14we6" path="res://scenes/test/test_world.tscn" id="3_6q06x"]
 [ext_resource type="PackedScene" uid="uid://dyr2o0k4wj1m6" path="res://scenes/UI/track_visuals/infinity_loop.tscn" id="3_hujxm"]
+[ext_resource type="PackedScene" uid="uid://bmeiv1c8q5tey" path="res://addons/dialogue/scenes/dialogue_manager.tscn" id="3_m4h2d"]
 [ext_resource type="Texture2D" uid="uid://cyhhecr3unpv0" path="res://assets/environment/icons/JumpIcon.png" id="3_pg34l"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="4_blune"]
 [ext_resource type="PackedScene" uid="uid://cygyj2gepkgaj" path="res://scenes/UI/settings/game_settings.tscn" id="4_l3cfh"]
@@ -113,9 +114,10 @@ ease = 2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a8run"]
 size = Vector2(10000, 20)
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" node_paths=PackedStringArray("dialogue_manager")]
 process_mode = 3
 script = ExtResource("1_k2fmo")
+dialogue_manager = NodePath("UI/DialogueManager")
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 
@@ -200,6 +202,10 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[node name="DialogueManager" parent="UI" instance=ExtResource("3_m4h2d")]
+style = 1
+show_avatar_ = false
+
 [node name="Other" type="Node" parent="."]
 
 [node name="GameTimer" type="Timer" parent="Other"]
@@ -256,17 +262,17 @@ position = Vector2(-406, -77)
 position = Vector2(-319, 257)
 
 [node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
-position = Vector2(-48, 190.491)
+position = Vector2(-48, 191.619)
 
 [node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(-126, 196.521)
+position = Vector2(-126, 197.648)
 monitoring = false
 tape = 1
 
 [node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(26, 187.739)
+position = Vector2(26, 188.851)
 monitoring = false
 tape = 2
 
