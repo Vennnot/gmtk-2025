@@ -16,9 +16,7 @@ extends Node
 @onready var game_timer: Timer = %GameTimer
 @onready var time_label: Label = %TimeLabel
 @onready var player: Player = %Player
-@onready var debug_label: Label = %DebugLabel
 @onready var infinity_loop: InfinityLoop = %InfinityLoop
-@onready var power_label: Label = %PowerLabel
 @onready var phantom_camera: PhantomCamera2D = %PhantomCamera2D
 @onready var player_spawn_position: Marker2D = %PlayerSpawnPosition
 @onready var glitch_effect: ColorRect = %GlitchEffect
@@ -135,9 +133,6 @@ func slow_down_and_restore(duration: float = 0.25):
 
 
 func _on_tape_changed():
-	debug_label.text = "Cassette Tape: %s" % Global.get_tape_string() + ", Next Tape: %s" % Global.get_tape_string(Global.get_next_tape())
-	#Removed this delay, it felt weird to have to wait for an ability to fire.
-	#await get_tree().create_timer(0.2).timeout
 	_apply_tape_power()
 
 
@@ -161,4 +156,3 @@ func _apply_tape_power():
 			powerup_text = "speed boost"
 			$UI/MarginContainer/VBoxContainer/SpeedIcon.visible = false;
 			$UI/MarginContainer/VBoxContainer/JumpIcon.visible = true;
-	power_label.text = "current power: %s" % powerup_text
