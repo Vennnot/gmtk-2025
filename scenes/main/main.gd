@@ -42,8 +42,12 @@ func _ready() -> void:
 	if dialogue_manager:
 		var start_d := start_dialogue.instantiate()
 		start_d.name = "start_dialogue"
-		dialogue_manager.add_child(start_dialogue.instantiate())
-		dialogue_manager.add_child(end_dialogue.instantiate())
+		dialogue_manager.add_child(start_d)
+		
+		var end_d := end_dialogue.instantiate()
+		end_d.name = "end_dialogue"
+		dialogue_manager.add_child(end_d)
+		
 		dialogue_manager.start("start_dialogue")
 	else:
 		await fade_black(true)
@@ -174,12 +178,11 @@ func _apply_tape_power():
 			#player.velocity.y += 5000
 			#powerup_text = "fall instantly"
 		Global.TAPE.YELLOW:
-			player.velocity.y = 0
-			player.velocity.y = 750
+			player.use_jump_powerup()
 			$UI/MarginContainer/VBoxContainer/SpeedIcon.visible = true
 			$UI/MarginContainer/VBoxContainer/JumpIcon.visible = false
 		Global.TAPE.GREEN:
-			player.velocity.x += 450*player.player_facing_direction
+			player.use_speed_powerup()
 			$UI/MarginContainer/VBoxContainer/SpeedIcon.visible = false
 			$UI/MarginContainer/VBoxContainer/JumpIcon.visible = true
 

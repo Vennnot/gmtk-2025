@@ -1,7 +1,9 @@
-[gd_scene load_steps=31 format=3 uid="uid://dhtruibsgo1o4"]
+[gd_scene load_steps=33 format=3 uid="uid://dhtruibsgo1o4"]
 
 [ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_k2fmo"]
+[ext_resource type="PackedScene" uid="uid://ngygcn2kyp8s" path="res://scenes/dialogues/level1_start.tscn" id="2_s17dp"]
 [ext_resource type="PackedScene" uid="uid://dlsuigoh14we6" path="res://scenes/test/test_world.tscn" id="3_6q06x"]
+[ext_resource type="PackedScene" uid="uid://b4pgv7f1twefu" path="res://scenes/dialogues/level1_end.tscn" id="3_37hlw"]
 [ext_resource type="PackedScene" uid="uid://dyr2o0k4wj1m6" path="res://scenes/UI/track_visuals/infinity_loop.tscn" id="3_hujxm"]
 [ext_resource type="PackedScene" uid="uid://bmeiv1c8q5tey" path="res://addons/dialogue/scenes/dialogue_manager.tscn" id="3_m4h2d"]
 [ext_resource type="Texture2D" uid="uid://cyhhecr3unpv0" path="res://assets/environment/icons/JumpIcon.png" id="3_pg34l"]
@@ -118,6 +120,8 @@ size = Vector2(10000, 20)
 process_mode = 3
 script = ExtResource("1_k2fmo")
 dialogue_manager = NodePath("UI/DialogueManager")
+start_dialogue = ExtResource("2_s17dp")
+end_dialogue = ExtResource("3_37hlw")
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 
@@ -204,6 +208,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="DialogueManager" parent="UI" instance=ExtResource("3_m4h2d")]
 style = 1
+typing_animation = false
 show_avatar_ = false
 
 [node name="Other" type="Node" parent="."]
@@ -262,17 +267,17 @@ position = Vector2(-406, -77)
 position = Vector2(-319, 257)
 
 [node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
-position = Vector2(-48, 191.619)
+position = Vector2(-48, 182.262)
 
 [node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(-126, 197.648)
+position = Vector2(-126, 188.289)
 monitoring = false
 tape = 1
 
 [node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(26, 188.851)
+position = Vector2(26, 179.489)
 monitoring = false
 tape = 2
 
