@@ -279,11 +279,12 @@ in_game = true
 layer = 2
 
 [node name="dialogue_manager" parent="UI" instance=ExtResource("6_law1f")]
+style = 1
 name_ = "Friend"
 name__ = "Jeanie"
 
 [node name="dialogue" parent="UI/dialogue_manager" instance=ExtResource("7_ogvu4")]
-messages = ["1;;1", "2;For as long as I can remember. Same @*!# everyday.;2", "1;;1", "2;For as long as I can remember. Same @*!# everyday.;2", "1;;1", "1;Well, not today, you're late.;1", "1;;1", "2;I'm never late when I'm on skates.;2"]
+messages = ["1;;1", "1;Still working at that store, Jeanie?;1", "1;;1", "2;For as long as I can remember. Same @*!# everyday.;2", "1;;1", "1;Well, not today, you're late.;1", "1;;1", "2;I'm never late when I'm on skates.;2"]
 
 [node name="FadeInRect" type="ColorRect" parent="UI"]
 unique_name_in_owner = true
