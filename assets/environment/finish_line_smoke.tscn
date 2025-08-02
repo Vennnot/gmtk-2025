@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dw7538s3gf5c4"]
+
+[ext_resource type="Texture2D" uid="uid://bieymbh17npy5" path="res://assets/environment/textures/smokeparticle.png" id="1_jrr86"]
+
+[sub_resource type="Curve" id="Curve_mnf0g"]
+_data = [Vector2(0, 0.561798), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_pmuxe"]
+colors = PackedColorArray(0.858824, 0.137255, 0.941176, 1, 1, 1, 1, 0)
+
+[node name="FinishLineSmoke" type="Node2D"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 50
+texture = ExtResource("1_jrr86")
+lifetime = 2.0
+spread = 0.0
+gravity = Vector2(0, -100)
+radial_accel_max = 58.59
+angle_max = 270.0
+scale_amount_curve = SubResource("Curve_mnf0g")
+color_ramp = SubResource("Gradient_pmuxe")

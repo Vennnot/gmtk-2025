@@ -15,7 +15,7 @@ func _ready() -> void:
 	Global.tape_changed.connect(_on_tape_changed)
 	self.body_entered.connect(_on_body_entered)
 	_on_tape_changed()
-	update_visuals()
+	#update_visuals() <-- Removing this seems to let me modify the global array
 
 func _physics_process(delta: float) -> void:
 	position.y += 0.25 * sin((delta * Time.get_ticks_msec()) / 5)

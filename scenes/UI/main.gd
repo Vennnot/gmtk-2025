@@ -1,6 +1,7 @@
 class_name Main
 extends Node
 
+
 @export var base_game_time : float = 60
 @export var camera_distance_offset : float = 350
 @export var camera_speed_offset : float = 0.1
@@ -9,6 +10,7 @@ extends Node
 
 @export var death_duration : float = 3
 @export var camera_death_zoom : float = 6
+
 
 @onready var game_settings: GameSettingsUI = %GameSettings
 @onready var game_timer: Timer = %GameTimer
@@ -22,12 +24,15 @@ extends Node
 @onready var glitch_effect: ColorRect = %GlitchEffect
 @onready var ui_animator: AnimationPlayer = %UIAnimator
 
+
+
 func _ready() -> void:
 	game_settings.exit_pressed.connect(toggle_pause)
 	game_timer.timeout.connect(_on_game_timer_timeout)
 	Global.tape_changed.connect(_on_tape_changed)
 	EventBus.collectable_collected.connect(_on_collectable)
-	_on_tape_changed()
+	
+	#_on_tape_changed() <-- Tapes are more active ability so we won't need this.
 	restart_game()
 
 
@@ -71,6 +76,7 @@ func _physics_process(delta: float) -> void:
 	time_label.text = format_time()
 	_set_camera_offset()
 
+
 func _set_camera_dead_offset():
 	var target_zoom : Vector2= lerp(phantom_camera.zoom, Vector2(camera_death_zoom, camera_death_zoom), 1)
 	phantom_camera.zoom = phantom_camera.zoom.lerp(target_zoom, get_process_delta_time() * camera_speed_offset*5)
@@ -112,10 +118,10 @@ func _input(_event: InputEvent) -> void:
 		return
 	
 	if Input.is_action_just_pressed(&"switch_tape"):
-		if infinity_loop.sprite_in_middle:
+		#if infinity_loop.sprite_in_middle:
 			AudioManager.play(AudioManager.tape)
 			ui_animator.play(&"ripple")
-			slow_down_and_restore()
+			#slow_down_and_restore()
 			infinity_loop.sprite_in_middle = false
 			Global.next_tape()
 
@@ -130,31 +136,29 @@ func slow_down_and_restore(duration: float = 0.25):
 
 func _on_tape_changed():
 	debug_label.text = "Cassette Tape: %s" % Global.get_tape_string() + ", Next Tape: %s" % Global.get_tape_string(Global.get_next_tape())
-	await get_tree().create_timer(0.2).timeout
+	#Removed this delay, it felt weird to have to wait for an ability to fire.
+	#await get_tree().create_timer(0.2).timeout
 	_apply_tape_power()
 
 
 func _apply_tape_power():
 	var powerup_text := ""
 	match Global.current_tape_index:
-		Global.TAPE.NEON_PINK:
-			player.global_position.x += 100*player.player_facing_direction
-			powerup_text = "dash"
-			player.tape_particple.color = Global.TAPE_COLORS[Global.current_tape_index]
-			player.tape_particple.emitting = true
-		Global.TAPE.CYAN:
-			player.velocity.y = 5000
-			powerup_text = "fall instantly"
-			player.tape_particple.color = Global.TAPE_COLORS[Global.current_tape_index]
-			player.tape_particple.emitting = true
+		#Global.TAPE.NEON_PINK:
+			#player.global_position.x += 100*player.player_facing_direction
+			#powerup_text = "dash"
+		#Global.TAPE.CYAN:
+			#player.velocity.y += 5000
+			#powerup_text = "fall instantly"
 		Global.TAPE.YELLOW:
-			player.velocity.y = -1000
+			player.velocity.y = 0;
+			player.velocity.y -= 750
 			powerup_text = "air jump"
-			player.tape_particple.color = Global.TAPE_COLORS[Global.current_tape_index]
-			player.tape_particple.emitting = true
+			$UI/MarginContainer/VBoxContainer/SpeedIcon.visible = true;
+			$UI/MarginContainer/VBoxContainer/JumpIcon.visible = false;
 		Global.TAPE.GREEN:
-			player.velocity.x += 500*player.player_facing_direction
+			player.velocity.x += 450*player.player_facing_direction
 			powerup_text = "speed boost"
-			player.tape_particple.color = Global.TAPE_COLORS[Global.current_tape_index]
-			player.tape_particple.emitting = true
+			$UI/MarginContainer/VBoxContainer/SpeedIcon.visible = false;
+			$UI/MarginContainer/VBoxContainer/JumpIcon.visible = true;
 	power_label.text = "current power: %s" % powerup_text

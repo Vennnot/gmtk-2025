@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbe4j3lpi0ika"]
+[gd_scene load_steps=8 format=3 uid="uid://dbe4j3lpi0ika"]
 
 [ext_resource type="Script" uid="uid://1wv621ddhf4b" path="res://scenes/world/Interactables/magnet_spikes.gd" id="1_8ou1n"]
+[ext_resource type="Texture2D" uid="uid://bbji2mgv7enya" path="res://assets/environment/textures/sparktexture.png" id="2_18od2"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_u1efy"]
 size = Vector3(100, 20, 1)
@@ -11,12 +12,20 @@ size = Vector2(100, 9)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_18od2"]
 size = Vector2(278, 40)
 
+[sub_resource type="Curve" id="Curve_fr66b"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.52809), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_3asek"]
+colors = PackedColorArray(0.858824, 0.137255, 0.941176, 1, 1, 1, 1, 1)
+
 [node name="Magnet Spikes" type="Area2D"]
 collision_layer = 128
 collision_mask = 2
 script = ExtResource("1_8ou1n")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+visible = false
 modulate = Color(1, 0, 0, 1)
 position = Vector2(0, -5)
 scale = Vector2(1, 0.5)
@@ -33,6 +42,19 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Magnet Pull"]
 position = Vector2(0, -20)
 shape = SubResource("RectangleShape2D_18od2")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, -16)
+amount = 3
+texture = ExtResource("2_18od2")
+lifetime = 0.2
+explosiveness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(40, 1)
+spread = 180.0
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_fr66b")
+color_ramp = SubResource("Gradient_3asek")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="Magnet Pull" to="." method="_on_magnet_pull_body_entered"]
