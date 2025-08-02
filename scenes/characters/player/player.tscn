@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://tiqn0p0soeti"]
+[gd_scene load_steps=98 format=3 uid="uid://tiqn0p0soeti"]
 
 [ext_resource type="Script" uid="uid://dhl5btwca0ik5" path="res://scenes/characters/player/player.gd" id="1_7uws0"]
 [ext_resource type="Texture2D" uid="uid://dicomstca7xmy" path="res://assets/sprites/Player/Fall/Neon/fall (1).png" id="2_kxlma"]
@@ -9,10 +9,15 @@
 [ext_resource type="Texture2D" uid="uid://b7skf26bnoqlf" path="res://assets/sprites/Player/Idle/Neon/idle (3).png" id="7_qe74o"]
 [ext_resource type="Texture2D" uid="uid://b0kyelt0u704w" path="res://assets/sprites/Player/Idle/Neon/idle (4).png" id="8_s4se6"]
 [ext_resource type="Texture2D" uid="uid://d0dbgw0phi7i0" path="res://assets/sprites/Player/Idle/Neon/idle (5).png" id="9_4c5ab"]
+[ext_resource type="Texture2D" uid="uid://4gun222awn34" path="res://assets/sprites/Player/Crouch Idle/crouch idle (1).png" id="10_8clsk"]
 [ext_resource type="Texture2D" uid="uid://rmtrp8lboesx" path="res://assets/sprites/Player/Jump/Neon/jump (1).png" id="10_omk8d"]
+[ext_resource type="Texture2D" uid="uid://c5y0366ychmcr" path="res://assets/sprites/Player/Crouch Idle/crouch idle (2).png" id="11_ba42v"]
 [ext_resource type="Texture2D" uid="uid://h6gaj2jidko7" path="res://assets/sprites/Player/Jump/Neon/jump (2).png" id="11_kghjy"]
 [ext_resource type="Texture2D" uid="uid://dih23q4f846to" path="res://assets/sprites/Player/Jump/Neon/jump (3).png" id="12_72eiu"]
+[ext_resource type="Texture2D" uid="uid://cjd16um2vucgm" path="res://assets/sprites/Player/Crouch Idle/crouch idle (3).png" id="12_em43t"]
+[ext_resource type="Texture2D" uid="uid://b4glpapdsy0nv" path="res://assets/sprites/Player/Crouch Idle/crouch idle (4).png" id="13_fvt27"]
 [ext_resource type="Texture2D" uid="uid://6bl0125670lv" path="res://assets/sprites/Player/Jump/Neon/jump (4).png" id="13_rr0sw"]
+[ext_resource type="Texture2D" uid="uid://d12j18ho2e44c" path="res://assets/sprites/Player/Crouch Idle/crouch idle (5).png" id="14_d4s5w"]
 [ext_resource type="Texture2D" uid="uid://6l482how3a5f" path="res://assets/sprites/Player/Land/Neon/land (1).png" id="14_ejaeo"]
 [ext_resource type="Texture2D" uid="uid://dgbc2w5bbmtq5" path="res://assets/sprites/Player/Land/Neon/land (2).png" id="15_kbkvr"]
 [ext_resource type="Texture2D" uid="uid://cdk0tra7njf12" path="res://assets/sprites/Player/Land/Neon/land (3).png" id="16_ofe5m"]
@@ -32,17 +37,30 @@
 [ext_resource type="Texture2D" uid="uid://b2mt6fmn4yn50" path="res://assets/sprites/Player/Run/Neon/run (13).png" id="30_afvx7"]
 [ext_resource type="Texture2D" uid="uid://fffxb0nbwsy0" path="res://assets/sprites/Player/Run/Neon/run (14).png" id="31_1p0sf"]
 [ext_resource type="Texture2D" uid="uid://cgixpjqeqqdp7" path="res://assets/sprites/Player/Run/Neon/run (15).png" id="32_kl5g2"]
+[ext_resource type="Texture2D" uid="uid://cn5yt3k86hes4" path="res://assets/sprites/Player/Crouch Run/crouch run (1).png" id="33_ejaeo"]
 [ext_resource type="Texture2D" uid="uid://w580jns5ym0j" path="res://assets/sprites/Player/Skid/skid 4.png" id="33_jiuwk"]
 [ext_resource type="Texture2D" uid="uid://di46xbknskjax" path="res://assets/sprites/Player/Skid/skid (1).png" id="34_b5mos"]
+[ext_resource type="Texture2D" uid="uid://ca237tpj73cqp" path="res://assets/sprites/Player/Crouch Run/crouch run (2).png" id="34_kbkvr"]
 [ext_resource type="Texture2D" uid="uid://dhywcw56wvamg" path="res://assets/sprites/Player/Skid/skid (2).png" id="35_dynk0"]
+[ext_resource type="Texture2D" uid="uid://b0lfbxh8wck6x" path="res://assets/sprites/Player/Crouch Run/crouch run (3).png" id="35_ofe5m"]
 [ext_resource type="Texture2D" uid="uid://bcy8nussmgh60" path="res://assets/sprites/Player/Skid/skid (3).png" id="36_4ge1t"]
+[ext_resource type="Texture2D" uid="uid://celeyn5xt7ww4" path="res://assets/sprites/Player/Crouch Run/crouch run (4).png" id="36_qiw4v"]
+[ext_resource type="Texture2D" uid="uid://b84w2rxbryg6u" path="res://assets/sprites/Player/Crouch Run/crouch run (5).png" id="37_35rnk"]
+[ext_resource type="Texture2D" uid="uid://bywhjc7mmqbtx" path="res://assets/sprites/Player/Crouch Run/crouch run (6).png" id="38_8clsk"]
+[ext_resource type="Texture2D" uid="uid://b1ru7lr8c17xc" path="res://assets/sprites/Player/Crouch Run/crouch run (7).png" id="39_ba42v"]
+[ext_resource type="Texture2D" uid="uid://olid07klvic3" path="res://assets/sprites/Player/Crouch Run/crouch run (8).png" id="40_em43t"]
+[ext_resource type="Texture2D" uid="uid://dc82d337ydam1" path="res://assets/sprites/Player/Crouch Run/crouch run (9).png" id="41_fvt27"]
+[ext_resource type="Texture2D" uid="uid://cblb6x8e4ka6d" path="res://assets/sprites/Player/Crouch Run/crouch run (10).png" id="42_d4s5w"]
+[ext_resource type="Texture2D" uid="uid://d3bshpwv6usky" path="res://assets/sprites/Player/Crouch Run/crouch run (11).png" id="43_tsb6l"]
+[ext_resource type="Texture2D" uid="uid://jhxnjuhv1tuh" path="res://assets/sprites/Player/Crouch Run/crouch run (12).png" id="44_1avqj"]
+[ext_resource type="Texture2D" uid="uid://jvk5is8hiw4t" path="res://assets/sprites/Player/particle.png" id="54_ba42v"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_es5sa"]
 radius = 7.5
 height = 32.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pbtrp"]
-radius = 8.0
+radius = 7.5
 height = 22.0
 
 [sub_resource type="Animation" id="Animation_c1dak"]
@@ -100,6 +118,36 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_o4qpa"]
+resource_name = "IdleCrouch"
+length = 0.33334
+loop_mode = 2
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"IdleCrouch"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4]
@@ -220,6 +268,36 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 }
 
+[sub_resource type="Animation" id="Animation_vlnca"]
+resource_name = "RunCrouch"
+length = 0.866673
+loop_mode = 1
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"RunCrouch"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.533333, 0.6, 0.666667, 0.733333, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+}
+
 [sub_resource type="Animation" id="Animation_4fvev"]
 resource_name = "Skid"
 length = 0.80002
@@ -254,10 +332,12 @@ tracks/1/keys = {
 _data = {
 &"Fall": SubResource("Animation_c1dak"),
 &"Idle": SubResource("Animation_jiuwk"),
+&"IdleCrouch": SubResource("Animation_o4qpa"),
 &"Jump": SubResource("Animation_4ge1t"),
 &"Land": SubResource("Animation_rlcpy"),
 &"RESET": SubResource("Animation_b5mos"),
 &"Run": SubResource("Animation_dynk0"),
+&"RunCrouch": SubResource("Animation_vlnca"),
 &"Skid": SubResource("Animation_4fvev")
 }
 
@@ -267,6 +347,9 @@ animation = &"Fall"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_es5sa"]
 animation = &"Idle"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ejaeo"]
+animation = &"IdleCrouch"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kxlma"]
 animation = &"Jump"
 
@@ -275,6 +358,9 @@ animation = &"Land"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sulyr"]
 animation = &"Run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kbkvr"]
+animation = &"RunCrouch"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_71adu"]
 animation = &"Skid"
@@ -332,23 +418,51 @@ advance_condition = &"skidding"
 advance_mode = 2
 advance_condition = &"running"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ofe5m"]
+advance_mode = 2
+advance_condition = &"not crouching"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qiw4v"]
+advance_mode = 2
+advance_condition = &"crouching"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_35rnk"]
+advance_mode = 2
+advance_condition = &"not crouching"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8clsk"]
+advance_mode = 2
+advance_condition = &"crouching"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ba42v"]
+advance_mode = 2
+advance_condition = &"running"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_em43t"]
+advance_mode = 2
+advance_condition = &"idle"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_pbtrp"]
 states/End/position = Vector2(1047.33, 92.6667)
 states/Fall/node = SubResource("AnimationNodeAnimation_pbtrp")
 states/Fall/position = Vector2(463.111, 306.444)
 states/Idle/node = SubResource("AnimationNodeAnimation_es5sa")
 states/Idle/position = Vector2(330.667, -10.2222)
+states/IdleCrouch/node = SubResource("AnimationNodeAnimation_ejaeo")
+states/IdleCrouch/position = Vector2(331.074, -110.444)
 states/Jump/node = SubResource("AnimationNodeAnimation_kxlma")
 states/Jump/position = Vector2(329.63, 167.575)
 states/Land/node = SubResource("AnimationNodeAnimation_ieypo")
 states/Land/position = Vector2(591.111, 168.881)
 states/Run/node = SubResource("AnimationNodeAnimation_sulyr")
 states/Run/position = Vector2(590.667, -11.037)
+states/RunCrouch/node = SubResource("AnimationNodeAnimation_kbkvr")
+states/RunCrouch/position = Vector2(592.185, -110)
 states/Skid/node = SubResource("AnimationNodeAnimation_71adu")
 states/Skid/position = Vector2(776.333, -11.3745)
 states/Start/position = Vector2(132.667, -9.50618)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_71adu"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_xm30n"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_qe74o"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_s4se6"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_4c5ab"), "Fall", "Land", SubResource("AnimationNodeStateMachineTransition_omk8d"), "Land", "Idle", SubResource("AnimationNodeStateMachineTransition_kghjy"), "Land", "Run", SubResource("AnimationNodeStateMachineTransition_72eiu"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_pbtrp"), "Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_es5sa"), "Run", "Fall", SubResource("AnimationNodeStateMachineTransition_kxlma"), "Run", "Skid", SubResource("AnimationNodeStateMachineTransition_rr0sw"), "Skid", "Run", SubResource("AnimationNodeStateMachineTransition_ejaeo")]
-graph_offset = Vector2(13, -74)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_71adu"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_xm30n"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_qe74o"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_s4se6"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_4c5ab"), "Fall", "Land", SubResource("AnimationNodeStateMachineTransition_omk8d"), "Land", "Idle", SubResource("AnimationNodeStateMachineTransition_kghjy"), "Land", "Run", SubResource("AnimationNodeStateMachineTransition_72eiu"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_pbtrp"), "Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_es5sa"), "Run", "Fall", SubResource("AnimationNodeStateMachineTransition_kxlma"), "Run", "Skid", SubResource("AnimationNodeStateMachineTransition_rr0sw"), "Skid", "Run", SubResource("AnimationNodeStateMachineTransition_ejaeo"), "IdleCrouch", "Idle", SubResource("AnimationNodeStateMachineTransition_ofe5m"), "Idle", "IdleCrouch", SubResource("AnimationNodeStateMachineTransition_qiw4v"), "RunCrouch", "Run", SubResource("AnimationNodeStateMachineTransition_35rnk"), "Run", "RunCrouch", SubResource("AnimationNodeStateMachineTransition_8clsk"), "IdleCrouch", "RunCrouch", SubResource("AnimationNodeStateMachineTransition_ba42v"), "RunCrouch", "IdleCrouch", SubResource("AnimationNodeStateMachineTransition_em43t")]
+graph_offset = Vector2(-111, -227)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kbkvr"]
 animations = [{
@@ -384,6 +498,26 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_8clsk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ba42v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_em43t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_fvt27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_d4s5w")
+}],
+"loop": true,
+"name": &"IdleCrouch",
 "speed": 5.0
 }, {
 "frames": [{
@@ -472,6 +606,50 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("33_ejaeo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_kbkvr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_ofe5m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_qiw4v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_35rnk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_8clsk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_ba42v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_em43t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_fvt27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_d4s5w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_tsb6l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_1avqj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_1avqj")
+}],
+"loop": true,
+"name": &"RunCrouch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("33_jiuwk")
 }, {
 "duration": 1.0,
@@ -491,6 +669,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kxlma"]
 size = Vector2(13.5, 7)
 
+[sub_resource type="Gradient" id="Gradient_em43t"]
+offsets = PackedFloat32Array(0, 0.251634, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
 collision_mask = 925
@@ -498,11 +680,11 @@ script = ExtResource("1_7uws0")
 gravity_force = 1000.0
 
 [node name="Regular Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -17)
+position = Vector2(0, -17)
 shape = SubResource("CapsuleShape2D_es5sa")
 
 [node name="Croutch Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, -17)
+position = Vector2(0, -12)
 shape = SubResource("CapsuleShape2D_pbtrp")
 disabled = true
 
@@ -527,10 +709,12 @@ unique_name_in_owner = true
 root_node = NodePath("%AnimationTree/..")
 tree_root = SubResource("AnimationNodeStateMachine_pbtrp")
 anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/crouching = false
 parameters/conditions/falling = false
 parameters/conditions/idle = false
 parameters/conditions/jumping = false
 parameters/conditions/landed = false
+"parameters/conditions/not crouching" = false
 parameters/conditions/running = false
 parameters/conditions/skidding = false
 
@@ -562,6 +746,25 @@ bus = &"sfx"
 
 [node name="TapeActionTimer" type="Timer" parent="."]
 unique_name_in_owner = true
+
+[node name="TapeParticles" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -16)
+emitting = false
+amount = 30
+texture = ExtResource("54_ba42v")
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(20, 20)
+gravity = Vector2(0, 0)
+angle_min = -30.0
+angle_max = 30.0
+scale_amount_min = 0.25
+scale_amount_max = 0.5
+color_ramp = SubResource("Gradient_em43t")
 
 [connection signal="timeout" from="Jump Timer" to="." method="_on_jump_timer_timeout"]
 [connection signal="timeout" from="TapeActionTimer" to="." method="_on_tape_action_timer_timeout"]

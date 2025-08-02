@@ -10,6 +10,14 @@ const AUDIO_BUS_LAYOUT := preload("res://resources/audio/audio_bus_layout.tres")
 
 @export var glitch: AudioStream
 @export var tape:AudioStream
+@export var death:AudioStream
+@export var land:AudioStream
+@export var jump:AudioStream
+
+#looping sfx
+
+@export var magnetic_field:AudioStream
+@export var rail_grind_loop : AudioStream
 
 func _ready() -> void:
 	Global.tape_changed.connect(_on_tape_changed)

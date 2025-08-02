@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
-@onready var main = get_node("/root/Main")
+@onready var main = get_node("/root/").get_child(6)
 
 var jump_fx = preload("res://assets/sprites/FX/jumpfx.tscn");
 @export var jump_fx_position = Vector2(0.0, -50.0);
@@ -30,6 +30,10 @@ var can_jump := false
 
 var can_use_tape_action = true
 @onready var tape_action_timer = %TapeActionTimer
+
+var no_control_target : float
+
+@onready var tape_particple := %TapeParticles
 
 @onready var collision_check = $CollisionCheck
 
@@ -67,7 +71,10 @@ func _physics_process(delta: float) -> void:
 	else: handle_upsidedown_animations()
 	handle_sfx()
 	
-	if dead or !Global.player_controllable:
+	if dead:
+		return
+	if !Global.player_controllable:
+		global_position.x = move_toward(global_position.x, no_control_target, 500 * delta)
 		return
 	
 	if is_on_wall():
@@ -368,10 +375,22 @@ func handle_animations():
 		anim_tree["parameters/conditions/idle"] = true
 		anim_tree["parameters/conditions/running"] = false
 		anim_tree["parameters/conditions/skidding"] = false
+		if Input.is_action_pressed("crouch"):
+			anim_tree["parameters/conditions/crouching"] = true
+			anim_tree["parameters/conditions/not crouching"] = false
+		else:
+			anim_tree["parameters/conditions/not crouching"] = true
+			anim_tree["parameters/conditions/crouching"] = false
 	if velocity.x != 0.0:
 		anim_tree["parameters/conditions/idle"] = false
 		anim_tree["parameters/conditions/running"] = true
 		anim_tree["parameters/conditions/skidding"] = false
+		if Input.is_action_pressed("crouch"):
+			anim_tree["parameters/conditions/crouching"] = true
+			anim_tree["parameters/conditions/not crouching"] = false
+		else:
+			anim_tree["parameters/conditions/not crouching"] = true
+			anim_tree["parameters/conditions/crouching"] = false
 	if (player_movement_direction < 0.0 and velocity.x > 0.0) or (player_movement_direction > 0.0 and velocity.x < 0.0):
 		anim_tree["parameters/conditions/idle"] = false
 		anim_tree["parameters/conditions/running"] = false

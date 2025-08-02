@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjoerv8rmd2q2"]
+[gd_scene load_steps=4 format=3 uid="uid://p73wc03e4d5y"]
 
 [ext_resource type="Script" path="res://scenes/world/Interactables/level_finish.gd" id="1_1wjnh"]
 

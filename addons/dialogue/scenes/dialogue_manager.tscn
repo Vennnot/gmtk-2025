@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bmeiv1c8q5tey"]
 
 [ext_resource type="Script" uid="uid://bua1yivsbr1yu" path="res://addons/dialogue/scripts/dialogue_manager.gd" id="1_wph7u"]
-[ext_resource type="Texture2D" uid="uid://vuovygtpdslb" path="res://icon.svg" id="2_t1g4f"]
+[ext_resource type="Texture2D" uid="uid://ca4xs7ulnhqg5" path="res://icon.svg" id="2_t1g4f"]
 [ext_resource type="PackedScene" uid="uid://bw6meo84a6fwd" path="res://addons/dialogue/scenes/button.tscn" id="2_x5iar"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ippp5"]
@@ -59,14 +59,14 @@ alignment = 1
 
 [node name="Label" type="Label" parent="Subtitle/HBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 50
 text = "Character:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="Subtitle/HBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 50
 text = "How are you?"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -115,7 +115,7 @@ text = "Character"
 [node name="Label2" type="Label" parent="TextBox/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_ippp5")
 text = "How are you?"
 autowrap_mode = 3
