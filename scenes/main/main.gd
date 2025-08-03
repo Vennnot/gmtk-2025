@@ -121,6 +121,7 @@ func _on_collectable(type:String):
 
 func _physics_process(delta: float) -> void:
 	if player.dead:
+		_set_camera_offset()
 		_set_camera_dead_offset()
 	else:
 		_set_camera_offset()
