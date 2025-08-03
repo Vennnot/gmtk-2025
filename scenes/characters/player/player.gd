@@ -95,7 +95,10 @@ func _physics_process(delta: float) -> void:
 	if Global.player_upside_down: 
 		upsidedown_control_movement(delta) 
 		#print("C")
-
+	
+	if global_position.y > 100:
+		EventBus.player_died.emit()
+	
 	move_and_slide()
 
 func control_movement(_delta):
@@ -228,7 +231,7 @@ func move_along_railing(delta):
 	railing_progress += progress_increment
 	
 	# Check bounds and reset if needed
-	if railing_progress >= 0.99 or railing_progress <= 0.05:
+	if railing_progress >= 0.99 or railing_progress <= 0.01:
 		reset_railing()
 		return
 	
