@@ -43,6 +43,7 @@ func _ready() -> void:
 	EventBus.collectable_collected.connect(_on_collectable)
 	EventBus.dialogue_ended.connect(_on_dialogue_ended)
 	EventBus.reached_level_finish.connect(_reached_finish_line)
+	EventBus.player_died.connect(game_over)
 	player.global_position = player_spawn_position.global_position
 	if dialogue_manager:
 		Engine.time_scale = 0
@@ -88,12 +89,13 @@ func game_over():
 	AudioManager.play(AudioManager.glitch)
 	glitch_effect.show()
 	game_timer.stop()
-	AudioManager.fade_out_all_tracks()
 	player.dead = true
 	var tween := create_tween()
 	tween.tween_property(player,^"global_position",player_spawn_position.global_position,death_duration)
 	await tween.finished
-	get_tree().reload_current_scene()
+	player.dead = false
+	game_timer.start()
+	glitch_effect.hide()
 
 
 func _on_game_timer_timeout():
