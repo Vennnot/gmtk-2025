@@ -86,6 +86,8 @@ func restart_game():
 	Engine.time_scale = 1
 	player.dead = false
 	game_timer.wait_time = base_game_time
+	AudioManager.insta_fade_out()
+	AudioManager.switch_to_track(Global.current_tape_index)
 	game_timer.start()
 
 
