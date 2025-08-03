@@ -322,22 +322,23 @@ vertical_alignment = 1
 
 [node name="JumpIcon" type="Sprite2D" parent="UI/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-position = Vector2(255, 194)
+position = Vector2(255, 94)
 texture = ExtResource("3_d75b2")
 
 [node name="SpeedIcon" type="Sprite2D" parent="UI/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 visible = false
-position = Vector2(258, 193)
+position = Vector2(258, 94)
 texture = ExtResource("4_snswl")
 
 [node name="InfinityLoop" parent="UI" instance=ExtResource("5_vyr3h")]
 unique_name_in_owner = true
+visible = false
 position = Vector2(126, 73)
 
 [node name="Cassette UI" parent="UI" instance=ExtResource("6_hph83")]
 unique_name_in_owner = true
-position = Vector2(123, 184)
+position = Vector2(123, 84)
 scale = Vector2(10, 10)
 
 [node name="GlitchEffect" type="ColorRect" parent="UI"]
