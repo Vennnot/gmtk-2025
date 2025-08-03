@@ -19,7 +19,7 @@ extends Node
 @export var camera_min_zoom : float = 2.5
 
 @export var death_duration : float = 3
-@export var camera_death_zoom : float = 6
+@export var camera_death_zoom : float = 4
 
 @onready var game_settings: GameSettingsUI = %GameSettings
 @onready var game_timer: Timer = %GameTimer
@@ -85,6 +85,9 @@ func restart_game():
 
 
 func game_over():
+	if glitch_effect.visible:
+		return
+	
 	AudioManager.play(AudioManager.death)
 	AudioManager.play(AudioManager.glitch)
 	glitch_effect.show()
@@ -93,6 +96,7 @@ func game_over():
 	var tween := create_tween()
 	tween.tween_property(player,^"global_position",player_spawn_position.global_position,death_duration)
 	await tween.finished
+	player.velocity = Vector2.ZERO
 	player.dead = false
 	game_timer.start()
 	glitch_effect.hide()
@@ -203,6 +207,7 @@ func _apply_tape_power():
 			$UI/MarginContainer/VBoxContainer/JumpIcon.visible = true
 
 func level_cleared():
+	AudioManager.fade_out_all_tracks()
 	await fade_black(false)
 	Engine.time_scale = 0
 	dialogue_manager.name_ = end_dialog_char_1

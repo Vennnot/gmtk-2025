@@ -24,6 +24,7 @@ var is_on_rail := false :
 			rail_grind.volume_db = -80
 
 func _ready() -> void:
+	fade_out_all_tracks()
 	Global.tape_changed.connect(_on_tape_changed)
 
 
@@ -46,14 +47,14 @@ func play(sound: AudioStream, parent:Node=self,sound_bus: String="sfx"):
 
 
 func fade_in(music:AudioStreamPlayer,duration: float = 0.25):
-	music.volume_db = -30
+	music.volume_db = -40
 	var tween = create_tween()
 	tween.tween_property(music, "volume_db", 0, duration)
 
 
 func fade_out(music:AudioStreamPlayer,duration: float = 0.25):
 	var tween = create_tween()
-	tween.tween_property(music, "volume_db", -30, duration)
+	tween.tween_property(music, "volume_db", -60, duration)
 	await tween.finished
 
 

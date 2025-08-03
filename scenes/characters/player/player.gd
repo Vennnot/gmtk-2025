@@ -35,6 +35,7 @@ var no_control_target : float
 
 var player_movement_direction := 0.0
 var player_facing_direction := 1.0
+@onready var collision_shape_2d: CollisionShape2D = %CollisionShape2D
 
 @onready var anim_tree := %AnimationTree
 @onready var anim_player := %AnimationPlayer
@@ -57,11 +58,16 @@ var railing_momentum := 0.0
 var railing_direction := 1.0
 
 func _ready() -> void:
+	Global.tape_changed.connect(_on_tape_changed)
 	railing_area.area_entered.connect(_on_area_entered)
 	coyote_timer.wait_time = coyote_time
 	tape_switch_timer.wait_time = tape_switch_cooldown
 	reset_max_velocity()
-	
+
+
+func _on_tape_changed():
+	reset_railing()
+
 
 
 func use_jump_powerup():
@@ -96,8 +102,13 @@ func _physics_process(delta: float) -> void:
 		upsidedown_control_movement(delta) 
 		#print("C")
 	
-	if global_position.y > 100:
+	if global_position.y > 1000:
 		EventBus.player_died.emit()
+	
+	if velocity.x > 500:
+		collision_shape_2d.scale = Vector2.ONE *2
+	else:
+		collision_shape_2d.scale = Vector2.ONE
 	
 	move_and_slide()
 
