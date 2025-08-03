@@ -488,15 +488,16 @@ position = Vector2(28, 2)
 [node name="Parallaxbackground" parent="World" instance=ExtResource("21_uq63i")]
 z_index = -5
 
-[node name="PlayerSpawnPosition" type="Marker2D" parent="World"]
-unique_name_in_owner = true
-
-[node name="StaticBody2D" type="StaticBody2D" parent="World/PlayerSpawnPosition"]
+[node name="StaticBody2D" type="StaticBody2D" parent="World"]
 position = Vector2(-212, -11)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/PlayerSpawnPosition/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/StaticBody2D"]
 position = Vector2(-51.5, 90)
 shape = SubResource("RectangleShape2D_ll01n")
+
+[node name="PlayerSpawnPosition" type="Marker2D" parent="World"]
+unique_name_in_owner = true
+position = Vector2(0, 147)
 
 [node name="FinishLineSmoke" parent="World" instance=ExtResource("22_4b1m2")]
 position = Vector2(10624, 162)
