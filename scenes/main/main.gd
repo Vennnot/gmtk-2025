@@ -1,6 +1,6 @@
 class_name Main
 extends Node
-
+const END = preload("res://end.tscn")
 @export var NEXT_SCENE : PackedScene
 @export var dialogue_manager : Node
 @export var end_dialog_char_1 : String
@@ -14,12 +14,12 @@ extends Node
 
 @export var base_game_time : float = 45
 @export var camera_distance_offset : float = 350
-@export var camera_speed_offset : float = 0.1
+@export var camera_speed_offset : float = 0.3
 @export var camera_max_zoom : float = 4
 @export var camera_min_zoom : float = 2.5
 
-@export var death_duration : float = 3
-@export var camera_death_zoom : float = 4
+@export var death_duration : float = 2
+@export var camera_death_zoom : float = 6
 
 @onready var game_settings: GameSettingsUI = %GameSettings
 @onready var game_timer: Timer = %GameTimer
@@ -39,7 +39,7 @@ extends Node
 func _ready() -> void:
 	jump_icon.modulate = Color("d622ff")
 	speed_icon.modulate = Color("72f1b9")
-	Global.next_tape()
+	AudioManager.insta_fade_out()
 	black_color.show()
 	game_settings.exit_pressed.connect(toggle_pause)
 	game_timer.timeout.connect(_on_game_timer_timeout)
@@ -60,14 +60,15 @@ func _ready() -> void:
 		dialogue_manager.add_child(end_d)
 		
 		dialogue_manager.start("start_dialogue")
+		AudioManager.play(AudioManager.dialogue_start)
 	else:
 		await fade_black(true)
 		restart_game()
-	
 
 func _on_dialogue_ended():
 	if finish_line:
 		Engine.time_scale = 1
+		Global.next_tape()
 		await fade_black(true)
 		restart_game()
 	else:
@@ -121,9 +122,10 @@ func _on_collectable(type:String):
 func _physics_process(delta: float) -> void:
 	if player.dead:
 		_set_camera_dead_offset()
-		return
+	else:
+		_set_camera_offset()
 	time_label.text = format_time()
-	_set_camera_offset()
+	
 
 func _reached_finish_line():
 	if finish_line:
@@ -209,13 +211,27 @@ func _apply_tape_power():
 
 func level_cleared():
 	await fade_black(false)
+	AudioManager.insta_fade_out()
 	Engine.time_scale = 0
+	player.velocity  = Vector2.ZERO
 	dialogue_manager.name_ = end_dialog_char_1
 	dialogue_manager.name_color_ = end_dialog_char_1_color
 	dialogue_manager.avatar_ = end_dialogue_char_1_image
 	dialogue_manager.avatar__ = end_dialogue_jeanie_image
 	dialogue_manager.start("end_dialogue")
+	AudioManager.play(AudioManager.dialogue_end)
 
 
 func next_scene():
+	Engine.time_scale = 1
+	if NEXT_SCENE == load("res://scenes/levels/credits.tscn"):
+		AudioManager.play(AudioManager.win)
+		show_end_screen()
+	else:
+		SceneChanger.change_scene(NEXT_SCENE)
+
+func show_end_screen():
+	var end_screen := END.instantiate()
+	$UI.add_child(end_screen)
+	await get_tree().create_timer(7).timeout
 	SceneChanger.change_scene(NEXT_SCENE)

@@ -1,0 +1,130 @@
+[gd_scene load_steps=5 format=3 uid="uid://ct13vnud8c01s"]
+
+[ext_resource type="Script" uid="uid://dwb5tjbkcbefg" path="res://scenes/levels/credits.gd" id="1_m0gy5"]
+[ext_resource type="Texture2D" uid="uid://bbxdj5gsmkcim" path="res://assets/Credits.png" id="2_mpx5v"]
+[ext_resource type="Theme" uid="uid://bj3fqkkcuexvw" path="res://resources/theme.tres" id="3_4c5nq"]
+[ext_resource type="PackedScene" uid="uid://tiqn0p0soeti" path="res://scenes/characters/player/player.tscn" id="4_x5bms"]
+
+[node name="CreditsScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m0gy5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(954, 535)
+scale = Vector2(2.1, 2.1)
+texture = ExtResource("2_mpx5v")
+
+[node name="CreditsButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -124.0
+offset_top = -190.0
+offset_right = 144.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_4c5nq")
+theme_override_font_sizes/font_size = 128
+text = "menu"
+
+[node name="Player" parent="." instance=ExtResource("4_x5bms")]
+visible = false
+z_index = 5
+position = Vector2(165, -350)
+scale = Vector2(4, 4)
+
+[node name="PlayerSpawnPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -602.0
+offset_top = -263.0
+offset_right = 602.0
+offset_bottom = 263.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
+modulate = Color(0.839216, 0.133333, 1, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "Brandon"
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer"]
+modulate = Color(0.447059, 0.945098, 0.72549, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "Vennnot"
+
+[node name="Label3" type="Label" parent="HBoxContainer/VBoxContainer"]
+modulate = Color(0.839216, 0.133333, 1, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "ILikeStuff"
+
+[node name="Label4" type="Label" parent="HBoxContainer/VBoxContainer"]
+modulate = Color(0.447059, 0.945098, 0.72549, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "Duck Tran"
+
+[node name="Label5" type="Label" parent="HBoxContainer/VBoxContainer"]
+modulate = Color(0.839216, 0.133333, 1, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "ItsAllure"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2"]
+modulate = Color(0.839216, 0.133333, 1, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "Art & Game Design"
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer2"]
+modulate = Color(0.447059, 0.945098, 0.72549, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "Programming"
+
+[node name="Label3" type="Label" parent="HBoxContainer/VBoxContainer2"]
+modulate = Color(0.839216, 0.133333, 1, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "Programming"
+
+[node name="Label4" type="Label" parent="HBoxContainer/VBoxContainer2"]
+modulate = Color(0.447059, 0.945098, 0.72549, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "Art"
+
+[node name="Label5" type="Label" parent="HBoxContainer/VBoxContainer2"]
+modulate = Color(0.839216, 0.133333, 1, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "Sound Design"

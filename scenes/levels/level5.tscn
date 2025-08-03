@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_po1mw"]
 [ext_resource type="PackedScene" uid="uid://cygyj2gepkgaj" path="res://scenes/UI/settings/game_settings.tscn" id="2_ngf84"]
-[ext_resource type="PackedScene" uid="uid://ct13vnud8c01s" path="res://scenes/levels/end_card.tscn" id="2_pxqp1"]
+[ext_resource type="PackedScene" uid="uid://ct13vnud8c01s" path="res://scenes/levels/credits.tscn" id="2_pxqp1"]
 [ext_resource type="Texture2D" uid="uid://cyhhecr3unpv0" path="res://assets/environment/icons/JumpIcon.png" id="3_d75b2"]
 [ext_resource type="Texture2D" uid="uid://b7hqfwxk3p8hp" path="res://assets/sprites/Portrait/Boss/boss_neutral.png" id="3_idwux"]
 [ext_resource type="Texture2D" uid="uid://c0v0i77ukb8x4" path="res://assets/sprites/Portrait/Jeanie/Jeanie.png" id="4_nhdg1"]

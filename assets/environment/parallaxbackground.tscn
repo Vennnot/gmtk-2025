@@ -1,28 +1,28 @@
 [gd_scene load_steps=10 format=3 uid="uid://dx8l3luoxod0x"]
 
-[ext_resource type="Texture2D" uid="uid://dqsqno1pwe2bg" path="res://assets/environment/pngs/mg-Sheet_1.png" id="1_3aq6j"]
-[ext_resource type="Texture2D" uid="uid://1dmfxo7gegad" path="res://assets/environment/pngs/bg-composite.png" id="2_2j340"]
-[ext_resource type="Texture2D" uid="uid://dq2n0jvnd1rkq" path="res://assets/environment/pngs/mg-Sheet_3.png" id="2_bnnvf"]
-[ext_resource type="Texture2D" uid="uid://bb273hsvhtp7m" path="res://assets/environment/pngs/mg-Sheet_4.png" id="3_td7ke"]
-[ext_resource type="Texture2D" uid="uid://yu4c0doo5aqf" path="res://assets/environment/pngs/deepbg1.png" id="3_udhbf"]
-[ext_resource type="Texture2D" uid="uid://dw38dc0sa6tmc" path="res://assets/environment/pngs/mg-Sheet_2.png" id="4_ou0ic"]
+[ext_resource type="Texture2D" uid="uid://b0w8xs82noy88" path="res://assets/environment/new_background/mg-Sheet_1.png" id="1_iqh60"]
+[ext_resource type="Texture2D" uid="uid://cqi5q11y0rtjr" path="res://assets/environment/new_background/mg-Sheet_2.png" id="2_ukdlp"]
+[ext_resource type="Texture2D" uid="uid://cwi7c0deqronu" path="res://assets/environment/new_background/mg-Sheet_3.png" id="3_igw3a"]
+[ext_resource type="Texture2D" uid="uid://cn07ofyaa6c3s" path="res://assets/environment/new_background/mg-Sheet_4.png" id="4_scjmn"]
 [ext_resource type="Texture2D" uid="uid://b2y2esd3w1q3f" path="res://assets/environment/pngs/Clouds.png" id="4_ycpwa"]
-[ext_resource type="Texture2D" uid="uid://7gxw1dk7abqg" path="res://assets/environment/pngs/Sky.png" id="5_udhbf"]
+[ext_resource type="Texture2D" uid="uid://ddeq1ewxush70" path="res://assets/environment/new_background/bg-composite.png" id="5_4vgwg"]
+[ext_resource type="Texture2D" uid="uid://dtt4wkivlgefo" path="res://assets/environment/new_background/bg-deep.png" id="6_6l8n5"]
+[ext_resource type="Texture2D" uid="uid://c6uk643y0i8gy" path="res://assets/environment/new_background/sky.png" id="8_iqh60"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ycpwa"]
 animations = [{
 "frames": [{
-"duration": 10.0,
-"texture": ExtResource("1_3aq6j")
+"duration": 1.0,
+"texture": ExtResource("1_iqh60")
 }, {
-"duration": 10.0,
-"texture": ExtResource("2_bnnvf")
+"duration": 1.0,
+"texture": ExtResource("2_ukdlp")
 }, {
-"duration": 10.0,
-"texture": ExtResource("3_td7ke")
+"duration": 1.0,
+"texture": ExtResource("3_igw3a")
 }, {
-"duration": 10.0,
-"texture": ExtResource("4_ou0ic")
+"duration": 1.0,
+"texture": ExtResource("4_scjmn")
 }],
 "loop": true,
 "name": &"midground",
@@ -45,25 +45,26 @@ autoplay = "midground"
 frame_progress = 0.869257
 
 [node name="Background" type="Parallax2D" parent="."]
-z_index = 1
 scroll_scale = Vector2(0.5, 1)
 repeat_size = Vector2(960, 0)
 repeat_times = 6
 
 [node name="Sprite2D" type="Sprite2D" parent="Background"]
 position = Vector2(479, 91)
-texture = ExtResource("2_2j340")
+texture = ExtResource("5_4vgwg")
 
 [node name="DeepBackground" type="Parallax2D" parent="."]
+z_index = 1
 scroll_scale = Vector2(0.2, 1)
 repeat_size = Vector2(320, 0)
 repeat_times = 9
 
 [node name="Sprite2D" type="Sprite2D" parent="DeepBackground"]
 position = Vector2(160, 90)
-texture = ExtResource("3_udhbf")
+texture = ExtResource("6_6l8n5")
 
 [node name="Clouds" type="Parallax2D" parent="."]
+z_index = -1
 scroll_scale = Vector2(0.1, 1)
 repeat_size = Vector2(960, 0)
 repeat_times = 6
@@ -74,6 +75,7 @@ position = Vector2(481, -89)
 texture = ExtResource("4_ycpwa")
 
 [node name="Skybox" type="Parallax2D" parent="."]
+z_index = -2
 scroll_scale = Vector2(0.05, 1)
 scroll_offset = Vector2(0, -84)
 repeat_size = Vector2(320, 0)
@@ -82,4 +84,4 @@ repeat_times = 16
 [node name="Sprite2D" type="Sprite2D" parent="Skybox"]
 modulate = Color(1, 1, 1, 0.490196)
 position = Vector2(162, -90)
-texture = ExtResource("5_udhbf")
+texture = ExtResource("8_iqh60")

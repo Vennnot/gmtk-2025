@@ -9,6 +9,7 @@ extends Control
 @onready var game_settings: GameSettingsUI = %GameSettings
 
 func _ready() -> void:
+	AudioManager.fade_out_all_tracks()
 	Global.next_tape()
 	game_settings.exit_pressed.connect(_close_settings)
 	play_button.pressed.connect(_on_play_button_pressed)
@@ -28,9 +29,9 @@ func _on_settings_button_pressed():
 
 
 func _on_credits_button_pressed():
-	pass
+	SceneChanger.change_scene(CREDITS)
 
-
+const CREDITS = preload("res://scenes/levels/credits.tscn")
 
 func _on_exit_button_pressed():
 	get_tree().quit()

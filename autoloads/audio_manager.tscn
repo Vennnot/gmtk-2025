@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dwosq7w7qg1ok"]
+[gd_scene load_steps=17 format=3 uid="uid://dwosq7w7qg1ok"]
 
 [ext_resource type="Script" uid="uid://cgji4lf1ujfn" path="res://autoloads/audio_manager.gd" id="1_tr7pb"]
 [ext_resource type="AudioStream" uid="uid://cb6aethmpdsr2" path="res://assets/sfx/rewind + button fx.ogg" id="2_a4ose"]
@@ -11,8 +11,11 @@
 [ext_resource type="AudioStream" uid="uid://bkuq7o4w65h7h" path="res://assets/sfx/rail grind loop fx.ogg" id="8_8w84n"]
 [ext_resource type="AudioStream" uid="uid://ddcjm4hwbd8to" path="res://assets/audio_tracks/digi2.ogg" id="8_jwsh5"]
 [ext_resource type="AudioStream" uid="uid://bptj0nb15oljm" path="res://assets/audio_tracks/digi sting.ogg" id="8_thxvw"]
+[ext_resource type="AudioStream" uid="uid://bbvm1h1vuae2e" path="res://assets/sfx/newer_sfx/dialogue ditty 1.ogg" id="9_8w84n"]
+[ext_resource type="AudioStream" uid="uid://bnf3846h6nriy" path="res://assets/sfx/newer_sfx/dialogue ditty 3.ogg" id="10_3jomf"]
 [ext_resource type="AudioStream" uid="uid://clpop28n60q1k" path="res://assets/audio_tracks/wind loop fx.ogg" id="10_tp26y"]
 [ext_resource type="AudioStream" uid="uid://bf5f6tbb6f5ot" path="res://assets/audio_tracks/skate loop fx.ogg" id="11_0hj8x"]
+[ext_resource type="AudioStream" uid="uid://brwviio26dll7" path="res://assets/sfx/newer_sfx/you win.ogg" id="11_d4kwn"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_tr7pb")
@@ -23,6 +26,9 @@ land = ExtResource("5_f21h8")
 jump = ExtResource("6_thxvw")
 stinger_default = ExtResource("7_f21h8")
 stinger_digi = ExtResource("8_thxvw")
+dialogue_start = ExtResource("9_8w84n")
+dialogue_end = ExtResource("10_3jomf")
+win = ExtResource("11_d4kwn")
 
 [node name="DefaultMusic" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
@@ -37,9 +43,6 @@ stream = ExtResource("8_jwsh5")
 volume_db = -60.0
 autoplay = true
 bus = &"music"
-
-[node name="Ambience" type="AudioStreamPlayer" parent="."]
-unique_name_in_owner = true
 
 [node name="RailGrind" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

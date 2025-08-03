@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bbvm1h1vuae2e"
+path="res://.godot/imported/dialogue ditty 1.ogg-0e23d7f3cb6ed8482362b45ed96d3944.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sfx/newer_sfx/dialogue ditty 1.ogg"
+dest_files=["res://.godot/imported/dialogue ditty 1.ogg-0e23d7f3cb6ed8482362b45ed96d3944.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

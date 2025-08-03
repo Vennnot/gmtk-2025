@@ -4,7 +4,6 @@ const AUDIO_BUS_LAYOUT := preload("res://resources/audio/audio_bus_layout.tres")
 
 @onready var default_music: AudioStreamPlayer = %DefaultMusic
 @onready var digi_music: AudioStreamPlayer = %DigiMusic
-@onready var ambience: AudioStreamPlayer = %Ambience
 @onready var rail_grind: AudioStreamPlayer = %RailGrind
 @onready var wind: AudioStreamPlayer = %Wind
 @onready var skate: AudioStreamPlayer = %Skate
@@ -19,6 +18,10 @@ const AUDIO_BUS_LAYOUT := preload("res://resources/audio/audio_bus_layout.tres")
 
 @export var stinger_default:AudioStream
 @export var stinger_digi:AudioStream
+
+@export var dialogue_start:AudioStream
+@export var dialogue_end:AudioStream
+@export var win:AudioStream
 
 var player_velocity : Vector2
 
@@ -76,15 +79,10 @@ func play(sound: AudioStream, parent:Node=self,sound_bus: String="sfx"):
 		audio_player.pitch_scale += randf_range(-0.05, 0.05)
 		await audio_player.finished
 		audio_player.queue_free()
-	#elif sound_bus == "music":
-		#music.stream = sound
-		#fade_in()
-	elif sound_bus == "ambience":
-		ambience.stream = sound
 
 
 func fade_in(music:AudioStreamPlayer,duration: float = 0.25):
-	music.volume_db = -40
+	music.volume_db = -60
 	var tween = create_tween()
 	tween.tween_property(music, "volume_db", 0, duration)
 
@@ -117,3 +115,8 @@ func fade_out_all_tracks():
 	var tracks := [default_music, digi_music]
 	for i in range(tracks.size()):
 		fade_out(tracks[i])
+
+
+func insta_fade_out():
+	default_music.volume_db = -80
+	digi_music.volume_db = -80
