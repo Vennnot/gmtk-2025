@@ -268,6 +268,8 @@ end_dialogue_jeanie_image = ExtResource("4_2c5pw")
 start_dialogue = ExtResource("5_7cvth")
 end_dialogue = ExtResource("6_jxa0w")
 finish_line = NodePath("World/FinishLineSmoke")
+death_duration = 1.0
+camera_death_zoom = 2.0
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 
