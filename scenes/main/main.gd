@@ -95,6 +95,8 @@ func game_over():
 	
 	AudioManager.play(AudioManager.death)
 	AudioManager.play(AudioManager.glitch)
+	AudioManager.insta_fade_out()
+	AudioManager.switch_to_track(Global.current_tape_index)
 	glitch_effect.show()
 	game_timer.stop()
 	player.dead = true
