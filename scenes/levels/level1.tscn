@@ -442,7 +442,8 @@ position = Vector2(2750, 268)
 scale = Vector2(0.915881, 1.88505)
 
 [node name="MagnetSpikes3" parent="World/Environment/Interactables" instance=ExtResource("16_agrr7")]
-position = Vector2(4044, 264)
+position = Vector2(4093, 264)
+scale = Vector2(1.88, 1)
 
 [node name="MagnetSpikes4" parent="World/Environment/Interactables" instance=ExtResource("16_agrr7")]
 position = Vector2(6267, 261)
@@ -454,10 +455,6 @@ scale = Vector2(3.56911, 0.584903)
 
 [node name="MagnetSpikes7" parent="World/Environment/Interactables" instance=ExtResource("16_agrr7")]
 position = Vector2(8797, 166)
-scale = Vector2(0.88509, 0.584903)
-
-[node name="MagnetSpikes8" parent="World/Environment/Interactables" instance=ExtResource("16_agrr7")]
-position = Vector2(9197, 166)
 scale = Vector2(0.88509, 0.584903)
 
 [node name="Loop" parent="World/Environment" instance=ExtResource("17_b2isc")]
