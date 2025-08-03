@@ -12,7 +12,7 @@ extends Node
 @export var finish_line : Node2D
 @onready var ui: CanvasLayer = $UI
 
-@export var base_game_time : float = 60
+@export var base_game_time : float = 45
 @export var camera_distance_offset : float = 350
 @export var camera_speed_offset : float = 0.1
 @export var camera_max_zoom : float = 4
@@ -172,13 +172,10 @@ func _input(_event: InputEvent) -> void:
 		return
 	
 	if Input.is_action_just_pressed(&"switch_tape") and player.can_switch_tape:
-		#if infinity_loop.sprite_in_middle:
 		player.tape_switch_timer.start()
 		player.can_switch_tape = false
 		AudioManager.play(AudioManager.tape)
 		ui_animator.play(&"ripple")
-		#slow_down_and_restore()
-		infinity_loop.sprite_in_middle = false
 		Global.next_tape()
 
 

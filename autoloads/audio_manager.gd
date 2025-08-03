@@ -4,16 +4,20 @@ const AUDIO_BUS_LAYOUT := preload("res://resources/audio/audio_bus_layout.tres")
 
 @onready var default_music: AudioStreamPlayer = %DefaultMusic
 @onready var digi_music: AudioStreamPlayer = %DigiMusic
-@onready var funk_music: AudioStreamPlayer = %FunkMusic
-@onready var grav_music: AudioStreamPlayer = %GravMusic
 @onready var ambience: AudioStreamPlayer = %Ambience
 @onready var rail_grind: AudioStreamPlayer = %RailGrind
+@onready var wind: AudioStreamPlayer = %Wind
+@onready var skate: AudioStreamPlayer = %Skate
+
+
 
 @export var glitch: AudioStream
 @export var tape:AudioStream
 @export var death:AudioStream
 @export var land:AudioStream
 @export var jump:AudioStream
+
+var player_velocity : Vector2
 
 var is_on_rail := false :
 	set(value):
@@ -26,6 +30,34 @@ var is_on_rail := false :
 func _ready() -> void:
 	fade_out_all_tracks()
 	Global.tape_changed.connect(_on_tape_changed)
+
+
+func _process(_delta: float) -> void:
+	player_skate_sounds()
+
+
+func player_skate_sounds():
+	if is_on_rail:
+		return
+
+	var max_speed :float= 600.0
+	var min_volume :float= -80.0
+	var max_volume :float= -25
+
+	var x_speed :float= abs(player_velocity.x)
+
+	# Wind is based on x velocity regardless of y
+	var wind_volume :float= lerp(min_volume, max_volume, clamp(x_speed / max_speed, 0.0, 1.0))
+
+	# Skate only plays if moving horizontally and not vertically
+	var skate_volume := min_volume
+	if player_velocity.x > 0.0 and player_velocity.y == 0.0:
+		skate_volume = lerp(min_volume, max_volume, clamp(player_velocity.x / max_speed, 0.0, 1.0))
+
+	# Apply volumes
+	wind.volume_db = wind_volume
+	skate.volume_db = skate_volume
+
 
 
 func play(sound: AudioStream, parent:Node=self,sound_bus: String="sfx"):
@@ -63,7 +95,7 @@ func _on_tape_changed():
 
 
 func switch_to_track(index: int):
-	var tracks := [default_music, digi_music, funk_music, grav_music]
+	var tracks := [default_music, digi_music]
 	for i in range(tracks.size()):
 		if i == index:
 			await_fade_in(i)
@@ -71,12 +103,12 @@ func switch_to_track(index: int):
 			fade_out(tracks[i])
 
 func await_fade_in(index:int):
-	var tracks := [default_music, digi_music, funk_music, grav_music]
+	var tracks := [default_music, digi_music]
 	await get_tree().create_timer(0.25).timeout
 	fade_in(tracks[index])
 
 
 func fade_out_all_tracks():
-	var tracks := [default_music, digi_music, funk_music, grav_music]
+	var tracks := [default_music, digi_music]
 	for i in range(tracks.size()):
 		fade_out(tracks[i])

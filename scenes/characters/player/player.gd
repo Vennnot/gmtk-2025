@@ -84,6 +84,7 @@ func reset_max_velocity():
 	current_maximum_velocity = maximum_velocity
 
 func _physics_process(delta: float) -> void:
+	AudioManager.player_velocity = velocity
 	if !Global.player_upside_down:
 		handle_animations()
 	else: handle_upsidedown_animations()
