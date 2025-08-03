@@ -212,7 +212,6 @@ func _apply_tape_power():
 			$UI/MarginContainer/VBoxContainer/JumpIcon.visible = true
 
 func level_cleared():
-	AudioManager.fade_out_all_tracks()
 	await fade_black(false)
 	Engine.time_scale = 0
 	dialogue_manager.name_ = end_dialog_char_1

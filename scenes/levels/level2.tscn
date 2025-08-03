@@ -320,10 +320,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="JumpIcon" type="Sprite2D" parent="UI/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 position = Vector2(255, 194)
 texture = ExtResource("3_4wmb1")
 
 [node name="SpeedIcon" type="Sprite2D" parent="UI/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 visible = false
 position = Vector2(258, 193)
 texture = ExtResource("4_5qtw0")
