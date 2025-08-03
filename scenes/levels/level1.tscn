@@ -416,6 +416,7 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 [node name="Player" parent="." instance=ExtResource("12_igeo0")]
 unique_name_in_owner = true
 position = Vector2(-69, -370)
+jump_boost = 800.0
 
 [node name="World" parent="." instance=ExtResource("13_y71nm")]
 process_mode = 1
@@ -431,19 +432,19 @@ position = Vector2(-406, -77)
 
 [node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("15_7plwd")]
 visible = false
-position = Vector2(-48, 180.905)
+position = Vector2(-48, 162.163)
 
 [node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("15_7plwd")]
 visible = false
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(-126, 186.771)
+position = Vector2(-126, 168.073)
 monitoring = false
 tape = 1
 
 [node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("15_7plwd")]
 visible = false
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(26, 178.017)
+position = Vector2(26, 159.309)
 monitoring = false
 tape = 2
 
