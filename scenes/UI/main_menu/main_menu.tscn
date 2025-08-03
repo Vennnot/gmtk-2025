@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://us18p26yg71o"]
+[gd_scene load_steps=6 format=3 uid="uid://us18p26yg71o"]
 
 [ext_resource type="Script" uid="uid://b3kmg6ioqk42k" path="res://scenes/UI/main_menu/main_menu.gd" id="1_oim1r"]
 [ext_resource type="PackedScene" uid="uid://cygyj2gepkgaj" path="res://scenes/UI/settings/game_settings.tscn" id="2_6l5je"]
+[ext_resource type="Theme" uid="uid://bj3fqkkcuexvw" path="res://resources/theme.tres" id="2_epuki"]
+[ext_resource type="Texture2D" uid="uid://c27i3jaec02on" path="res://assets/logo scaled.png" id="3_0vw6h"]
+[ext_resource type="Texture2D" uid="uid://djasuf5nw7ts3" path="res://assets/main screen_scaled.png" id="3_4gtts"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -14,34 +17,70 @@ script = ExtResource("1_oim1r")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="MainButtons" type="HBoxContainer" parent="UI"]
-unique_name_in_owner = true
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="BackgroundRect" type="TextureRect" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_4gtts")
 
-[node name="PlayButton" type="Button" parent="UI/MainButtons"]
+[node name="LogoRect" type="TextureRect" parent="UI"]
+offset_left = 127.0
+offset_top = 25.0
+offset_right = 1117.0
+offset_bottom = 685.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("3_0vw6h")
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+modulate = Color(0.447059, 0.945098, 0.72549, 1)
+offset_left = 282.0
+offset_top = 539.0
+offset_right = 630.0
+offset_bottom = 963.0
+theme_override_constants/separation = 100
+
+[node name="PlayButton" type="Button" parent="UI/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_epuki")
 theme_override_font_sizes/font_size = 128
 text = "play"
 
+[node name="CreditsButton" type="Button" parent="UI/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_epuki")
+theme_override_font_sizes/font_size = 128
+text = "credits"
+
+[node name="MainButtons" type="HBoxContainer" parent="UI"]
+unique_name_in_owner = true
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="SettingsButton" type="Button" parent="UI/MainButtons"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 128
 text = "settings"
 
-[node name="CreditsButton" type="Button" parent="UI/MainButtons"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 128
-text = "credits"
-
 [node name="ExitButton" type="Button" parent="UI/MainButtons"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 128
 text = "exit"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MainButtons"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/MainButtons/MarginContainer"]
+layout_mode = 2
 
 [node name="GameSettings" parent="UI" instance=ExtResource("2_6l5je")]
 unique_name_in_owner = true

@@ -9,6 +9,7 @@ extends Control
 @onready var game_settings: GameSettingsUI = %GameSettings
 
 func _ready() -> void:
+	Global.next_tape()
 	game_settings.exit_pressed.connect(_close_settings)
 	play_button.pressed.connect(_on_play_button_pressed)
 	settings_button.pressed.connect(_on_settings_button_pressed)
