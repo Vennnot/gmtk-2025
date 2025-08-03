@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://bruy8ey5v3t41"]
+[gd_scene load_steps=57 format=3 uid="uid://bruy8ey5v3t41"]
 
 [ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_7kkoh"]
 [ext_resource type="PackedScene" uid="uid://dvsy00ope5428" path="res://scenes/levels/level5.tscn" id="2_hxr3b"]
@@ -20,7 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://dlsuigoh14we6" path="res://scenes/test/test_world.tscn" id="13_jxa0w"]
 [ext_resource type="PackedScene" uid="uid://bmeiv1c8q5tey" path="res://addons/dialogue/scenes/dialogue_manager.tscn" id="14_3fbce"]
 [ext_resource type="PackedScene" uid="uid://5wwyga0bugq4" path="res://scenes/world/Interactables/speed_boost.tscn" id="14_8toe1"]
-[ext_resource type="PackedScene" uid="uid://djhx27a5tudm0" path="res://scenes/collectables/cassette_collectable.tscn" id="15_3fbce"]
 [ext_resource type="Texture2D" uid="uid://beqgqsefbd3ws" path="res://assets/sprites/Portrait/Friend/Friend_neutral.png" id="15_5exf6"]
 [ext_resource type="PackedScene" uid="uid://dbe4j3lpi0ika" path="res://scenes/world/Interactables/magnet_spikes.tscn" id="16_5exf6"]
 [ext_resource type="Texture2D" uid="uid://bm0allm1q8s4t" path="res://assets/sprites/Portrait/Jeanie/Jeanie_probably hiding something.png" id="16_ku6mp"]
@@ -428,24 +427,6 @@ position = Vector2(0, -264)
 [node name="SpeedBoost" parent="World/Environment/Interactables" instance=ExtResource("14_8toe1")]
 position = Vector2(-406, -77)
 
-[node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("15_3fbce")]
-visible = false
-position = Vector2(-48, 109.162)
-
-[node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("15_3fbce")]
-visible = false
-modulate = Color(1, 1, 1, 0.1)
-position = Vector2(-126, 115.011)
-monitoring = false
-tape = 1
-
-[node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("15_3fbce")]
-visible = false
-modulate = Color(1, 1, 1, 0.1)
-position = Vector2(26, 106.244)
-monitoring = false
-tape = 2
-
 [node name="MagnetSpikes2" parent="World/Environment/Interactables" instance=ExtResource("16_5exf6")]
 position = Vector2(1146, 263)
 scale = Vector2(3.04018, 1)
@@ -506,4 +487,4 @@ unique_name_in_owner = true
 position = Vector2(0, 144)
 
 [node name="FinishLineSmoke" parent="World" instance=ExtResource("22_4b1m2")]
-position = Vector2(10624, 171)
+position = Vector2(10624, 162)

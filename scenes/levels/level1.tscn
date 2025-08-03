@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://cjae4hhh2rr15"]
+[gd_scene load_steps=58 format=3 uid="uid://cjae4hhh2rr15"]
 
 [ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_db1r7"]
 [ext_resource type="PackedScene" uid="uid://cygyj2gepkgaj" path="res://scenes/UI/settings/game_settings.tscn" id="2_6gwlt"]
@@ -20,7 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://dlsuigoh14we6" path="res://scenes/test/test_world.tscn" id="13_y71nm"]
 [ext_resource type="PackedScene" uid="uid://5wwyga0bugq4" path="res://scenes/world/Interactables/speed_boost.tscn" id="14_6d4iq"]
 [ext_resource type="PackedScene" uid="uid://bmeiv1c8q5tey" path="res://addons/dialogue/scenes/dialogue_manager.tscn" id="14_7plwd"]
-[ext_resource type="PackedScene" uid="uid://djhx27a5tudm0" path="res://scenes/collectables/cassette_collectable.tscn" id="15_7plwd"]
 [ext_resource type="Texture2D" uid="uid://beqgqsefbd3ws" path="res://assets/sprites/Portrait/Friend/Friend_neutral.png" id="15_agrr7"]
 [ext_resource type="PackedScene" uid="uid://dbe4j3lpi0ika" path="res://scenes/world/Interactables/magnet_spikes.tscn" id="16_agrr7"]
 [ext_resource type="Texture2D" uid="uid://c0v0i77ukb8x4" path="res://assets/sprites/Portrait/Jeanie/Jeanie.png" id="16_b2isc"]
@@ -429,24 +428,6 @@ position = Vector2(0, -264)
 
 [node name="SpeedBoost" parent="World/Environment/Interactables" instance=ExtResource("14_6d4iq")]
 position = Vector2(-406, -77)
-
-[node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("15_7plwd")]
-visible = false
-position = Vector2(-48, 162.163)
-
-[node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("15_7plwd")]
-visible = false
-modulate = Color(1, 1, 1, 0.1)
-position = Vector2(-126, 168.073)
-monitoring = false
-tape = 1
-
-[node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("15_7plwd")]
-visible = false
-modulate = Color(1, 1, 1, 0.1)
-position = Vector2(26, 159.309)
-monitoring = false
-tape = 2
 
 [node name="MagnetSpikes" parent="World/Environment/Interactables" instance=ExtResource("16_agrr7")]
 position = Vector2(2461, 259)
