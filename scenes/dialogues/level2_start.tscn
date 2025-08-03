@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://fmiiotetodcr"]
+
+[ext_resource type="Script" uid="uid://cw6ptf6ace68i" path="res://addons/dialogue/scripts/dialogue.gd" id="1_jh4ps"]
+
+[node name="dialogue" type="Node"]
+editor_description = "character;message;time showing message;time showing choices;choices..."
+script = ExtResource("1_jh4ps")
+messages = ["1;You ever get bored of that job?;1", "2;Yeah....;2", "1;But you stay there?;1", "2;Yeah...;2", "1;You gonna say anything else?;1", "2;...;2", "2;There's not a lot of work around here. At least I can get there on skates, y'know. Keeps me alive. Music in your ears, wind in your face, the feeling of gliding through the streets...;2", "1;That enough for you?;1", "2;...;2"]

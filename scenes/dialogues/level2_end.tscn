@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://4fr5q1jfnhe2"]
+
+[ext_resource type="Script" uid="uid://cw6ptf6ace68i" path="res://addons/dialogue/scripts/dialogue.gd" id="1_i23fh"]
+
+[node name="dialogue" type="Node"]
+editor_description = "character;message;time showing message;time showing choices;choices..."
+script = ExtResource("1_i23fh")
+messages = ["1;You should’ve gone to college Jeanie.;1", "2;You too.;2", "1;Well, I own the store. You're stuck working this dead-end job.;1"]

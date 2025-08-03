@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://bmpnt54ivj7nt"]
+
+[ext_resource type="Texture2D" uid="uid://c68femi1ffwgb" path="res://assets/sprites/NPCs/Boss Idle/boss idle (1).png" id="1_3lkpt"]
+[ext_resource type="Texture2D" uid="uid://bx5a1j3n5lkqx" path="res://assets/sprites/NPCs/Boss Idle/boss idle (2).png" id="2_oqemg"]
+[ext_resource type="Texture2D" uid="uid://c277h4wipx7sv" path="res://assets/sprites/NPCs/Boss Idle/boss idle (3).png" id="3_j2yep"]
+[ext_resource type="Texture2D" uid="uid://dash4vdrvbnwd" path="res://assets/sprites/NPCs/Boss Idle/boss idle (4).png" id="4_biyqn"]
+[ext_resource type="Texture2D" uid="uid://dlbg3b7i81fi4" path="res://assets/sprites/NPCs/Boss Idle/boss idle (5).png" id="5_23tnu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qn7bi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3lkpt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_oqemg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_j2yep")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_biyqn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_23tnu")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Store Owner" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qn7bi")
+animation = &"idle"
+frame_progress = 0.104876
+flip_h = true

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ic4xwrvi2ylv"]
+
+[ext_resource type="Script" uid="uid://cw6ptf6ace68i" path="res://addons/dialogue/scripts/dialogue.gd" id="1_6lfel"]
+
+[node name="dialogue" type="Node"]
+editor_description = "character;message;time showing message;time showing choices;choices..."
+script = ExtResource("1_6lfel")
+messages = ["2;I quit;2", "1;WHAT? YOU CAN'T QUIT!;1", "2;Tough. I'm out of here. I got plans.;2", "1;To do what? Join a roller derby?;1", "2;I'm going to ride these roller skates straight to college.;2", "1;I give you 1 week before you come crawling back to me.;1", "2;If I ever come back, you'll be lucky to have me in this store.;2"]

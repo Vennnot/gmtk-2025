@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ot040jrwdr5u"]
+
+[ext_resource type="Script" uid="uid://cw6ptf6ace68i" path="res://addons/dialogue/scripts/dialogue.gd" id="1_agrrv"]
+
+[node name="dialogue" type="Node"]
+editor_description = "character;message;time showing message;time showing choices;choices..."
+script = ExtResource("1_agrrv")
+messages = ["2;What if things were different? What if I could break out? Where would I go? What would I do? Who would I be?;2"]

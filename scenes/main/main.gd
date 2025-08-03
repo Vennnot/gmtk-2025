@@ -3,6 +3,10 @@ extends Node
 
 @export var NEXT_SCENE : PackedScene
 @export var dialogue_manager : Node
+@export var end_dialog_char_1 : String
+@export var end_dialog_char_1_color : Color
+@export var end_dialogue_char_1_image : CompressedTexture2D
+@export var end_dialogue_jeanie_image : CompressedTexture2D
 @export var start_dialogue : PackedScene
 @export var end_dialogue : PackedScene
 @export var finish_line : Node2D
@@ -16,7 +20,6 @@ extends Node
 
 @export var death_duration : float = 3
 @export var camera_death_zoom : float = 6
-
 
 @onready var game_settings: GameSettingsUI = %GameSettings
 @onready var game_timer: Timer = %GameTimer
@@ -32,7 +35,7 @@ extends Node
 
 
 func _ready() -> void:
-	Global.next_tape()
+	Global.reset_tape()
 	black_color.show()
 	game_settings.exit_pressed.connect(toggle_pause)
 	game_timer.timeout.connect(_on_game_timer_timeout)
@@ -40,6 +43,7 @@ func _ready() -> void:
 	EventBus.collectable_collected.connect(_on_collectable)
 	EventBus.dialogue_ended.connect(_on_dialogue_ended)
 	EventBus.reached_level_finish.connect(_reached_finish_line)
+	player.global_position = player_spawn_position.global_position
 	if dialogue_manager:
 		Engine.time_scale = 0
 		var start_d := start_dialogue.instantiate()
@@ -54,6 +58,7 @@ func _ready() -> void:
 	else:
 		await fade_black(true)
 		restart_game()
+	
 
 func _on_dialogue_ended():
 	if finish_line:
@@ -155,13 +160,15 @@ func _input(_event: InputEvent) -> void:
 	if player.dead:
 		return
 	
-	if Input.is_action_just_pressed(&"switch_tape"):
+	if Input.is_action_just_pressed(&"switch_tape") and player.can_switch_tape:
 		#if infinity_loop.sprite_in_middle:
-			AudioManager.play(AudioManager.tape)
-			ui_animator.play(&"ripple")
-			#slow_down_and_restore()
-			infinity_loop.sprite_in_middle = false
-			Global.next_tape()
+		player.tape_switch_timer.start()
+		player.can_switch_tape = false
+		AudioManager.play(AudioManager.tape)
+		ui_animator.play(&"ripple")
+		#slow_down_and_restore()
+		infinity_loop.sprite_in_middle = false
+		Global.next_tape()
 
 
 func slow_down_and_restore(duration: float = 0.25):
@@ -184,11 +191,11 @@ func _apply_tape_power():
 		#Global.TAPE.CYAN:
 			#player.velocity.y += 5000
 			#powerup_text = "fall instantly"
-		Global.TAPE.YELLOW:
+		Global.TAPE.PINK:
 			player.use_jump_powerup()
 			$UI/MarginContainer/VBoxContainer/SpeedIcon.visible = true
 			$UI/MarginContainer/VBoxContainer/JumpIcon.visible = false
-		Global.TAPE.GREEN:
+		Global.TAPE.TEAL:
 			player.use_speed_powerup()
 			$UI/MarginContainer/VBoxContainer/SpeedIcon.visible = false
 			$UI/MarginContainer/VBoxContainer/JumpIcon.visible = true
@@ -196,9 +203,10 @@ func _apply_tape_power():
 func level_cleared():
 	await fade_black(false)
 	Engine.time_scale = 0
-	dialogue_manager.name__ = "Boss"
-	dialogue_manager.name_color__ = Color.RED
-	#dialogue_manager.avatar__
+	dialogue_manager.name_ = end_dialog_char_1
+	dialogue_manager.name_color_ = end_dialog_char_1_color
+	dialogue_manager.avatar_ = end_dialogue_char_1_image
+	dialogue_manager.avatar__ = end_dialogue_jeanie_image
 	dialogue_manager.start("end_dialogue")
 
 

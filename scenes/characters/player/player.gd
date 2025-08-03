@@ -23,8 +23,9 @@ var can_jump := false
 @onready var coyote_timer := $"Coyote Timer"
 @export var coyote_time := 0.1
 
-var can_use_tape_action = true
-@onready var tape_action_timer = %TapeActionTimer
+var can_switch_tape = true
+@onready var tape_switch_timer = %TapeActionTimer
+@export var tape_switch_cooldown : float = 1.0
 
 var no_control_target : float
 
@@ -58,11 +59,13 @@ var railing_direction := 1.0
 func _ready() -> void:
 	railing_area.area_entered.connect(_on_area_entered)
 	coyote_timer.wait_time = coyote_time
+	tape_switch_timer.wait_time = tape_switch_cooldown
 	reset_max_velocity()
+	
 
 
 func use_jump_powerup():
-	velocity.y = -jump_boost
+	velocity.y = jump_boost
 
 
 func use_speed_powerup():
@@ -140,9 +143,6 @@ func control_movement(_delta):
 	
 	#Handle Railing
 	handle_railing()
-	
-	# Handle Player Tape
-	handle_tape_action()
 
 
 func upsidedown_control_movement(_delta):
@@ -485,14 +485,8 @@ func is_colliding_with_rails()->bool:
 
 # and abs(velocity.x) >= maximum_velocity / 7
 
-func handle_tape_action():
-	if Input.is_action_just_pressed("tape_action") and can_use_tape_action:
-		main._apply_tape_power()
-		can_use_tape_action = false
-		tape_action_timer.start()
-
 func _on_tape_action_timer_timeout() -> void:
-	can_use_tape_action = true
+	can_switch_tape = true
 
 #func handle_walls(_delta):
 	##Handle y movement

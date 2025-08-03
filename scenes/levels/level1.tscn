@@ -1,12 +1,16 @@
-[gd_scene load_steps=51 format=3 uid="uid://cjae4hhh2rr15"]
+[gd_scene load_steps=59 format=3 uid="uid://cjae4hhh2rr15"]
 
 [ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_db1r7"]
 [ext_resource type="PackedScene" uid="uid://cygyj2gepkgaj" path="res://scenes/UI/settings/game_settings.tscn" id="2_6gwlt"]
 [ext_resource type="PackedScene" uid="uid://b7qua5kkocm0x" path="res://scenes/levels/level2.tscn" id="2_c2nc4"]
+[ext_resource type="Texture2D" uid="uid://clixovunpr8j3" path="res://assets/sprites/Portrait/Boss/boss_grumpy.png" id="3_07dy8"]
 [ext_resource type="Texture2D" uid="uid://cyhhecr3unpv0" path="res://assets/environment/icons/JumpIcon.png" id="3_c2nc4"]
+[ext_resource type="Texture2D" uid="uid://pi44cs80825j" path="res://assets/sprites/Portrait/Jeanie/Jeanie_smirk.png" id="4_3gp1u"]
 [ext_resource type="Texture2D" uid="uid://dnvbme4nqh5gh" path="res://assets/environment/icons/SpeedIcon.png" id="4_vhxpm"]
 [ext_resource type="PackedScene" uid="uid://dyr2o0k4wj1m6" path="res://scenes/UI/track_visuals/infinity_loop.tscn" id="5_arkx4"]
+[ext_resource type="PackedScene" uid="uid://ngygcn2kyp8s" path="res://scenes/dialogues/level1_start.tscn" id="5_igeo0"]
 [ext_resource type="PackedScene" uid="uid://biarbyhnbgx0i" path="res://scenes/UI/track_visuals/cassette_ui.tscn" id="6_jqv5m"]
+[ext_resource type="PackedScene" uid="uid://b4pgv7f1twefu" path="res://scenes/dialogues/level1_end.tscn" id="6_y71nm"]
 [ext_resource type="Shader" uid="uid://dyrjkywkwsd3g" path="res://resources/glitch.gdshader" id="7_noix2"]
 [ext_resource type="Shader" uid="uid://bua05pf3sf71g" path="res://resources/ripple.gdshader" id="8_025c5"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="9_bw3ef"]
@@ -15,8 +19,11 @@
 [ext_resource type="PackedScene" uid="uid://tiqn0p0soeti" path="res://scenes/characters/player/player.tscn" id="12_igeo0"]
 [ext_resource type="PackedScene" uid="uid://dlsuigoh14we6" path="res://scenes/test/test_world.tscn" id="13_y71nm"]
 [ext_resource type="PackedScene" uid="uid://5wwyga0bugq4" path="res://scenes/world/Interactables/speed_boost.tscn" id="14_6d4iq"]
+[ext_resource type="PackedScene" uid="uid://bmeiv1c8q5tey" path="res://addons/dialogue/scenes/dialogue_manager.tscn" id="14_7plwd"]
 [ext_resource type="PackedScene" uid="uid://djhx27a5tudm0" path="res://scenes/collectables/cassette_collectable.tscn" id="15_7plwd"]
+[ext_resource type="Texture2D" uid="uid://beqgqsefbd3ws" path="res://assets/sprites/Portrait/Friend/Friend_neutral.png" id="15_agrr7"]
 [ext_resource type="PackedScene" uid="uid://dbe4j3lpi0ika" path="res://scenes/world/Interactables/magnet_spikes.tscn" id="16_agrr7"]
+[ext_resource type="Texture2D" uid="uid://c0v0i77ukb8x4" path="res://assets/sprites/Portrait/Jeanie/Jeanie.png" id="16_b2isc"]
 [ext_resource type="PackedScene" uid="uid://b8rrp8w73ic70" path="res://scenes/world/railing/railing.tscn" id="17_b2isc"]
 [ext_resource type="Texture2D" uid="uid://dbg0jkasopjf1" path="res://assets/environment/textures/RailTexture.png" id="18_qg8x4"]
 [ext_resource type="Texture2D" uid="uid://csyax0er4a0ag" path="res://assets/environment/pngs/GrafittiArrow-Sheet.png" id="19_nm6kf"]
@@ -24,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://dx8l3luoxod0x" path="res://assets/environment/parallaxbackground.tscn" id="20_88m6t"]
 [ext_resource type="PackedScene" uid="uid://dw7538s3gf5c4" path="res://assets/environment/finish_line_smoke.tscn" id="21_oub7f"]
 [ext_resource type="PackedScene" uid="uid://danamx8m8yjpq" path="res://scenes/ground/groundtilemap.tscn" id="22_db1r7"]
+[ext_resource type="PackedScene" uid="uid://lesfihwialmo" path="res://scenes/characters/npcs/sammy.tscn" id="32_3gp1u"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6q06x"]
 font_size = 48
@@ -247,11 +255,18 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="Level3" type="Node" node_paths=PackedStringArray("finish_line")]
+[node name="Level1" type="Node" node_paths=PackedStringArray("dialogue_manager", "finish_line")]
 process_mode = 3
 script = ExtResource("1_db1r7")
 NEXT_SCENE = ExtResource("2_c2nc4")
-finish_line = NodePath("World/Environment/Sprite2D")
+dialogue_manager = NodePath("UI/dialogue_manager")
+end_dialog_char_1 = "Store Owner"
+end_dialog_char_1_color = Color(1, 0, 0, 1)
+end_dialogue_char_1_image = ExtResource("3_07dy8")
+end_dialogue_jeanie_image = ExtResource("4_3gp1u")
+start_dialogue = ExtResource("5_igeo0")
+end_dialogue = ExtResource("6_y71nm")
+finish_line = NodePath("World/FinishLineSmoke")
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 
@@ -356,6 +371,14 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[node name="dialogue_manager" parent="UI" instance=ExtResource("14_7plwd")]
+style = 1
+typing_animation = false
+name_ = "Sammy"
+avatar_ = ExtResource("15_agrr7")
+name__ = "Jeanie"
+avatar__ = ExtResource("16_b2isc")
+
 [node name="Other" type="Node" parent="."]
 
 [node name="GameTimer" type="Timer" parent="Other"]
@@ -408,19 +431,19 @@ position = Vector2(-406, -77)
 
 [node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("15_7plwd")]
 visible = false
-position = Vector2(-48, 173.179)
+position = Vector2(-48, 180.905)
 
 [node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("15_7plwd")]
 visible = false
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(-126, 179.078)
+position = Vector2(-126, 186.771)
 monitoring = false
 tape = 1
 
 [node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("15_7plwd")]
 visible = false
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(26, 170.316)
+position = Vector2(26, 178.017)
 monitoring = false
 tape = 2
 
@@ -477,3 +500,6 @@ position = Vector2(10635, 171)
 
 [node name="Groundtilemap" parent="World" instance=ExtResource("22_db1r7")]
 position = Vector2(-176, 180)
+
+[node name="Sammy" parent="World" instance=ExtResource("32_3gp1u")]
+position = Vector2(-35, 163)

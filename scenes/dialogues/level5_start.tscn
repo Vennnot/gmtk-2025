@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmdfp8givgw7g"]
+
+[ext_resource type="Script" uid="uid://cw6ptf6ace68i" path="res://addons/dialogue/scripts/dialogue.gd" id="1_sojvk"]
+
+[node name="dialogue" type="Node"]
+editor_description = "character;message;time showing message;time showing choices;choices..."
+script = ExtResource("1_sojvk")
+messages = ["2;If I left, would you miss me?;2", "1;Should I be worried?;1", "2;This town... I wanna leave.;2", "1;I'd miss you.;1", "2;...Oh;2", "1;But I want you to leave. You’ve been stuck here too long. Go somewhere new, see something else, do other stuff. No one is meant to stay stuck forever. Break out of the loop.;1"]

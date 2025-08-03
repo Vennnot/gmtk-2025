@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dw7538s3gf5c4"]
+[gd_scene load_steps=7 format=3 uid="uid://dw7538s3gf5c4"]
 
 [ext_resource type="Texture2D" uid="uid://bieymbh17npy5" path="res://assets/environment/textures/smokeparticle.png" id="1_jrr86"]
 [ext_resource type="Script" uid="uid://mr6wh8sxc5sx" path="res://assets/environment/finish_line_smoke.gd" id="1_mnf0g"]
+[ext_resource type="PackedScene" uid="uid://bmpnt54ivj7nt" path="res://scenes/characters/npcs/store_owner.tscn" id="3_pmuxe"]
 
 [sub_resource type="Curve" id="Curve_mnf0g"]
 _data = [Vector2(0, 0.561798), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -17,6 +18,7 @@ radius = 21.0238
 script = ExtResource("1_mnf0g")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+visible = false
 amount = 50
 texture = ExtResource("1_jrr86")
 lifetime = 2.0
@@ -33,5 +35,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_pmuxe")
+
+[node name="Store Owner" parent="." instance=ExtResource("3_pmuxe")]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

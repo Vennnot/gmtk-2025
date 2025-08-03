@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://86le1p0ufulj"
+path="res://.godot/imported/wind loop fx.ogg-e0ec92f811bfb09af117d0add3fe36c1.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sfx/wind loop fx.ogg"
+dest_files=["res://.godot/imported/wind loop fx.ogg-e0ec92f811bfb09af117d0add3fe36c1.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

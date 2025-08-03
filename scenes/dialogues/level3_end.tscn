@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyhknfuk15d68"]
+
+[ext_resource type="Script" uid="uid://cw6ptf6ace68i" path="res://addons/dialogue/scripts/dialogue.gd" id="1_16n7m"]
+
+[node name="dialogue" type="Node"]
+editor_description = "character;message;time showing message;time showing choices;choices..."
+script = ExtResource("1_16n7m")
+messages = ["2;Hey, boss.;2", "1;No cash advance.;1", "2;Not that, I’m just wondering...;2", "1;What?;1", "2;What would you do if you didn’t work here?;2", "1;Hm… don’t know. Write poetry, maybe. And starve.;1", "2;Really? You’re a poet?;2", "1;NO! HAHAHA! That's why I'm here. Let's get back to work.;1"]

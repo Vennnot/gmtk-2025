@@ -1,10 +1,15 @@
-[gd_scene load_steps=50 format=3 uid="uid://bruy8ey5v3t41"]
+[gd_scene load_steps=58 format=3 uid="uid://bruy8ey5v3t41"]
 
 [ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_7kkoh"]
+[ext_resource type="PackedScene" uid="uid://dvsy00ope5428" path="res://scenes/levels/level5.tscn" id="2_hxr3b"]
 [ext_resource type="PackedScene" uid="uid://cygyj2gepkgaj" path="res://scenes/UI/settings/game_settings.tscn" id="2_m1gbu"]
+[ext_resource type="Texture2D" uid="uid://clixovunpr8j3" path="res://assets/sprites/Portrait/Boss/boss_grumpy.png" id="3_cdy06"]
 [ext_resource type="Texture2D" uid="uid://cyhhecr3unpv0" path="res://assets/environment/icons/JumpIcon.png" id="3_yw4fb"]
 [ext_resource type="Texture2D" uid="uid://dnvbme4nqh5gh" path="res://assets/environment/icons/SpeedIcon.png" id="4_1wpw8"]
+[ext_resource type="Texture2D" uid="uid://dflrujbs3ilvs" path="res://assets/sprites/Portrait/Jeanie/Jeanie_nervous.png" id="4_2c5pw"]
+[ext_resource type="PackedScene" uid="uid://ot040jrwdr5u" path="res://scenes/dialogues/level4_start.tscn" id="5_7cvth"]
 [ext_resource type="PackedScene" uid="uid://dyr2o0k4wj1m6" path="res://scenes/UI/track_visuals/infinity_loop.tscn" id="5_w1hcc"]
+[ext_resource type="PackedScene" uid="uid://dmcddniqsgt0k" path="res://scenes/dialogues/level4_end.tscn" id="6_jxa0w"]
 [ext_resource type="PackedScene" uid="uid://biarbyhnbgx0i" path="res://scenes/UI/track_visuals/cassette_ui.tscn" id="6_ph4mq"]
 [ext_resource type="Shader" uid="uid://dyrjkywkwsd3g" path="res://resources/glitch.gdshader" id="7_npa1m"]
 [ext_resource type="Shader" uid="uid://bua05pf3sf71g" path="res://resources/ripple.gdshader" id="8_ll01n"]
@@ -13,9 +18,12 @@
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="11_2c5pw"]
 [ext_resource type="PackedScene" uid="uid://tiqn0p0soeti" path="res://scenes/characters/player/player.tscn" id="12_7cvth"]
 [ext_resource type="PackedScene" uid="uid://dlsuigoh14we6" path="res://scenes/test/test_world.tscn" id="13_jxa0w"]
+[ext_resource type="PackedScene" uid="uid://bmeiv1c8q5tey" path="res://addons/dialogue/scenes/dialogue_manager.tscn" id="14_3fbce"]
 [ext_resource type="PackedScene" uid="uid://5wwyga0bugq4" path="res://scenes/world/Interactables/speed_boost.tscn" id="14_8toe1"]
 [ext_resource type="PackedScene" uid="uid://djhx27a5tudm0" path="res://scenes/collectables/cassette_collectable.tscn" id="15_3fbce"]
+[ext_resource type="Texture2D" uid="uid://beqgqsefbd3ws" path="res://assets/sprites/Portrait/Friend/Friend_neutral.png" id="15_5exf6"]
 [ext_resource type="PackedScene" uid="uid://dbe4j3lpi0ika" path="res://scenes/world/Interactables/magnet_spikes.tscn" id="16_5exf6"]
+[ext_resource type="Texture2D" uid="uid://bm0allm1q8s4t" path="res://assets/sprites/Portrait/Jeanie/Jeanie_probably hiding something.png" id="16_ku6mp"]
 [ext_resource type="PackedScene" uid="uid://b8rrp8w73ic70" path="res://scenes/world/railing/railing.tscn" id="17_ku6mp"]
 [ext_resource type="Texture2D" uid="uid://dbg0jkasopjf1" path="res://assets/environment/textures/RailTexture.png" id="18_rv7jb"]
 [ext_resource type="Texture2D" uid="uid://csyax0er4a0ag" path="res://assets/environment/pngs/GrafittiArrow-Sheet.png" id="19_bf472"]
@@ -246,9 +254,17 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="Level3" type="Node"]
+[node name="Level4" type="Node" node_paths=PackedStringArray("dialogue_manager")]
 process_mode = 3
 script = ExtResource("1_7kkoh")
+NEXT_SCENE = ExtResource("2_hxr3b")
+dialogue_manager = NodePath("UI/dialogue_manager")
+end_dialog_char_1 = "Store Owner"
+end_dialog_char_1_color = Color(1, 0, 0, 1)
+end_dialogue_char_1_image = ExtResource("3_cdy06")
+end_dialogue_jeanie_image = ExtResource("4_2c5pw")
+start_dialogue = ExtResource("5_7cvth")
+end_dialogue = ExtResource("6_jxa0w")
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 
@@ -353,6 +369,14 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[node name="dialogue_manager" parent="UI" instance=ExtResource("14_3fbce")]
+style = 1
+typing_animation = false
+name_ = "Sammy"
+avatar_ = ExtResource("15_5exf6")
+name__ = "Jeanie"
+avatar__ = ExtResource("16_ku6mp")
+
 [node name="Other" type="Node" parent="."]
 
 [node name="GameTimer" type="Timer" parent="Other"]
@@ -405,19 +429,19 @@ position = Vector2(-406, -77)
 
 [node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("15_3fbce")]
 visible = false
-position = Vector2(-48, 105.6)
+position = Vector2(-48, 86.0276)
 
 [node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("15_3fbce")]
 visible = false
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(-126, 111.447)
+position = Vector2(-126, 91.9036)
 monitoring = false
 tape = 1
 
 [node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("15_3fbce")]
 visible = false
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(26, 102.681)
+position = Vector2(26, 83.1347)
 monitoring = false
 tape = 2
 

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmcddniqsgt0k"]
+
+[ext_resource type="Script" uid="uid://cw6ptf6ace68i" path="res://addons/dialogue/scripts/dialogue.gd" id="1_xbxvf"]
+
+[node name="dialogue" type="Node"]
+editor_description = "character;message;time showing message;time showing choices;choices..."
+script = ExtResource("1_xbxvf")
+messages = ["1;Jeanie, I need you to start coming in early. And staying a bit later. Doing more double shifts.;1", "2;What? Why?;2", "1;That one new guy quit.;1"]

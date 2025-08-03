@@ -1,6 +1,6 @@
 extends Node
 
-const MAIN_SCENE := preload("res://scenes/main/main.tscn")
+const MAIN_SCENE := preload("res://scenes/levels/level1.tscn")
 const MAIN_MENU := preload("res://scenes/UI/main_menu/main_menu.tscn")
 
 func change_scene(next_scene:PackedScene):

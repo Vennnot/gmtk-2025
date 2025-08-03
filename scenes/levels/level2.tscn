@@ -1,11 +1,16 @@
-[gd_scene load_steps=50 format=3 uid="uid://b7qua5kkocm0x"]
+[gd_scene load_steps=59 format=3 uid="uid://b7qua5kkocm0x"]
 
 [ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_g04qb"]
 [ext_resource type="PackedScene" uid="uid://cygyj2gepkgaj" path="res://scenes/UI/settings/game_settings.tscn" id="2_ida7w"]
+[ext_resource type="PackedScene" uid="uid://dgpc5ajj3jw5u" path="res://scenes/levels/level3.tscn" id="2_iin1y"]
 [ext_resource type="Texture2D" uid="uid://cyhhecr3unpv0" path="res://assets/environment/icons/JumpIcon.png" id="3_4wmb1"]
+[ext_resource type="Texture2D" uid="uid://b7hqfwxk3p8hp" path="res://assets/sprites/Portrait/Boss/boss_neutral.png" id="3_6igki"]
 [ext_resource type="Texture2D" uid="uid://dnvbme4nqh5gh" path="res://assets/environment/icons/SpeedIcon.png" id="4_5qtw0"]
+[ext_resource type="Texture2D" uid="uid://pi44cs80825j" path="res://assets/sprites/Portrait/Jeanie/Jeanie_smirk.png" id="4_hlvfl"]
+[ext_resource type="PackedScene" uid="uid://fmiiotetodcr" path="res://scenes/dialogues/level2_start.tscn" id="5_7r2ys"]
 [ext_resource type="PackedScene" uid="uid://dyr2o0k4wj1m6" path="res://scenes/UI/track_visuals/infinity_loop.tscn" id="5_xidjn"]
 [ext_resource type="PackedScene" uid="uid://biarbyhnbgx0i" path="res://scenes/UI/track_visuals/cassette_ui.tscn" id="6_45jfw"]
+[ext_resource type="PackedScene" uid="uid://4fr5q1jfnhe2" path="res://scenes/dialogues/level2_end.tscn" id="6_h3qar"]
 [ext_resource type="Shader" uid="uid://dyrjkywkwsd3g" path="res://resources/glitch.gdshader" id="7_8kpy5"]
 [ext_resource type="Shader" uid="uid://bua05pf3sf71g" path="res://resources/ripple.gdshader" id="8_ycs18"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="9_ydw67"]
@@ -14,8 +19,11 @@
 [ext_resource type="PackedScene" uid="uid://tiqn0p0soeti" path="res://scenes/characters/player/player.tscn" id="12_hlvfl"]
 [ext_resource type="PackedScene" uid="uid://dlsuigoh14we6" path="res://scenes/test/test_world.tscn" id="13_7r2ys"]
 [ext_resource type="PackedScene" uid="uid://5wwyga0bugq4" path="res://scenes/world/Interactables/speed_boost.tscn" id="14_h3qar"]
+[ext_resource type="PackedScene" uid="uid://bmeiv1c8q5tey" path="res://addons/dialogue/scenes/dialogue_manager.tscn" id="14_r00g1"]
+[ext_resource type="Texture2D" uid="uid://c5n4font3opb" path="res://assets/sprites/Portrait/Friend/friend_acusatory.png" id="15_liaw4"]
 [ext_resource type="PackedScene" uid="uid://djhx27a5tudm0" path="res://scenes/collectables/cassette_collectable.tscn" id="15_r00g1"]
 [ext_resource type="PackedScene" uid="uid://dbe4j3lpi0ika" path="res://scenes/world/Interactables/magnet_spikes.tscn" id="16_liaw4"]
+[ext_resource type="Texture2D" uid="uid://dflrujbs3ilvs" path="res://assets/sprites/Portrait/Jeanie/Jeanie_nervous.png" id="16_m0i7f"]
 [ext_resource type="PackedScene" uid="uid://b8rrp8w73ic70" path="res://scenes/world/railing/railing.tscn" id="17_m0i7f"]
 [ext_resource type="Texture2D" uid="uid://dbg0jkasopjf1" path="res://assets/environment/textures/RailTexture.png" id="18_grqcv"]
 [ext_resource type="Texture2D" uid="uid://csyax0er4a0ag" path="res://assets/environment/pngs/GrafittiArrow-Sheet.png" id="19_jvp1d"]
@@ -23,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://dx8l3luoxod0x" path="res://assets/environment/parallaxbackground.tscn" id="20_kpmf5"]
 [ext_resource type="PackedScene" uid="uid://dw7538s3gf5c4" path="res://assets/environment/finish_line_smoke.tscn" id="21_k6387"]
 [ext_resource type="PackedScene" uid="uid://cntmlstgbyife" path="res://scenes/ground/groundtilemap2.tscn" id="22_g04qb"]
+[ext_resource type="PackedScene" uid="uid://lesfihwialmo" path="res://scenes/characters/npcs/sammy.tscn" id="32_6igki"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6q06x"]
 font_size = 48
@@ -246,9 +255,18 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="Level3" type="Node"]
+[node name="Level2" type="Node" node_paths=PackedStringArray("dialogue_manager", "finish_line")]
 process_mode = 3
 script = ExtResource("1_g04qb")
+NEXT_SCENE = ExtResource("2_iin1y")
+dialogue_manager = NodePath("UI/dialogue_manager")
+end_dialog_char_1 = "Store Owner"
+end_dialog_char_1_color = Color(1, 0, 0, 1)
+end_dialogue_char_1_image = ExtResource("3_6igki")
+end_dialogue_jeanie_image = ExtResource("4_hlvfl")
+start_dialogue = ExtResource("5_7r2ys")
+end_dialogue = ExtResource("6_h3qar")
+finish_line = NodePath("World/FinishLineSmoke")
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 
@@ -353,6 +371,14 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[node name="dialogue_manager" parent="UI" instance=ExtResource("14_r00g1")]
+style = 1
+typing_animation = false
+name_ = "Sammy"
+avatar_ = ExtResource("15_liaw4")
+name__ = "Jeanie"
+avatar__ = ExtResource("16_m0i7f")
+
 [node name="Other" type="Node" parent="."]
 
 [node name="GameTimer" type="Timer" parent="Other"]
@@ -405,19 +431,19 @@ position = Vector2(-406, -77)
 
 [node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("15_r00g1")]
 visible = false
-position = Vector2(-48, 180.222)
+position = Vector2(-48, 180.924)
 
 [node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("15_r00g1")]
 visible = false
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(-126, 185.919)
+position = Vector2(-126, 186.652)
 monitoring = false
 tape = 1
 
 [node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("15_r00g1")]
 visible = false
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(26, 177.152)
+position = Vector2(26, 177.889)
 monitoring = false
 tape = 2
 
@@ -468,7 +494,10 @@ unique_name_in_owner = true
 position = Vector2(0, 144)
 
 [node name="FinishLineSmoke" parent="World" instance=ExtResource("21_k6387")]
-position = Vector2(8647, 174)
+position = Vector2(8647, 160)
 
 [node name="Groundtilemap1" parent="World" instance=ExtResource("22_g04qb")]
 position = Vector2(3, 179)
+
+[node name="Sammy" parent="World" instance=ExtResource("32_6igki")]
+position = Vector2(-35, 162)

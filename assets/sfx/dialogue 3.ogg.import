@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cq5jqypp66fod"
+path="res://.godot/imported/dialogue 3.ogg-e3048b46a380c1536af8b07dcea7f018.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sfx/dialogue 3.ogg"
+dest_files=["res://.godot/imported/dialogue 3.ogg-e3048b46a380c1536af8b07dcea7f018.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

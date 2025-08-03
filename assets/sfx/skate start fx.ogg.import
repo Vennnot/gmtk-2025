@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://d3y8mfaddl3fk"
+path="res://.godot/imported/skate start fx.ogg-994becb541192df3cdc8f71ec5cf7a1f.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sfx/skate start fx.ogg"
+dest_files=["res://.godot/imported/skate start fx.ogg-994becb541192df3cdc8f71ec5cf7a1f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
