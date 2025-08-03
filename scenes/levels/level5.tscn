@@ -481,7 +481,7 @@ z_index = -5
 
 [node name="PlayerSpawnPosition" type="Marker2D" parent="World"]
 unique_name_in_owner = true
-position = Vector2(1359, 182)
+position = Vector2(18, 160)
 
 [node name="FinishLineSmoke" parent="World" instance=ExtResource("23_jjbvk")]
 position = Vector2(13287, 160)
