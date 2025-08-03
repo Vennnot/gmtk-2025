@@ -44,15 +44,6 @@ animation = &"midground"
 autoplay = "midground"
 frame_progress = 0.869257
 
-[node name="Background" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.5, 1)
-repeat_size = Vector2(960, 0)
-repeat_times = 6
-
-[node name="Sprite2D" type="Sprite2D" parent="Background"]
-position = Vector2(479, 91)
-texture = ExtResource("5_4vgwg")
-
 [node name="DeepBackground" type="Parallax2D" parent="."]
 z_index = 1
 scroll_scale = Vector2(0.2, 1)
@@ -63,9 +54,19 @@ repeat_times = 9
 position = Vector2(160, 90)
 texture = ExtResource("6_6l8n5")
 
+[node name="Background" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.1, 1)
+repeat_size = Vector2(960, 0)
+repeat_times = 6
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+position = Vector2(479, 91)
+texture = ExtResource("5_4vgwg")
+
 [node name="Clouds" type="Parallax2D" parent="."]
 z_index = -1
 scroll_scale = Vector2(0.1, 1)
+scroll_offset = Vector2(0, 1)
 repeat_size = Vector2(960, 0)
 repeat_times = 6
 
