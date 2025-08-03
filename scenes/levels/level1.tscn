@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://cjae4hhh2rr15"]
+[gd_scene load_steps=59 format=3 uid="uid://cjae4hhh2rr15"]
 
 [ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_db1r7"]
 [ext_resource type="PackedScene" uid="uid://cygyj2gepkgaj" path="res://scenes/UI/settings/game_settings.tscn" id="2_6gwlt"]
@@ -254,6 +254,9 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_07dy8"]
+size = Vector2(123, 200)
+
 [node name="Level1" type="Node" node_paths=PackedStringArray("dialogue_manager", "finish_line")]
 process_mode = 3
 script = ExtResource("1_db1r7")
@@ -485,3 +488,10 @@ position = Vector2(-176, 180)
 
 [node name="Sammy" parent="World" instance=ExtResource("32_3gp1u")]
 position = Vector2(-35, 163)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="World"]
+position = Vector2(-212, -11)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/StaticBody2D"]
+position = Vector2(-51.5, 90)
+shape = SubResource("RectangleShape2D_07dy8")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://bruy8ey5v3t41"]
+[gd_scene load_steps=58 format=3 uid="uid://bruy8ey5v3t41"]
 
 [ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_7kkoh"]
 [ext_resource type="PackedScene" uid="uid://dvsy00ope5428" path="res://scenes/levels/level5.tscn" id="2_hxr3b"]
@@ -253,7 +253,10 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="Level4" type="Node" node_paths=PackedStringArray("dialogue_manager")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ll01n"]
+size = Vector2(123, 200)
+
+[node name="Level4" type="Node" node_paths=PackedStringArray("dialogue_manager", "finish_line")]
 process_mode = 3
 script = ExtResource("1_7kkoh")
 NEXT_SCENE = ExtResource("2_hxr3b")
@@ -264,6 +267,7 @@ end_dialogue_char_1_image = ExtResource("3_cdy06")
 end_dialogue_jeanie_image = ExtResource("4_2c5pw")
 start_dialogue = ExtResource("5_7cvth")
 end_dialogue = ExtResource("6_jxa0w")
+finish_line = NodePath("World/FinishLineSmoke")
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 
@@ -484,7 +488,13 @@ z_index = -5
 
 [node name="PlayerSpawnPosition" type="Marker2D" parent="World"]
 unique_name_in_owner = true
-position = Vector2(0, 144)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="World/PlayerSpawnPosition"]
+position = Vector2(-212, -11)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/PlayerSpawnPosition/StaticBody2D"]
+position = Vector2(-51.5, 90)
+shape = SubResource("RectangleShape2D_ll01n")
 
 [node name="FinishLineSmoke" parent="World" instance=ExtResource("22_4b1m2")]
 position = Vector2(10624, 162)

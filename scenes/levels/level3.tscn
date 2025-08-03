@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://dgpc5ajj3jw5u"]
+[gd_scene load_steps=58 format=3 uid="uid://dgpc5ajj3jw5u"]
 
 [ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_hl16f"]
 [ext_resource type="PackedScene" uid="uid://bruy8ey5v3t41" path="res://scenes/levels/level4.tscn" id="2_lsxft"]
@@ -253,6 +253,9 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0qxt0"]
+size = Vector2(123, 200)
+
 [node name="Level3" type="Node" node_paths=PackedStringArray("dialogue_manager", "finish_line")]
 process_mode = 3
 script = ExtResource("1_hl16f")
@@ -488,3 +491,10 @@ position = Vector2(10624, 161)
 
 [node name="Groundtilemap3" parent="World" instance=ExtResource("22_dvr8a")]
 position = Vector2(-1550, 180)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-212, -11)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-51.5, 90)
+shape = SubResource("RectangleShape2D_0qxt0")

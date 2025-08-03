@@ -31,11 +31,16 @@ extends Node
 @onready var glitch_effect: ColorRect = %GlitchEffect
 @onready var ui_animator: AnimationPlayer = %UIAnimator
 @onready var black_color: ColorRect = %BlackColor
+@onready var jump_icon: Sprite2D = %JumpIcon
+@onready var speed_icon: Sprite2D = %SpeedIcon
 
 
 
 func _ready() -> void:
+	jump_icon.modulate = Color("d622ff")
+	speed_icon.modulate = Color("72f1b9")
 	Global.reset_tape()
+	Global.next_tape()
 	black_color.show()
 	game_settings.exit_pressed.connect(toggle_pause)
 	game_timer.timeout.connect(_on_game_timer_timeout)

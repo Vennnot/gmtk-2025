@@ -26,7 +26,7 @@ func next_tape():
 
 
 func reset_tape():
-	current_tape_index = 0
+	self.current_tape_index = 0
 
 @warning_ignore("int_as_enum_without_cast")
 func get_tape_string(t:TAPE=current_tape_index)->String:

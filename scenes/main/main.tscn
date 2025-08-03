@@ -156,10 +156,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="JumpIcon" type="Sprite2D" parent="UI/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 position = Vector2(249, 194)
 texture = ExtResource("3_pg34l")
 
 [node name="SpeedIcon" type="Sprite2D" parent="UI/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 visible = false
 position = Vector2(249, 194)
 texture = ExtResource("4_m4h2d")
@@ -273,17 +275,17 @@ position = Vector2(-406, -77)
 position = Vector2(-319, 257)
 
 [node name="Cassette Collectable" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
-position = Vector2(-48, 177.012)
+position = Vector2(-48, 184.563)
 
 [node name="Cassette Collectable2" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(-126, 183.046)
+position = Vector2(-126, 190.6)
 monitoring = false
 tape = 1
 
 [node name="Cassette Collectable3" parent="World/Environment/Interactables" instance=ExtResource("10_7smn1")]
 modulate = Color(1, 1, 1, 0.1)
-position = Vector2(26, 174.256)
+position = Vector2(26, 181.81)
 monitoring = false
 tape = 2
 

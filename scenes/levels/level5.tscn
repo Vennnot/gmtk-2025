@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://dvsy00ope5428"]
+[gd_scene load_steps=58 format=3 uid="uid://dvsy00ope5428"]
 
 [ext_resource type="Script" uid="uid://cxcc6khpdi0j4" path="res://scenes/main/main.gd" id="1_po1mw"]
 [ext_resource type="PackedScene" uid="uid://cygyj2gepkgaj" path="res://scenes/UI/settings/game_settings.tscn" id="2_ngf84"]
@@ -253,6 +253,9 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_idwux"]
+size = Vector2(123, 200)
+
 [node name="Level5" type="Node" node_paths=PackedStringArray("dialogue_manager", "finish_line")]
 process_mode = 3
 script = ExtResource("1_po1mw")
@@ -481,10 +484,16 @@ z_index = -5
 
 [node name="PlayerSpawnPosition" type="Marker2D" parent="World"]
 unique_name_in_owner = true
-position = Vector2(18, 160)
 
 [node name="FinishLineSmoke" parent="World" instance=ExtResource("23_jjbvk")]
 position = Vector2(13287, 160)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="World"]
+position = Vector2(-212, -11)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/StaticBody2D"]
+position = Vector2(-51.5, 90)
+shape = SubResource("RectangleShape2D_idwux")
 
 [node name="Sammy" parent="." instance=ExtResource("31_nhdg1")]
 position = Vector2(-35, 163)
