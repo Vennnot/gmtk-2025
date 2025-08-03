@@ -23,6 +23,10 @@ func previous_tape():
 
 func next_tape():
 	current_tape_index = (current_tape_index + 1) % TAPE.size()
+	if current_tape_index == 0:
+		AudioManager.play(AudioManager.stinger_default)
+	else:
+		AudioManager.play(AudioManager.stinger_digi)
 
 
 func reset_tape():

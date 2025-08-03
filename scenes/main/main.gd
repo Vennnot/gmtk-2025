@@ -39,7 +39,6 @@ extends Node
 func _ready() -> void:
 	jump_icon.modulate = Color("d622ff")
 	speed_icon.modulate = Color("72f1b9")
-	Global.reset_tape()
 	Global.next_tape()
 	black_color.show()
 	game_settings.exit_pressed.connect(toggle_pause)

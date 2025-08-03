@@ -17,6 +17,9 @@ const AUDIO_BUS_LAYOUT := preload("res://resources/audio/audio_bus_layout.tres")
 @export var land:AudioStream
 @export var jump:AudioStream
 
+@export var stinger_default:AudioStream
+@export var stinger_digi:AudioStream
+
 var player_velocity : Vector2
 
 var is_on_rail := false :
@@ -66,6 +69,8 @@ func play(sound: AudioStream, parent:Node=self,sound_bus: String="sfx"):
 		parent.add_child(audio_player)
 		audio_player.stream = sound
 		audio_player.volume_db = -25
+		if sound == stinger_default or sound == stinger_digi:
+			audio_player.volume_db = -30
 		audio_player.bus = sound_bus
 		audio_player.play(0.0)
 		audio_player.pitch_scale += randf_range(-0.05, 0.05)
