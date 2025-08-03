@@ -482,7 +482,7 @@ sprite_frames = SubResource("SpriteFrames_4jk58")
 autoplay = "default"
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Environment"]
-position = Vector2(10715, -129)
+position = Vector2(10714, -126)
 texture = ExtResource("20_rjokd")
 
 [node name="Groundtilemap3" parent="World/Environment" instance=ExtResource("21_7kkoh")]

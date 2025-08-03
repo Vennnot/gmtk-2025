@@ -482,7 +482,7 @@ sprite_frames = SubResource("SpriteFrames_4jk58")
 autoplay = "default"
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Environment"]
-position = Vector2(10715, -129)
+position = Vector2(10715, -127)
 texture = ExtResource("20_v6yyo")
 
 [node name="Parallaxbackground" parent="World" instance=ExtResource("20_ojfwg")]

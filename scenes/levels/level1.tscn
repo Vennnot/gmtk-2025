@@ -483,7 +483,7 @@ unique_name_in_owner = true
 position = Vector2(0, 144)
 
 [node name="FinishLineSmoke" parent="World" instance=ExtResource("21_oub7f")]
-position = Vector2(10635, 171)
+position = Vector2(10633, 160)
 
 [node name="Groundtilemap" parent="World" instance=ExtResource("22_db1r7")]
 position = Vector2(-176, 180)
